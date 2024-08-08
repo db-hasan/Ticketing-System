@@ -7,7 +7,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="" class="logo d-flex align-items-center">
                 <img src="{{ asset('backend/img/favicon.jpg') }}" alt="">
-                <span class="d-none d-lg-block">Your Logo Here</span>
+                <span class="d-none d-lg-block">Ticketing Sys</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div>
@@ -44,30 +44,44 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="">
-                    <i class="bi bi-images"></i>
-                    <span>Blog Post</span>
+                <a class="nav-link collapsed" href="{{ route('ride.index') }}">
+                    <i class="fa-brands fa-pushed"></i>
+                    <span>Add Ride</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="">
+                <a class="nav-link collapsed" href="{{ route('ticket.index') }}">
                     <i class="bi bi-gem"></i>
-                    <span>Lead Data</span>
+                    <span>Ticket </span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="">
-                    <i class="bi bi-person-lines-fill"></i>
-                    <span>Contact Us</span>
+                    <i class="bi bi-bar-chart"></i>
+                    <span> Report</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="">
+                    <i class="bi bi-shield-lock"></i>
+                    <span>Manage Role</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="">
+                    <i class="bi bi-database-lock"></i>
+                    <span>User Permission</span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('profle.update') }}">
-                    <i class="bi bi-person"></i>
-                    <span>User Profile</span>
+                    <i class="bi bi-people"></i>
+                    <span>User List</span>
                 </a>
             </li>
 
@@ -88,10 +102,10 @@
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
-            &copy; Copyright <strong><span>Pro Info</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span>Ticketing System</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            Designed by <a href="https://softxone.com/">SOFTxOne Limited</a>
+            Designed by <a href="https://softxone.com/">SOFTxONE Limited</a>
         </div>
     </footer>
     <!-- End Footer -->

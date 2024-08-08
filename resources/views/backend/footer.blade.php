@@ -7,6 +7,8 @@
     <script src="{{ asset('backend/js/sweetalert.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     {{-- TextColor CKEDITOR --}}
     <script>
@@ -130,3 +132,12 @@
             toastr.warning("{{ session('warning') }}");
         @endif
     </script>
+
+<script>
+    // Multi-select boxes
+
+$(document).ready(function() {
+  $('.js-example-basic-multiple').select2();
+});
+
+</script>
