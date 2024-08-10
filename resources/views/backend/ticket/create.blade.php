@@ -21,19 +21,16 @@
         <div class="card">
             <form method="post" action="{{ route('ticket.store') }}" enctype="multipart/form-data" class="row g-3 p-3">
                 @csrf
-            
-                <div class="col-md-12 pb-3">
-                    <label for="ride" class="form-label">Select Ride<span class="text-danger">*</span></label>
-                    <select class="form-select" aria-label="Default select example" name="ride[]" id="ride" multiple>
-                        <option value="">Choose a Ride</option>
-                        @foreach($rides as $ride)
-                            <option value="{{ $ride->id }}">{{ $ride->name }}</option>
-                        @endforeach
-                    </select>
-                    @error('ride')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
+
+                <label for="ride" class="form-label">Select Ride<span class="text-danger">*</span></label>
+                <select class="js-example-basic-multiple" name="ride[]" multiple="multiple">
+                    @foreach($rides as $ride)
+                        <option value="{{ $ride->id }}">{{ $ride->name }}</option>
+                    @endforeach
+                </select>
+                @error('ride')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
             
                 <div class="col-md-12 pb-3">
                     <label for="number" class="form-label">Number<span class="text-danger">*</span></label>

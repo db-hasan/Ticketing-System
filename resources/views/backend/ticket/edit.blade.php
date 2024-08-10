@@ -23,9 +23,8 @@
                 @csrf
                 @method('PUT')
             
-                <div class="col-md-12">
                     <label for="ride" class="form-label">Select Ride<span class="text-danger">*</span></label>
-                    <select class="form-select" aria-label="Default select example" name="ride[]" id="ride" multiple>
+                    <select class="js-example-basic-multiple" name="ride[]" id="ride" multiple>
                         @foreach($rides as $ride)
                             <option value="{{ $ride->id }}" 
                                 @if(in_array($ride->id, $ticket->details->pluck('ride_id')->toArray())) selected @endif>
@@ -36,7 +35,6 @@
                     @error('ride')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
-                </div>
             
                 <div class="col-md-6 pb-3">
                     <label for="number" class="form-label">Number<span class="text-danger">*</span></label>

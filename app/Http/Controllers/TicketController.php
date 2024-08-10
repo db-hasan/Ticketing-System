@@ -37,7 +37,7 @@ class TicketController extends Controller
         // Create the ticket
         try{
             $ticket = new Ticket();
-            $ticket->user_id = Auth::id;
+            $ticket->user_id = Auth::id();
             $ticket->ref_code = rand(100000, 999999) . date('is');
             $ticket->number = $request->number;
             $ticket->save();
