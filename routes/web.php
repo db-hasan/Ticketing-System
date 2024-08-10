@@ -12,9 +12,15 @@ Route::post('/', [AuthController::class, 'adminlogin'])->name('admin.login');
 
 Route::group(['middleware'=>'auth'],function(){
     Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::get('user-index',[AuthController::class, 'indexuser'])->name('user.index');
+    Route::get('user-insert',[AuthController::class,'createuser'])->name('user.create');
+    Route::post('user-insert',[AuthController::class,'storeuser'])->name('user.store');
+
     Route::get('profle-update',[AuthController::class,'profileupdate'])->name('profle.update');
     Route::post('profle-update',[AuthController::class,'passwordupdate'])->name('password.update');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    
 
 
     Route::get('ride-index',[RideController::class, 'indexride'])->name('ride.index');

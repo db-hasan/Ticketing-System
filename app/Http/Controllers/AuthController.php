@@ -37,12 +37,34 @@ class AuthController extends Controller
         }
     }
     
-    // Display the logout
-    public function logout() {
-        \Session::flush();
-        \Auth::logout();
-        return redirect()->route('login');
+    
+
+    public function indexuser() {
+        $users = User::latest()->get();
+        return view('auth.index',compact('users'));
     }
+    
+    public function createuser() {
+        return view('backend.user.create');
+    }
+    public function storeuser(Request $request):RedirectResponse
+    {
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+        ]);
+
+        try {
+            $data = new User();
+            $data->name = $request->name;
+            $data->price = $request->price;
+            $data->save();
+            return redirect()->route('user.index')->with('success', 'user created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('user.index')->with('error', 'An error occurred. Please try again.');
+        }
+    }
+
 
     // Display the Password Update
     public function profileupdate() {
@@ -67,6 +89,13 @@ class AuthController extends Controller
         ]);
 
         return redirect()->route('profle.update')->with('success', 'Password updated successfully.');
+    }
+
+    // Display the logout
+    public function logout() {
+        \Session::flush();
+        \Auth::logout();
+        return redirect()->route('login');
     }
 
 }
