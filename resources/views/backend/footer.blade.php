@@ -6,58 +6,6 @@
     <script src="{{ asset('backend/js/dataTables.js') }} "></script>
     <script src="{{ asset('backend/js/sweetalert.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="https://cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-    {{-- TextColor CKEDITOR --}}
-    <script>
-        CKEDITOR.replace('editor', {
-            skin: 'moono',
-            enterMode: CKEDITOR.ENTER_BR,
-            shiftEnterMode: CKEDITOR.ENTER_P,
-            toolbar: [{
-                    name: 'basicstyles',
-                    groups: ['basicstyles'],
-                    items: ['Bold', 'Italic', 'Underline', "-", 'TextColor', 'BGColor']
-                },
-                {
-                    name: 'styles',
-                    items: ['Format', 'Font', 'FontSize']
-                },
-                {
-                    name: 'scripts',
-                    items: ['Subscript', 'Superscript']
-                },
-                {
-                    name: 'justify',
-                    groups: ['blocks', 'align'],
-                    items: ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']
-                },
-                {
-                    name: 'paragraph',
-                    groups: ['list', 'indent'],
-                    items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent']
-                },
-                {
-                    name: 'links',
-                    items: ['Link', 'Unlink']
-                },
-                {
-                    name: 'insert',
-                    items: ['Image']
-                },
-                {
-                    name: 'spell',
-                    items: ['jQuerySpellChecker']
-                },
-                {
-                    name: 'table',
-                    items: ['Table']
-                }
-            ],
-        });
-    </script>
 
     {{-- DataTable --}}
     <script>
@@ -132,12 +80,3 @@
             toastr.warning("{{ session('warning') }}");
         @endif
     </script>
-
-<script>
-    // Multi-select boxes
-
-$(document).ready(function() {
-  $('.js-example-basic-multiple').select2();
-});
-
-</script>

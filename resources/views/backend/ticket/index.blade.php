@@ -22,18 +22,22 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Ticket Name</th>
-                        <th>Ticket Price</th>
+                        <th>SalesMan</th>
+                        <th>Ref Code</th>
+                        <th>Number</th>
+                        {{-- <th>Amount</th> --}}
                         <th>Status</th>
                         <th class="text-end">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @foreach ($tickets as $ticket)
+                    @foreach ($tickets as $ticket)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{ $ticket->name}}</td>
-                            <td>{{ $ticket->price}}</td>
+                            <td>{{ $ticket->user_id}}</td>
+                            <td>{{ $ticket->ref_code}}</td>
+                            <td>{{ $ticket->number}}</td>
+                            {{-- <td>{{ $ticket->price}}</td> --}}
                             <td>
                                 @if($ticket->status == 1)
                                     Active
@@ -50,7 +54,7 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
         </div>

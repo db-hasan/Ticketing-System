@@ -19,28 +19,33 @@
         </div>
         <hr>
         <div class="card">
-            <form method="post" action="{{ route('ticket.update', $ticket->id) }}" enctype="multipart/form-data"
-                class="row g-3 p-3">
+            <form method="post" action="{{ route('ticket.update', $ticket->id) }}" enctype="multipart/form-data" class="row g-3 p-3">
                 @csrf
                 @method('PUT')
-                <div class="col-md-12 pb-3">
-                    <label for="name" class="form-label">Name<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{ $ticket->name }}"
-                        required>
-                    @error('name')
+            
+                <div class="col-md-12">
+                    <label for="ride" class="form-label">Select Ride<span class="text-danger">*</span></label>
+                    <select class="form-select" aria-label="Default select example" name="ride[]" id="ride" multiple>
+                        @foreach($rides as $ride)
+                            <option value="{{ $ride->id }}" 
+                                @if(in_array($ride->id, $ticket->details->pluck('ride_id')->toArray())) selected @endif>
+                                {{ $ride->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('ride')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-
+            
                 <div class="col-md-6 pb-3">
-                    <label for="price" class="form-label">Price<span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="price" name="price" value="{{ $ticket->price }}"
-                        required>
-                    @error('price')
+                    <label for="number" class="form-label">Number<span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="number" name="number" value="{{ $ticket->number }}" required>
+                    @error('number')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-
+            
                 <div class="col-md-6">
                     <label for="status" class="form-label">Status<span class="text-danger">*</span></label>
                     <select class="form-select" aria-label="Default select example" name="status" id="status">
@@ -51,12 +56,12 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-
-
+            
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
+            
         </div>
 
     </main>
