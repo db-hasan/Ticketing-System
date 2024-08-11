@@ -43,11 +43,6 @@
                             </td>
                             <td class="d-flex justify-content-end">
                                 <a href="{{ route('ride.edit', $ride->id) }}" class="btn btn-primary mx-1"><i class="bi bi-pencil-square"></i></a>
-                                <form class="deleteForm" action="{{ route('ride.destroy', $ride->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" class="btn btn-danger btnDelete"><i class="bi bi-trash"></i></button>
-                                </form>
                             </td>
                         </tr>
                     @endforeach

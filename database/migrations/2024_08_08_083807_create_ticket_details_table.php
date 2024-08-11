@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('ticket_id')->references('id')->on('tickets');
             $table->foreignId('ride_id')->references('id')->on('rides');
-            $table->string('name');
             $table->string('price');
             $table->timestamps();
         });

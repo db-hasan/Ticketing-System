@@ -45,19 +45,21 @@ class AuthController extends Controller
     }
     
     public function createuser() {
-        return view('backend.user.create');
+        return view('auth.create');
     }
     public function storeuser(Request $request):RedirectResponse
     {
         $request->validate([
             'name' => 'required',
-            'price' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'new_password' => 'required|confirmed|min:6',
         ]);
 
         try {
             $data = new User();
             $data->name = $request->name;
-            $data->price = $request->price;
+            $data->email = $request->email;
+            $data->password = Hash::make($request->new_password);
             $data->save();
             return redirect()->route('user.index')->with('success', 'user created successfully.');
         } catch (\Exception $e) {
@@ -65,17 +67,44 @@ class AuthController extends Controller
         }
     }
 
+    public function edituser($id=null){
+        $users['user'] = User::find($id);
+        if (!$users['user']) {
+            return redirect()->back();
+        }     
+        return view('auth/edit', $users);
+    }
+
+    public function updateuser(Request $request, $id): RedirectResponse
+    {
+        $user = User::findOrFail($id);
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'new_password' => 'nullable|confirmed|min:6',
+        ]);
+
+            $data = User::findOrFail($id);
+            $data->name = $request->input('name');
+            $data->email = $request->input('email');    
+            $data->password  = Hash::make($request->input('new_password'));
+            $data->save();
+
+            return redirect()->route('user.index')->with('success', 'Data update successfully.');
+    }
+
+
 
     // Display the Password Update
     public function profileupdate() {
-        $users=User::find(1);
+        $users=Auth::user();;
         return view('auth.password', compact('users'));
     }
 
     public function passwordupdate(Request $request) {
         $request->validate([
             'old_password' => 'required',
-            'new_password' => 'required|confirmed',
+            'new_password' => 'required|confirmed|min:6',
         ]);
 
         // Match old password

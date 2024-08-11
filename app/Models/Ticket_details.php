@@ -14,7 +14,6 @@ class Ticket_details extends Model
         'id',
         'ticket_id',
         'ride_id',
-        'name',
         'price',
     ];
 

@@ -20,16 +20,7 @@
                 <h3 class="p-3">Password Update</h3>
                 <form method="post" action="" enctype="multipart/form-data" class="row g-3 p-3">
                     @csrf
-                    @if (Session::has('success'))
-                        <div class="alert alert-success">
-                            {{ Session::get('success') }}
-                        </div>
-                    @endif
-                    @if (Session::has('error'))
-                        <div class="alert alert-danger">
-                            {{ Session::get('error') }}
-                        </div>
-                    @endif
+
                     <div class="col-md-12 pb-3">
                         <label for="old_password" class="form-label">Current Password<span
                                 class="text-danger">*</span></label>

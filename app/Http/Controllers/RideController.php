@@ -66,11 +66,5 @@ class RideController extends Controller
         }
     }
 
-    //delete data in database
-    public function destroyride($id=null){
-        $destroyData = Ride::find($id);
-        $destroyData->delete();
-        return redirect()->route('ride.index')->with('success', 'Data Delete successfully.');
-    }
 
 }

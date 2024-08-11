@@ -47,7 +47,6 @@ class TicketController extends Controller
                 $ticketDetail = new Ticket_details();
                 $ticketDetail->ticket_id = $ticket->id;
                 $ticketDetail->ride_id = $rideId;
-                $ticketDetail->name = Ride::find($rideId)->name; // Assuming you want to store the ride name
                 $ticketDetail->price = Ride::find($rideId)->price; // Assuming you have a price field in the Ride model
                 $ticketDetail->save();
             }
@@ -74,14 +73,12 @@ class TicketController extends Controller
             'number' => 'required',
             'ride' => 'required|array', // Ensure 'ride' is an array
             'ride.*' => 'exists:rides,id', // Ensure each selected ride exists in the 'rides' table
-            'status' => 'required|in:1,2', // Validate status
         ]);
 
         // Find the ticket by ID
         try{
             $ticket = Ticket::findOrFail($id);
             $ticket->number = $request->number;
-            $ticket->status = $request->status;
             $ticket->save();
 
             // Remove existing ticket details
@@ -92,7 +89,6 @@ class TicketController extends Controller
                 $ticketDetail = new Ticket_details();
                 $ticketDetail->ticket_id = $ticket->id;
                 $ticketDetail->ride_id = $rideId;
-                $ticketDetail->name = Ride::find($rideId)->name; // Assuming you want to store the ride name
                 $ticketDetail->price = Ride::find($rideId)->price; // Assuming you have a price field in the Ride model
                 $ticketDetail->save();
             }

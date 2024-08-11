@@ -16,6 +16,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('user-index',[AuthController::class, 'indexuser'])->name('user.index');
     Route::get('user-insert',[AuthController::class,'createuser'])->name('user.create');
     Route::post('user-insert',[AuthController::class,'storeuser'])->name('user.store');
+    Route::get('user-update/{id}',[AuthController::class,'edituser'])->name('user.edit');
+    Route::put('user-update/{id}',[AuthController::class,'updateuser'])->name('user.update');
 
     Route::get('profle-update',[AuthController::class,'profileupdate'])->name('profle.update');
     Route::post('profle-update',[AuthController::class,'passwordupdate'])->name('password.update');
@@ -28,8 +30,6 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('ride-insert',[RideController::class,'storeride'])->name('ride.store');
     Route::get('ride-update/{id}',[RideController::class,'editride'])->name('ride.edit');
     Route::put('ride-update/{id}',[RideController::class,'updateride'])->name('ride.update');
-    Route::delete('ride-destroy/{id}',[RideController::class,'destroyride'])->name('ride.destroy');
-
 
     Route::get('ticket-index',[TicketController::class, 'indexticket'])->name('ticket.index');
     Route::get('ticket-insert',[TicketController::class,'createticket'])->name('ticket.create');

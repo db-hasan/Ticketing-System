@@ -36,21 +36,10 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
             
-                <div class="col-md-6 pb-3">
+                <div class="col-md-12 pb-3">
                     <label for="number" class="form-label">Number<span class="text-danger">*</span></label>
                     <input type="number" class="form-control" id="number" name="number" value="{{ $ticket->number }}" required>
                     @error('number')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-            
-                <div class="col-md-6">
-                    <label for="status" class="form-label">Status<span class="text-danger">*</span></label>
-                    <select class="form-select" aria-label="Default select example" name="status" id="status">
-                        <option value="1" {{ $ticket->status == 1 ? 'selected' : '' }}>Active</option>
-                        <option value="2" {{ $ticket->status == 2 ? 'selected' : '' }}>Inactive</option>
-                    </select>
-                    @error('status')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>

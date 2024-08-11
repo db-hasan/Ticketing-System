@@ -73,15 +73,15 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('user.index') }}">
-                    <i class="bi bi-database-lock"></i>
+                    <i class="bi bi-people"></i>
                     <span>User Permission</span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('profle.update') }}">
-                    <i class="bi bi-people"></i>
-                    <span>User List</span>
+                    <i class="bi bi-database-lock"></i>
+                    <span>Password Update</span>
                 </a>
             </li>
 
