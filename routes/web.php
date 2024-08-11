@@ -19,11 +19,11 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('user-update/{id}',[AuthController::class,'edituser'])->name('user.edit');
     Route::put('user-update/{id}',[AuthController::class,'updateuser'])->name('user.update');
 
+
     Route::get('profle-update',[AuthController::class,'profileupdate'])->name('profle.update');
     Route::post('profle-update',[AuthController::class,'passwordupdate'])->name('password.update');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     
-
 
     Route::get('ride-index',[RideController::class, 'indexride'])->name('ride.index');
     Route::get('ride-insert',[RideController::class,'createride'])->name('ride.create');
@@ -31,6 +31,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('ride-update/{id}',[RideController::class,'editride'])->name('ride.edit');
     Route::put('ride-update/{id}',[RideController::class,'updateride'])->name('ride.update');
 
+    
     Route::get('ticket-index',[TicketController::class, 'indexticket'])->name('ticket.index');
     Route::get('ticket-insert',[TicketController::class,'createticket'])->name('ticket.create');
     Route::post('ticket-insert',[TicketController::class,'storeticket'])->name('ticket.store');

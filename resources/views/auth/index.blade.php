@@ -34,7 +34,13 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{ $user->name}}</td>
-                            <td>{{ $user->role}}</td>
+                            <td>
+                                @if($user->role == 1)
+                                    Admin
+                                @elseif($user->role == 2)
+                                    Seller
+                                @endif
+                            </td>
                             <td>{{ $user->email}}</td>
                             <td>
                                 @if($user->status == 1)

@@ -51,6 +51,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'role' => 'required|in:1,2',
             'email' => 'required|email|unique:users,email',
             'new_password' => 'required|confirmed|min:6',
         ]);
@@ -59,6 +60,7 @@ class AuthController extends Controller
             $data = new User();
             $data->name = $request->name;
             $data->email = $request->email;
+            $data->role = $request->role;
             $data->password = Hash::make($request->new_password);
             $data->save();
             return redirect()->route('user.index')->with('success', 'user created successfully.');
@@ -80,17 +82,24 @@ class AuthController extends Controller
         $user = User::findOrFail($id);
         $request->validate([
             'name' => 'required',
+            'role' => 'required|in:1,2',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'new_password' => 'nullable|confirmed|min:6',
+            'status' => 'required|in:1,2',
         ]);
+            try{
+                $data = User::findOrFail($id);
+                $data->name = $request->input('name');
+                $data->role = $request->input('role');
+                $data->email = $request->input('email');    
+                $data->status = $request->input('status');    
+                $data->password  = Hash::make($request->input('new_password'));
+                $data->save();
 
-            $data = User::findOrFail($id);
-            $data->name = $request->input('name');
-            $data->email = $request->input('email');    
-            $data->password  = Hash::make($request->input('new_password'));
-            $data->save();
-
-            return redirect()->route('user.index')->with('success', 'Data update successfully.');
+                return redirect()->route('user.index')->with('success', 'Data update successfully.');
+            } catch (\Exception $e) {
+                return redirect()->route('user.index')->with('error', 'An error occurred. Please try again.');
+            }
     }
 
 

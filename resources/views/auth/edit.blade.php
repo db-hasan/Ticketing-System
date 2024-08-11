@@ -41,12 +41,12 @@
                     @enderror
                 </div>
                 <div class="col-md-6">
-                    <label for="roll" class="form-label">Role<span class="text-danger">*</span></label>
-                    <select class="form-select" aria-label="Default select example" name="roll" id="roll">
-                        <option value="1" {{ $user->status == 1 ? 'selected' : '' }}>Admin</option>
-                        <option value="2" {{ $user->status == 2 ? 'selected' : '' }}>Seller</option>
+                    <label for="role" class="form-label">Role<span class="text-danger">*</span></label>
+                    <select class="form-select" aria-label="Default select example" name="role" id="role">
+                        <option value="1" {{ $user->role == 1 ? 'selected' : '' }}>Admin</option>
+                        <option value="2" {{ $user->role == 2 ? 'selected' : '' }}>Seller</option>
                     </select>
-                    @error('roll')
+                    @error('role')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>

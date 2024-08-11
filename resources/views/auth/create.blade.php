@@ -32,8 +32,8 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label for="roll" class="form-label">Role<span class="text-danger">*</span></label>
-                    <select class="form-select" aria-label="Default select example" name="roll" id="roll">
+                    <label for="role" class="form-label">Role<span class="text-danger">*</span></label>
+                    <select class="form-select" aria-label="Default select example" name="role" id="role">
                         <option value="1">Admin</option>
                         <option value="2">Seller</option>
                     </select>
