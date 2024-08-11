@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RideController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\ReportController;
 
 
 Route::get('/', [AuthController::class, 'login'])->name('login');
@@ -38,4 +39,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('ticket-update/{id}',[TicketController::class,'editticket'])->name('ticket.edit');
     Route::put('ticket-update/{id}',[TicketController::class,'updateticket'])->name('ticket.update');
     Route::delete('ticket-destroy/{id}',[TicketController::class,'destroyticket'])->name('ticket.destroy');
+
+
+    Route::get('report-index',[ReportController::class, 'indexreport'])->name('report.index');
 });

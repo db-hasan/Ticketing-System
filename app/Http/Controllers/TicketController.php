@@ -16,7 +16,7 @@ use Session;
 class TicketController extends Controller
 {
     public function indexticket() {
-        $tickets = Ticket::latest()->get();
+        $tickets = Ticket::latest()->paginate(100);
         return view('backend.ticket.index', compact('tickets'));
     }
     

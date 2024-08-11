@@ -58,7 +58,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="">
+                <a class="nav-link collapsed" href="{{ route('report.index') }}">
                     <i class="bi bi-bar-chart"></i>
                     <span> Report</span>
                 </a>
