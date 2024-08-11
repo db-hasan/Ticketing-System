@@ -19,36 +19,48 @@
         </div>
         <hr>
         <div class="card">
-            <form method="post" action="{{ route('ticket.update', $ticket->id) }}" enctype="multipart/form-data" class="row g-3 p-3">
+            <form method="post" action="{{ route('ticket.update', $ticket->id) }}" enctype="multipart/form-data"
+                class="row g-3 p-3">
                 @csrf
                 @method('PUT')
-            
-                    <label for="ride" class="form-label">Select Ride<span class="text-danger">*</span></label>
-                    <select class="js-example-basic-multiple" name="ride[]" id="ride" multiple>
-                        @foreach($rides as $ride)
-                            <option value="{{ $ride->id }}" 
-                                @if(in_array($ride->id, $ticket->details->pluck('ride_id')->toArray())) selected @endif>
-                                {{ $ride->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('ride')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-            
+
+                <label for="ride" class="form-label">Select Ride<span class="text-danger">*</span></label>
+                <div class="d-flex flex-wrap mt-0">
+                    @foreach ($rides as $ride)
+                        <div class="form-check me-3 mb-2">
+                            <input class="form-check-input" id="check{{ $ride->id }}" value="{{ $ride->id }}"
+                                name="ride[]" type="checkbox" @if (in_array($ride->id, $ticket->details->pluck('ride_id')->toArray())) checked @endif>
+                            <label class="form-check-label" for="check{{ $ride->id }}">{{ $ride->name }}</label>
+                        </div>
+                    @endforeach
+                </div>
+
+                @error('ride')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+
+                {{-- <select class="js-example-basic-multiple" name="ride[]" id="ride" multiple>
+                    @foreach ($rides as $ride)
+                        <option value="{{ $ride->id }}" @if (in_array($ride->id, $ticket->details->pluck('ride_id')->toArray())) selected @endif>
+                            {{ $ride->name }}
+                        </option>
+                    @endforeach
+                </select> --}}
+
                 <div class="col-md-12 pb-3">
                     <label for="number" class="form-label">Number<span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="number" name="number" value="{{ $ticket->number }}" required>
+                    <input type="number" class="form-control" id="number" name="number" value="{{ $ticket->number }}"
+                        required>
                     @error('number')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-            
+
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
-            
+
         </div>
 
     </main>

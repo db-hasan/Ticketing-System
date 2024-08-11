@@ -23,15 +23,24 @@
                 @csrf
 
                 <label for="ride" class="form-label">Select Ride<span class="text-danger">*</span></label>
-                <select class="js-example-basic-multiple" name="ride[]" multiple="multiple">
+                <div class="d-flex flex-wrap mt-0">
                     @foreach($rides as $ride)
-                        <option value="{{ $ride->id }}">{{ $ride->name }}</option>
+                        <div class="form-check me-3 mb-2">
+                            <input class="form-check-input" id="check{{ $ride->id }}" value="{{ $ride->id }}" name="ride[]" type="checkbox">
+                            <label class="form-check-label" for="check{{ $ride->id }}">{{ $ride->name }}</label>
+                        </div>
                     @endforeach
-                </select>
+                </div>
                 @error('ride')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             
+                {{-- <select class="js-example-basic-multiple" name="ride[]" multiple="multiple">
+                    @foreach($rides as $ride)
+                        <option value="{{ $ride->id }}">{{ $ride->name }}</option>
+                    @endforeach
+                </select> --}}
+
                 <div class="col-md-12 pb-3">
                     <label for="number" class="form-label">Number<span class="text-danger">*</span></label>
                     <input type="number" class="form-control" id="number" name="number" value="{{ old('number') }}" required>
