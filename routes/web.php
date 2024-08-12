@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RideController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\RoleController;
 
 
 Route::get('/', [AuthController::class, 'login'])->name('login');
@@ -19,6 +20,12 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('user-insert',[AuthController::class,'storeuser'])->name('user.store');
     Route::get('user-update/{id}',[AuthController::class,'edituser'])->name('user.edit');
     Route::put('user-update/{id}',[AuthController::class,'updateuser'])->name('user.update');
+
+    Route::get('role-index',[RoleController::class, 'indexrole'])->name('role.index');
+    Route::get('role-insert',[RoleController::class,'createrole'])->name('role.create');
+    Route::post('role-insert',[RoleController::class,'storerole'])->name('role.store');
+    Route::get('role-update/{id}',[RoleController::class,'editrole'])->name('role.edit');
+    Route::put('role-update/{id}',[RoleController::class,'updaterole'])->name('role.update');
 
 
     Route::get('profle-update',[AuthController::class,'profileupdate'])->name('profle.update');

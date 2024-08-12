@@ -75,16 +75,16 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="">
+                <a class="nav-link collapsed" href="{{ route('role.index') }}">
                     <i class="bi bi-shield-lock"></i>
-                    <span>Manage Role</span>
+                    <span>Role Permission</span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('user.index') }}">
                     <i class="bi bi-people"></i>
-                    <span>User Permission</span>
+                    <span>Manage Role</span>
                 </a>
             </li>
 
