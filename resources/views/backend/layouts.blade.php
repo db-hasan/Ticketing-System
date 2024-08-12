@@ -13,12 +13,22 @@
         </div>
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link nav-icon" href="{{route('ticket.create')}}">
+                        <i class="bi bi-cart3"></i>
+                    </a>
+          
+                  </li>
                 <li class="nav-item dropdown pe-3">
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                         data-bs-toggle="dropdown">
                         <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Profile"
                             class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2"></span>
+                            @if(auth()->check())
+                                <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->name }}</span>
+                            @endif
+
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li>
@@ -37,7 +47,7 @@
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
             <li class="nav-item">
-                <a class="nav-link collapsed" href="">
+                <a class="nav-link collapsed" href="{{ route('dashboard') }}">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>

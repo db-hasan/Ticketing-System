@@ -47,12 +47,13 @@ class TicketController extends Controller
                 $ticketDetail = new Ticket_details();
                 $ticketDetail->ticket_id = $ticket->id;
                 $ticketDetail->ride_id = $rideId;
+                $ticketDetail->user_id = Auth::id();
                 $ticketDetail->price = Ride::find($rideId)->price; // Assuming you have a price field in the Ride model
                 $ticketDetail->save();
             }
-            return redirect()->route('ticket.index')->with('success', 'Ticket created successfully.');
+            return redirect()->back()->with('success', 'Ticket created successfully.');
         } catch (\Exception $e) {
-            return redirect()->route('ticket.index')->with('error', 'An error occurred. Please try again.');
+            return redirect()->back()->with('error', 'An error occurred. Please try again.');
         }
     }
 
