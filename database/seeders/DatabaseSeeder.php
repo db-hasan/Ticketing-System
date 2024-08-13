@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         'ticket-index', 'ticket-create', 'ticket-edit', 'ticket-delete',
         'report-index',
         'dashboard-index',
+        'profle-update',
     ];
     
     
@@ -37,7 +38,7 @@ class DatabaseSeeder extends Seeder
             'status' => "1",
         ]);
 
-        $role = Role::create(['name' => 'Superadmin']);
+        $role = Role::create(['name' => 'superadmin']);
 
         $permissions = Permission::pluck('id', 'id')->all();
 

@@ -12,7 +12,8 @@ use App\Http\Controllers\RoleController;
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/', [AuthController::class, 'adminlogin'])->name('admin.login');
 
-Route::group(['middleware'=>'auth'],function(){
+// Route::group(['middleware'=>'auth'],function(){
+Route::group(['middleware'=>['role:superadmin']],function(){
     Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
 
     Route::get('user-index',[AuthController::class, 'indexuser'])->name('user.index');
