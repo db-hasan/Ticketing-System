@@ -35,6 +35,7 @@
                     <label for="roles" class="form-label">Role<span class="text-danger">*</span></label>
                     {{-- <select class="form-control multiple" multiple name="roles[]"> --}}
                     <select class="form-control" name="roles[]">
+                        <option selected disabled>Select Role</option>
                         @foreach ($roles as $role)
                             <option value="{{ $role }}">{{ $role }}</option>
                         @endforeach
