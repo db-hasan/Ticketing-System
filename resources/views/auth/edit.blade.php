@@ -41,12 +41,14 @@
                     @enderror
                 </div>
                 <div class="col-md-6">
-                    <label for="role" class="form-label">Role<span class="text-danger">*</span></label>
-                    <select class="form-select" aria-label="Default select example" name="role" id="role">
-                        <option value="1" {{ $user->role == 1 ? 'selected' : '' }}>Admin</option>
-                        <option value="2" {{ $user->role == 2 ? 'selected' : '' }}>Seller</option>
+                    <label for="roles" class="form-label">Role<span class="text-danger">*</span></label>
+                    {{-- <select class="form-control multiple" multiple name="roles[]"> --}}
+                    <select class="form-control"  name="roles[]">
+                        @foreach ($roles as $role)
+                            <option value="{{ $role }}" {{ in_array($role, $userRole) ? 'selected':'' }}>{{ $role }}</option>
+                        @endforeach
                     </select>
-                    @error('role')
+                    @error('roles')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>

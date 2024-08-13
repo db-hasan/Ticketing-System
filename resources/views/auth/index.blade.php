@@ -35,12 +35,12 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{ $user->name}}</td>
                             <td>
-                                @if($user->role == 1)
-                                    Admin
-                                @elseif($user->role == 2)
-                                    Seller
+                                @if(!empty($user->getRoleNames()))
+                                  @foreach($user->getRoleNames() as $name)
+                                     <label class="badge rounded-pill text-bg-primary">{{ $name }}</label>
+                                  @endforeach
                                 @endif
-                            </td>
+                              </td>
                             <td>{{ $user->email}}</td>
                             <td>
                                 @if($user->status == 1)

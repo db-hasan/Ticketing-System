@@ -32,12 +32,14 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label for="role" class="form-label">Role<span class="text-danger">*</span></label>
-                    <select class="form-select" aria-label="Default select example" name="role" id="role">
-                        <option value="1">Admin</option>
-                        <option value="2">Seller</option>
+                    <label for="roles" class="form-label">Role<span class="text-danger">*</span></label>
+                    {{-- <select class="form-control multiple" multiple name="roles[]"> --}}
+                    <select class="form-control" name="roles[]">
+                        @foreach ($roles as $role)
+                            <option value="{{ $role }}">{{ $role }}</option>
+                        @endforeach
                     </select>
-                    @error('roll')
+                    @error('roles')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>

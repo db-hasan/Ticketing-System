@@ -39,14 +39,6 @@
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
 
-                {{-- <select class="js-example-basic-multiple" name="ride[]" id="ride" multiple>
-                    @foreach ($rides as $ride)
-                        <option value="{{ $ride->id }}" @if (in_array($ride->id, $ticket->details->pluck('ride_id')->toArray())) selected @endif>
-                            {{ $ride->name }}
-                        </option>
-                    @endforeach
-                </select> --}}
-
                 <div class="col-md-12 pb-3">
                     <label for="number" class="form-label">Number<span class="text-danger">*</span></label>
                     <input type="number" class="form-control" id="number" name="number" value="{{ $ticket->number }}"

@@ -23,27 +23,27 @@
                     <tr>
                         <th>ID</th>
                         <th>Role</th>
-                        <th>Status</th>
+                        <th>Permission</th>
                         <th class="text-end">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @foreach ($roles as $role)
+                    @foreach ($roles as $role)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{ $role->user_id}}</td>
+                            <td>{{ $role->name}}</td>
                             <td>
-                                @if($role->status == 1)
-                                    Active
-                                @elseif($role->status == 2)
-                                    Inactive
+                                @if(!empty($role->getPermissionNames()))
+                                    @foreach($role->getPermissionNames() as $name)
+                                    <label class="badge rounded-pill text-bg-success">{{ $name }}</label>
+                                    @endforeach
                                 @endif
                             </td>
                             <td class="d-flex justify-content-end">
                                 <a href="{{ route('role.edit', $role->id) }}" class="btn btn-primary mx-1"><i class="bi bi-pencil-square"></i></a>
                             </td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
         </div>

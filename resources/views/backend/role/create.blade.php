@@ -23,32 +23,21 @@
                 @csrf
 
                 <div class="col-md-12 pb-3">
-                    <label for="role" class="form-label">Role Name<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="role" name="role" value="{{ old('role') }}" required>
-                    @error('role')
+                    <label for="name" class="form-label">Role Name<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
+                    @error('name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <label class="form-label">Select Permission<span class="text-danger">*</span></label>
                 <div class="d-flex flex-wrap mt-0">
-
+                    @foreach($permissions as $permission)
                         <div class="form-check me-3 mb-2">
-                            <input class="form-check-input" id="check" value="" name="permission[]" type="checkbox">
-                            <label class="form-check-label" for="check">Role 1</label>
+                            <input class="form-check-input" id="check{{ $permission->id }}" value="{{ $permission->name }}" name="permission[]" type="checkbox">
+                            <label class="form-check-label" for="check{{ $permission->id }}">{{ $permission->name }}</label>
                         </div>
-                        <div class="form-check me-3 mb-2">
-                            <input class="form-check-input" id="check" value="" name="permission[]" type="checkbox">
-                            <label class="form-check-label" for="check">Role 1</label>
-                        </div>
-                        <div class="form-check me-3 mb-2">
-                            <input class="form-check-input" id="check" value="" name="permission[]" type="checkbox">
-                            <label class="form-check-label" for="check">Role 1</label>
-                        </div>
-                        <div class="form-check me-3 mb-2">
-                            <input class="form-check-input" id="check" value="" name="permission[]" type="checkbox">
-                            <label class="form-check-label" for="check">Role 1</label>
-                        </div>
+                    @endforeach
                 </div>
                 @error('permission')
                     <span class="text-danger">{{ $message }}</span>
