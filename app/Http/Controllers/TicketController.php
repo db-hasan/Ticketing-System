@@ -14,7 +14,14 @@ use Session;
 
 
 class TicketController extends Controller
-{
+{   
+    function __construct()
+    {
+        $this->middleware(['permission:ticket-create'], ['only' => ['createticket', 'storeticket']]);
+        $this->middleware(['permission:ticket-edit'], ['only' => ['editticket', 'updateticket']]);
+
+    }
+
     public function indexticket() {
         $tickets = Ticket::latest()->paginate(100);
         return view('backend.ticket.index', compact('tickets'));

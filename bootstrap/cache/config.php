@@ -10,7 +10,7 @@
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:8TH5OvrYY1yOethuzxnQ7mPZXq0s6+fmIUCIWQVW/Us=',
+    'key' => 'base64:xI4Qe6tOaXU0Pcc0hejgXYvhYXV1xT3np9wwSQp49K8=',
     'cipher' => 'AES-256-CBC',
     'maintenance' => 
     array (
@@ -199,8 +199,8 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\xampp\\htdocs\\Ticketing System\\storage\\framework/cache/data',
-        'lock_path' => 'C:\\xampp\\htdocs\\Ticketing System\\storage\\framework/cache/data',
+        'path' => 'D:\\xampp\\htdocs\\Ticketing-System\\storage\\framework/cache/data',
+        'lock_path' => 'D:\\xampp\\htdocs\\Ticketing-System\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -283,7 +283,7 @@
       array (
         'driver' => 'sqlite',
         'url' => NULL,
-        'database' => 'permission',
+        'database' => 'ticketsys',
         'prefix' => '',
         'foreign_key_constraints' => true,
       ),
@@ -293,7 +293,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'permission',
+        'database' => 'ticketsys',
         'username' => 'root',
         'password' => '',
         'unix_socket' => '',
@@ -313,7 +313,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'permission',
+        'database' => 'ticketsys',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -328,7 +328,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'permission',
+        'database' => 'ticketsys',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -373,13 +373,13 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\Ticketing System\\storage\\app',
+        'root' => 'D:\\xampp\\htdocs\\Ticketing-System\\storage\\app',
         'throw' => false,
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\Ticketing System\\storage\\app/public',
+        'root' => 'D:\\xampp\\htdocs\\Ticketing-System\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
         'throw' => false,
@@ -399,7 +399,7 @@
     ),
     'links' => 
     array (
-      'C:\\xampp\\htdocs\\Ticketing System\\public\\storage' => 'C:\\xampp\\htdocs\\Ticketing System\\storage\\app/public',
+      'D:\\xampp\\htdocs\\Ticketing-System\\public\\storage' => 'D:\\xampp\\htdocs\\Ticketing-System\\storage\\app/public',
     ),
   ),
   'hashing' => 
@@ -440,14 +440,14 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\xampp\\htdocs\\Ticketing System\\storage\\logs/laravel.log',
+        'path' => 'D:\\xampp\\htdocs\\Ticketing-System\\storage\\logs/laravel.log',
         'level' => 'debug',
         'replace_placeholders' => true,
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\xampp\\htdocs\\Ticketing System\\storage\\logs/laravel.log',
+        'path' => 'D:\\xampp\\htdocs\\Ticketing-System\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
         'replace_placeholders' => true,
@@ -512,7 +512,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\xampp\\htdocs\\Ticketing System\\storage\\logs/laravel.log',
+        'path' => 'D:\\xampp\\htdocs\\Ticketing-System\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -588,7 +588,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\xampp\\htdocs\\Ticketing System\\resources\\views/vendor/mail',
+        0 => 'D:\\xampp\\htdocs\\Ticketing-System\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -741,7 +741,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\xampp\\htdocs\\Ticketing System\\storage\\framework/sessions',
+    'files' => 'D:\\xampp\\htdocs\\Ticketing-System\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -762,9 +762,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\Ticketing System\\resources\\views',
+      0 => 'D:\\xampp\\htdocs\\Ticketing-System\\resources\\views',
     ),
-    'compiled' => 'C:\\xampp\\htdocs\\Ticketing System\\storage\\framework\\views',
+    'compiled' => 'D:\\xampp\\htdocs\\Ticketing-System\\storage\\framework\\views',
   ),
   'flare' => 
   array (
@@ -850,7 +850,7 @@
     array (
     ),
     'enable_runnable_solutions' => NULL,
-    'remote_sites_path' => 'C:\\xampp\\htdocs\\Ticketing System',
+    'remote_sites_path' => 'D:\\xampp\\htdocs\\Ticketing-System',
     'local_sites_path' => '',
     'housekeeping_endpoint_prefix' => '_ignition',
     'settings_file_path' => '',

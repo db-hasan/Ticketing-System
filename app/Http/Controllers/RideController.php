@@ -12,12 +12,12 @@ use Session;
 class RideController extends Controller
 {
 
-    // function __construct()
-    // {
-    //     $this->middleware(['permission:ride-create'], ['only' => ['createride', 'storeride']]);
-    //     $this->middleware(['permission:ride-edit'], ['only' => ['editride', 'updateride']]);
+    function __construct()
+    {
+        $this->middleware(['permission:ride-create'], ['only' => ['createride', 'storeride']]);
+        $this->middleware(['permission:ride-edit'], ['only' => ['editride', 'updateride']]);
 
-    // }
+    }
 
 
     public function indexride() {
