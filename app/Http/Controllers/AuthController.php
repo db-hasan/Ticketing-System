@@ -66,7 +66,7 @@ class AuthController extends Controller
             $user->password = Hash::make($request->new_password);
             $user->save();
 
-            $user->assignRole($request->input('roles'));
+            $user->syncRoles($request->input('roles'));
 
             return redirect()->route('user.index')->with('success', 'user created successfully.');
         } catch (\Exception $e) {
@@ -102,7 +102,7 @@ class AuthController extends Controller
 
                 DB::table('model_has_roles')->where('model_id',$id)->delete();
     
-                $user->assignRole($request->input('roles'));
+                $user->syncRoles($request->input('roles'));
 
                 return redirect()->route('user.index')->with('success', 'Data update successfully.');
             } catch (\Exception $e) {
