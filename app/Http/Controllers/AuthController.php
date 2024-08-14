@@ -17,6 +17,15 @@ use Session;
 
 class AuthController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware(['permission:user-index'], ['only' => ['indexuser']]);
+        $this->middleware(['permission:user-create'], ['only' => ['createuser', 'storeuser']]);
+        $this->middleware(['permission:user-edit'], ['only' => ['edituser', 'updateuser']]);
+
+        $this->middleware(['permission:profile-update'], ['only' => ['profileupdate', 'passwordupdate']]);
+    }
+    
     // Display the login form
     public function login() {
         return view('auth.login');

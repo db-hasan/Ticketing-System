@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         'role-index', 'role-create', 'role-edit',
         'ride-index', 'ride-create', 'ride-edit',
         'ticket-index', 'ticket-create', 'ticket-edit', 'ticket-delete',
-        'report-index',
+        'index-report', 'sales-report', 'seller-report',
         'dashboard-index',
         'profle-update',
     ];

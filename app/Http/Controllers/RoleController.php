@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware(['permission:role-index'], ['only' => ['indexrole']]);
+        $this->middleware(['permission:role-create'], ['only' => ['createrole', 'storerole']]);
+        $this->middleware(['permission:role-edit'], ['only' => ['editrole', 'updaterole']]);
+    }
+
     public function indexrole() {
         $roles = Role::all();
         return view('backend/role.index',compact('roles'));
