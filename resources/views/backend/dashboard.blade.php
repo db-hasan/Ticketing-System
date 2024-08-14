@@ -17,6 +17,11 @@
               <!-- Left side columns -->
               <div class="col-lg-8">
                 <div class="row">
+
+                  @php
+                      $todaySales = $todayTiketSales + $todayRideSales;
+                      $monthlySales = $monthlyTiketSales + $monthlyRideSales;
+                  @endphp
       
                   <!-- Sales Card -->
                   <div class="col-xxl-4 col-md-6">
@@ -28,7 +33,7 @@
                             <i class="bi bi-cart"></i>
                           </div>
                           <div class="ps-3">
-                            <h6>Tk. {{$todaySales}}</h6>
+                            <h6>Tk. {{ $todaySales }}</h6>
                             <span class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1">Today Sales Amount</span>
                           </div>
                         </div>
@@ -57,32 +62,31 @@
                   <!-- Customers Card -->
                   <div class="col-xxl-4 col-xl-12">
                     <div class="card info-card customers-card">
-                        <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <li class="dropdown-header text-start">
-                                    <h6>Filter</h6>
-                                </li>
-                                <li><a class="dropdown-item" href="#" id="today">Today</a></li>
-                                <li><a class="dropdown-item" href="#" id="thisMonth">This Month</a></li>
-                                <li><a class="dropdown-item" href="#" id="thisYear">This Year</a></li>
-                            </ul>
+                      <div class="filter">
+                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                          <li class="dropdown-header text-start">
+                            <h6>Filter</h6>
+                          </li>
+                          <li><a class="dropdown-item" href="#">Today</a></li>
+                          <li><a class="dropdown-item" href="#">This Month</a></li>
+                          <li><a class="dropdown-item" href="#">This Year</a></li>
+                        </ul>
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title">Customers <span>| This Year</span></h5>
+                        <div class="d-flex align-items-center">
+                          <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <i class="bi bi-people"></i>
+                          </div>
+                          <div class="ps-3">
+                            <h6>34</h6>
+                            <span class="text-muted small pt-2 ps-1">Total Customers</span>
+                          </div>
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Customers <span id="customer-period">| This Year</span></h5>
-                            <div class="d-flex align-items-center">
-                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-people"></i>
-                                </div>
-                                <div class="ps-3">
-                                    <h6 id="customer-count">{{ $yearlyCustomers }}</h6>
-                                    <span class="text-muted small pt-2 ps-1">Total Customers</span>
-                                </div>
-                            </div>
-                        </div>
+                      </div>
                     </div>
-                </div>
-                <!-- End Customers Card -->
+                  </div><!-- End Customers Card -->
       
                   <!-- Top Selling -->
                   <div class="col-12">
@@ -177,21 +181,4 @@
           </section>
 
     </main>
-
-    <script>
-      document.getElementById('today').addEventListener('click', function() {
-          document.getElementById('customer-period').textContent = '| Today';
-          document.getElementById('customer-count').textContent = '{{ $todayCustomers }}';
-      });
-  
-      document.getElementById('thisMonth').addEventListener('click', function() {
-          document.getElementById('customer-period').textContent = '| This Month';
-          document.getElementById('customer-count').textContent = '{{ $monthlyCustomers }}';
-      });
-  
-      document.getElementById('thisYear').addEventListener('click', function() {
-          document.getElementById('customer-period').textContent = '| This Year';
-          document.getElementById('customer-count').textContent = '{{ $yearlyCustomers }}';
-      });
-  </script>
 @endsection

@@ -17,17 +17,18 @@ class DashboardController extends Controller
     public function dashboard() {
         $ticketDetails = Ticket_details::latest()->paginate(20);
     
-        $todaySales = Ticket_details::whereDate('created_at', now()->toDateString())->sum('price');
-        $monthlySales = Ticket_details::whereMonth('created_at', now()->month)
+        $todayTiketSales = Entry::whereDate('created_at', now()->toDateString())->sum('price');
+        $monthlyTiketSales = Entry::whereMonth('created_at', now()->month)
                                     ->whereYear('created_at', now()->year)
                                     ->sum('price');
-        $todayCustomers = Entry::whereDate('created_at', now()->toDateString())->count('id');
-        $monthlyCustomers = Entry::whereMonth('created_at', now()->month)
+
+        $todayRideSales = Ticket_details::whereDate('created_at', now()->toDateString())->sum('price');
+        $monthlyRideSales = Ticket_details::whereMonth('created_at', now()->month)
                                     ->whereYear('created_at', now()->year)
-                                    ->count('id');
-        $yearlyCustomers = Entry::whereYear('created_at', now()->year)->count('id');
+                                    ->sum('price');
+
     
-        return view('backend/dashboard', compact('ticketDetails', 'todaySales', 'monthlySales', 'todayCustomers', 'monthlyCustomers', 'yearlyCustomers'));
+        return view('backend/dashboard', compact('ticketDetails', 'todayTiketSales', 'monthlyTiketSales', 'todayRideSales', 'monthlyRideSales'));
     }
     
 }
