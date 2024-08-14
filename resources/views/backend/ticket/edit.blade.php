@@ -31,6 +31,8 @@
                             <input class="form-check-input" id="check{{ $ride->id }}" value="{{ $ride->id }}"
                                 name="ride[]" type="checkbox" @if (in_array($ride->id, $ticket->details->pluck('ride_id')->toArray())) checked @endif>
                             <label class="form-check-label" for="check{{ $ride->id }}">{{ $ride->name }}</label>
+                            <br>
+                            <span>Tk. {{ $ride->price }}</span>
                         </div>
                     @endforeach
                 </div>

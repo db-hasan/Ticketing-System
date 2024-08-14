@@ -25,7 +25,7 @@ class TicketController extends Controller
     }
 
     public function indexticket() {
-        $tickets = Ticket::latest()->paginate(100);
+        $tickets = Ticket::with('user')->latest()->paginate(100);
         return view('backend.ticket.index', compact('tickets'));
     }
     
