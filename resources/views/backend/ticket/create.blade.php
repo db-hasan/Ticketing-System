@@ -30,6 +30,8 @@
                         <div class="form-check me-3 mb-2">
                             <input class="form-check-input" id="check{{ $ride->id }}" value="{{ $ride->id }}" name="ride[]" type="checkbox">
                             <label class="form-check-label" for="check{{ $ride->id }}">{{ $ride->name }}</label>
+                            <br>
+                            <span>Tk. {{ $ride->price }}</span>
                         </div>
                     @endforeach
                 </div>
