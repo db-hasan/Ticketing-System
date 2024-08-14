@@ -130,7 +130,7 @@
             </li>
             @endcan
 
-            @can('profile-update')
+            @can('profle-update')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('profle.update') }}">
                     <i class="bi bi-database-lock"></i>
