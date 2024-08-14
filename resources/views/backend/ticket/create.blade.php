@@ -11,11 +11,13 @@
                     </ol>
                 </nav>
             </div>
+            @can('ticket-index')
             <div class="text-end pt-2">
                 <a href="{{ route('ticket.index') }}" class="btn btn-primary"><i class="fa-regular fa-eye"></i>
                     View
                     Ticket</a>
             </div>
+            @endcan
         </div>
         <hr>
         <div class="card">
@@ -34,12 +36,6 @@
                 @error('ride')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
-            
-                {{-- <select class="js-example-basic-multiple" name="ride[]" multiple="multiple">
-                    @foreach($rides as $ride)
-                        <option value="{{ $ride->id }}">{{ $ride->name }}</option>
-                    @endforeach
-                </select> --}}
 
                 <div class="col-md-12 pb-3">
                     <label for="number" class="form-label">Number<span class="text-danger">*</span></label>

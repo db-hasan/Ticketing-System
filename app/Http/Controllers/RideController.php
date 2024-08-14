@@ -14,7 +14,7 @@ class RideController extends Controller
 
     function __construct()
     {
-        $this->middleware(['permission:ride-indes'], ['only' => ['indexride']]);
+        $this->middleware(['permission:ride-index'], ['only' => ['indexride']]);
         $this->middleware(['permission:ride-create'], ['only' => ['createride', 'storeride']]);
         $this->middleware(['permission:ride-edit'], ['only' => ['editride', 'updateride']]);
 

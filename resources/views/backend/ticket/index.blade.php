@@ -11,10 +11,12 @@
                     </ol>
                 </nav>
             </div>
+            @can('ticket-create')
             <div class="text-end pt-2">
                 <a href="{{ route('ticket.create')}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i>
                     Add Ticket</a>
             </div>
+            @endcan
         </div>
         <hr>
         <div class="custom-scrollbar-table">
@@ -46,12 +48,17 @@
                                 @endif
                             </td>
                             <td class="d-flex justify-content-end">
+                                @can('ticket-edit')
                                 <a href="{{ route('ticket.edit', $ticket->id) }}" class="btn btn-primary mx-1"><i class="bi bi-pencil-square"></i></a>
+                                @endcan
+
+                                @can('ticket-delete')
                                 <form class="deleteForm" action="{{ route('ticket.destroy', $ticket->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="button" class="btn btn-danger btnDelete"><i class="bi bi-trash"></i></button>
                                 </form>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

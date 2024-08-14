@@ -15,10 +15,12 @@
             <ul class="d-flex align-items-center">
                 <li class="nav-item dropdown">
 
+                    @can('ticket-create')
                     <a class="nav-link nav-icon" href="{{route('ticket.create')}}">
                         <i class="bi bi-cart3"></i>
                     </a>
-          
+                    @endcan
+
                   </li>
                 <li class="nav-item dropdown pe-3">
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
@@ -46,54 +48,69 @@
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
+
+            @can('dashboard')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('dashboard') }}">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
+            @endcan
 
+            @can('ride-index')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('ride.index') }}">
                     <i class="fa-brands fa-pushed"></i>
                     <span>Add Ride</span>
                 </a>
             </li>
-
+            @endcan
+            
+            @can('ticket-index')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('ticket.index') }}">
                     <i class="bi bi-gem"></i>
                     <span>Ticket </span>
                 </a>
             </li>
+            @endcan
 
+            @can('index-report')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('report.index') }}">
                     <i class="bi bi-bar-chart"></i>
                     <span> Report</span>
                 </a>
             </li>
+            @endcan
 
+            @can('role-index')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('role.index') }}">
                     <i class="bi bi-shield-lock"></i>
                     <span>Role Permission</span>
                 </a>
             </li>
+            @endcan
 
+            @can('user-index')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('user.index') }}">
                     <i class="bi bi-people"></i>
                     <span>Manage Role</span>
                 </a>
             </li>
+            @endcan
 
+            @can('profile-update')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('profle.update') }}">
                     <i class="bi bi-database-lock"></i>
                     <span>Password Update</span>
                 </a>
             </li>
+            @endcan
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('logout') }}">

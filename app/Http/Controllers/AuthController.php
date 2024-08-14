@@ -23,7 +23,7 @@ class AuthController extends Controller
         $this->middleware(['permission:user-create'], ['only' => ['createuser', 'storeuser']]);
         $this->middleware(['permission:user-edit'], ['only' => ['edituser', 'updateuser']]);
 
-        $this->middleware(['permission:profile-update'], ['only' => ['profileupdate', 'passwordupdate']]);
+        $this->middleware(['permission:profle-update'], ['only' => ['profileupdate', 'passwordupdate']]);
     }
     
     // Display the login form
