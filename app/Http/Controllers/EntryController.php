@@ -51,17 +51,4 @@ class EntryController extends Controller
 
         return redirect()->back()->with('success', 'Entry created successfully.');
     }
-
-        // try{
-        //     $entry = new entry();
-        //     $entry->user_id = Auth::id();
-        //     $entry->ref_code = rand(100000, 999999) . date('is');
-        //     $entry->number = $request->number;
-        //     $entry->save();
-        //     return redirect()->back()->with('success', 'entry created successfully.');
-        // } catch (\Exception $e) {
-        //     return redirect()->back()->with('error', 'An error occurred. Please try again.');
-        // }
-   
-
 }

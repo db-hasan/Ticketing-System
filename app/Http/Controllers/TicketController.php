@@ -38,7 +38,6 @@ class TicketController extends Controller
     {
         // Validate the form input
         $request->validate([
-            'number' => 'required',
             'ride' => 'required|array', // Ensure 'ride' is an array
             'ride.*' => 'exists:rides,id', // Ensure each selected ride exists in the 'rides' table
         ]);
@@ -48,7 +47,6 @@ class TicketController extends Controller
             $ticket = new Ticket();
             $ticket->user_id = Auth::id();
             $ticket->ref_code = rand(100000, 999999) . date('is');
-            $ticket->number = $request->number;
             $ticket->save();
 
             // Loop through each selected ride and create TicketDetail records
@@ -80,7 +78,6 @@ class TicketController extends Controller
     {
         // Validate the form input
         $request->validate([
-            'number' => 'required',
             'ride' => 'required|array', // Ensure 'ride' is an array
             'ride.*' => 'exists:rides,id', // Ensure each selected ride exists in the 'rides' table
         ]);
@@ -88,7 +85,6 @@ class TicketController extends Controller
         // Find the ticket by ID
         try{
             $ticket = Ticket::findOrFail($id);
-            $ticket->number = $request->number;
             $ticket->save();
 
             // Remove existing ticket details
@@ -99,6 +95,7 @@ class TicketController extends Controller
                 $ticketDetail = new Ticket_details();
                 $ticketDetail->ticket_id = $ticket->id;
                 $ticketDetail->ride_id = $rideId;
+                $ticketDetail->user_id = Auth::id();
                 $ticketDetail->price = Ride::find($rideId)->price; // Assuming you have a price field in the Ride model
                 $ticketDetail->save();
             }
