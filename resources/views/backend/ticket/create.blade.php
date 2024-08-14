@@ -40,14 +40,6 @@
                 @enderror
 
                 <strong>Total:</strong>
-
-                <div class="col-md-12 pb-3">
-                    <label for="number" class="form-label">Phone<span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="number" name="number" value="{{ old('number') }}" required>
-                    @error('number')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
             
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary">Submit</button>

@@ -102,7 +102,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::1mreNreKfUBlgNDY',
+            '_route' => 'generated::yqUcRuFnR8HJrLDB',
           ),
           1 => NULL,
           2 => 
@@ -340,6 +340,118 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/price-index' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'price.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/price-insert' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'price.create',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'price.store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/entry-index' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'entry.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/entry-insert' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'entry.create',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'entry.store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
       '/ride-index' => 
       array (
         0 => 
@@ -475,7 +587,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/user\\-update/([^/]++)(?|(*:32))|/r(?|ole\\-update/([^/]++)(?|(*:68))|ide\\-update/([^/]++)(?|(*:99)))|/ticket\\-(?|update/([^/]++)(?|(*:138))|destroy/([^/]++)(*:163)))/?$}sDu',
+      0 => '{^(?|/user\\-update/([^/]++)(?|(*:32))|/r(?|ole\\-update/([^/]++)(?|(*:68))|ide\\-update/([^/]++)(?|(*:99)))|/price\\-update/([^/]++)(?|(*:134))|/ticket\\-(?|update/([^/]++)(?|(*:173))|destroy/([^/]++)(*:198)))/?$}sDu',
     ),
     3 => 
     array (
@@ -605,7 +717,49 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      138 => 
+      134 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'price.edit',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'price.update',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      173 => 
       array (
         0 => 
         array (
@@ -647,7 +801,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      163 => 
+      198 => 
       array (
         0 => 
         array (
@@ -830,7 +984,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::1mreNreKfUBlgNDY' => 
+    'generated::yqUcRuFnR8HJrLDB' => 
     array (
       'methods' => 
       array (
@@ -853,7 +1007,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::1mreNreKfUBlgNDY',
+        'as' => 'generated::yqUcRuFnR8HJrLDB',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1454,6 +1608,307 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'logout',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'price.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'price-index',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\PriceController@indexprice',
+        'controller' => 'App\\Http\\Controllers\\PriceController@indexprice',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'price.index',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'price.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'price-insert',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\PriceController@createprice',
+        'controller' => 'App\\Http\\Controllers\\PriceController@createprice',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'price.create',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'price.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'price-insert',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\PriceController@storeprice',
+        'controller' => 'App\\Http\\Controllers\\PriceController@storeprice',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'price.store',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'price.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'price-update/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\PriceController@editprice',
+        'controller' => 'App\\Http\\Controllers\\PriceController@editprice',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'price.edit',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'price.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+      ),
+      'uri' => 'price-update/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\PriceController@updateprice',
+        'controller' => 'App\\Http\\Controllers\\PriceController@updateprice',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'price.update',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'entry.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'entry-index',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\EntryController@indexentry',
+        'controller' => 'App\\Http\\Controllers\\EntryController@indexentry',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'entry.index',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'entry.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'entry-insert',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\EntryController@createentry',
+        'controller' => 'App\\Http\\Controllers\\EntryController@createentry',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'entry.create',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'entry.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'entry-insert',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\EntryController@storeentry',
+        'controller' => 'App\\Http\\Controllers\\EntryController@storeentry',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'entry.store',
       ),
       'fallback' => false,
       'defaults' => 

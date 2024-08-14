@@ -8,12 +8,15 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
+use App\Models\Price;
 
 class DatabaseSeeder extends Seeder
 {
     private $permissions = [
         'user-index', 'user-create', 'user-edit',
         'role-index', 'role-create', 'role-edit',
+        'price-index', 'price-edit',
+        'entry-index', 'entry-create',
         'ride-index', 'ride-create', 'ride-edit',
         'ticket-index', 'ticket-create', 'ticket-edit', 'ticket-delete',
         'index-report', 'sales-report', 'seller-report',
@@ -32,7 +35,7 @@ class DatabaseSeeder extends Seeder
         };
 
         $user = User::create([
-            'name' => 'Ali Hasan',
+            'name' => 'Developer',
             'email' => 'superadmin@gmail.com',
             'password' => Hash::make('12345678'),
             'status' => "1",
@@ -45,6 +48,12 @@ class DatabaseSeeder extends Seeder
         $role->syncPermissions($permissions);
 
         $user->syncRoles([$role->id]);
+
+
+        $ticket = Price::create([
+            'name' => 'Entry Ticket',
+            'price' => '50',
+        ]);
 
 
 

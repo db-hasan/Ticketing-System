@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::create('entries', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
+            $table->foreignId('price_id');
+            $table->string('price');
             $table->string('ref_code');
+            $table->string('number');
             $table->integer('status')->default(1);
             $table->timestamps();
-        }); 
+        });
     }
 
     /**
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('entries');
     }
 };

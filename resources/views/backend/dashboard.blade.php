@@ -28,8 +28,8 @@
                             <i class="bi bi-cart"></i>
                           </div>
                           <div class="ps-3">
-                            <h6>$145</h6>
-                            <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                            <h6>Tk. {{$todaySales}}</h6>
+                            <span class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1">Today Sales Amount</span>
                           </div>
                         </div>
                       </div>
@@ -46,8 +46,8 @@
                             <i class="bi bi-currency-dollar"></i>
                           </div>
                           <div class="ps-3">
-                            <h6>$3,264</h6>
-                            <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                            <h6>Tk. {{ $monthlySales}}</h6>
+                            <span class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1">Monthly Sales Amount</span>
                           </div>
                         </div>
                       </div>
@@ -57,31 +57,32 @@
                   <!-- Customers Card -->
                   <div class="col-xxl-4 col-xl-12">
                     <div class="card info-card customers-card">
-                      <div class="filter">
-                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                          <li class="dropdown-header text-start">
-                            <h6>Filter</h6>
-                          </li>
-                          <li><a class="dropdown-item" href="#">Today</a></li>
-                          <li><a class="dropdown-item" href="#">This Month</a></li>
-                          <li><a class="dropdown-item" href="#">This Year</a></li>
-                        </ul>
-                      </div>
-                      <div class="card-body">
-                        <h5 class="card-title">Customers <span>| This Year</span></h5>
-                        <div class="d-flex align-items-center">
-                          <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="bi bi-people"></i>
-                          </div>
-                          <div class="ps-3">
-                            <h6>1244</h6>
-                            <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
-                          </div>
+                        <div class="filter">
+                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                <li class="dropdown-header text-start">
+                                    <h6>Filter</h6>
+                                </li>
+                                <li><a class="dropdown-item" href="#" id="today">Today</a></li>
+                                <li><a class="dropdown-item" href="#" id="thisMonth">This Month</a></li>
+                                <li><a class="dropdown-item" href="#" id="thisYear">This Year</a></li>
+                            </ul>
                         </div>
-                      </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Customers <span id="customer-period">| This Year</span></h5>
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-people"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <h6 id="customer-count">{{ $yearlyCustomers }}</h6>
+                                    <span class="text-muted small pt-2 ps-1">Total Customers</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div><!-- End Customers Card -->
+                </div>
+                <!-- End Customers Card -->
       
                   <!-- Top Selling -->
                   <div class="col-12">
@@ -153,71 +154,22 @@
               <div class="col-lg-4">
                 <!-- Recent Activity -->
                 <div class="card">
-                  <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                      <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                      </li>
-      
-                      <li><a class="dropdown-item" href="#">Today</a></li>
-                      <li><a class="dropdown-item" href="#">This Month</a></li>
-                      <li><a class="dropdown-item" href="#">This Year</a></li>
-                    </ul>
-                  </div>
       
                   <div class="card-body">
                     <h5 class="card-title">Recent Activity <span>| Today</span></h5>
       
                     <div class="activity">
-      
+                      
+                      @foreach ($ticketDetails as $ticketDetail)
                       <div class="activity-item d-flex">
-                        <div class="activite-label">32 min</div>
+                        <div class="activite-label">{{ $ticketDetail->created_at->format('H:i') }}</div>
                         <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
                         <div class="activity-content">
-                          Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo officiis</a> beatae
+                          {{ $ticketDetail->ride->name}}
                         </div>
-                      </div><!-- End activity item-->
-      
-                      <div class="activity-item d-flex">
-                        <div class="activite-label">56 min</div>
-                        <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
-                        <div class="activity-content">
-                          Voluptatem blanditiis blanditiis eveniet
-                        </div>
-                      </div><!-- End activity item-->
-      
-                      <div class="activity-item d-flex">
-                        <div class="activite-label">2 hrs</div>
-                        <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-                        <div class="activity-content">
-                          Voluptates corrupti molestias voluptatem
-                        </div>
-                      </div><!-- End activity item-->
-      
-                      <div class="activity-item d-flex">
-                        <div class="activite-label">1 day</div>
-                        <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
-                        <div class="activity-content">
-                          Tempore autem saepe <a href="#" class="fw-bold text-dark">occaecati voluptatem</a> tempore
-                        </div>
-                      </div><!-- End activity item-->
-      
-                      <div class="activity-item d-flex">
-                        <div class="activite-label">2 days</div>
-                        <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
-                        <div class="activity-content">
-                          Est sit eum reiciendis exercitationem
-                        </div>
-                      </div><!-- End activity item-->
-      
-                      <div class="activity-item d-flex">
-                        <div class="activite-label">4 weeks</div>
-                        <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
-                        <div class="activity-content">
-                          Dicta dolorem harum nulla eius. Ut quidem quidem sit quas
-                        </div>
-                      </div><!-- End activity item-->
+                      </div>
+                      @endforeach
+
                     </div>
                   </div>
                 </div><!-- End Recent Activity -->
@@ -225,4 +177,21 @@
           </section>
 
     </main>
+
+    <script>
+      document.getElementById('today').addEventListener('click', function() {
+          document.getElementById('customer-period').textContent = '| Today';
+          document.getElementById('customer-count').textContent = '{{ $todayCustomers }}';
+      });
+  
+      document.getElementById('thisMonth').addEventListener('click', function() {
+          document.getElementById('customer-period').textContent = '| This Month';
+          document.getElementById('customer-count').textContent = '{{ $monthlyCustomers }}';
+      });
+  
+      document.getElementById('thisYear').addEventListener('click', function() {
+          document.getElementById('customer-period').textContent = '| This Year';
+          document.getElementById('customer-count').textContent = '{{ $yearlyCustomers }}';
+      });
+  </script>
 @endsection

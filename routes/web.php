@@ -7,6 +7,8 @@ use App\Http\Controllers\RideController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\EntryController;
+use App\Http\Controllers\PriceController;
 
 
 Route::get('/', [AuthController::class, 'login'])->name('login');
@@ -15,11 +17,13 @@ Route::post('/', [AuthController::class, 'adminlogin'])->name('admin.login');
 Route::group(['middleware'=>'auth'],function(){
     Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
 
+
     Route::get('user-index',[AuthController::class, 'indexuser'])->name('user.index');
     Route::get('user-insert',[AuthController::class,'createuser'])->name('user.create');
     Route::post('user-insert',[AuthController::class,'storeuser'])->name('user.store');
     Route::get('user-update/{id}',[AuthController::class,'edituser'])->name('user.edit');
     Route::put('user-update/{id}',[AuthController::class,'updateuser'])->name('user.update');
+
 
     Route::get('role-index',[RoleController::class, 'indexrole'])->name('role.index');
     Route::get('role-insert',[RoleController::class,'createrole'])->name('role.create');
@@ -31,6 +35,16 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('profle-update',[AuthController::class,'profileupdate'])->name('profle.update');
     Route::post('profle-update',[AuthController::class,'passwordupdate'])->name('password.update');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+    Route::get('price-index',[PriceController::class, 'indexprice'])->name('price.index');
+    Route::get('price-update/{id}',[PriceController::class,'editprice'])->name('price.edit');
+    Route::put('price-update/{id}',[PriceController::class,'updateprice'])->name('price.update');
+
+
+    Route::get('entry-index',[EntryController::class, 'indexentry'])->name('entry.index');
+    Route::get('entry-insert',[EntryController::class,'createentry'])->name('entry.create');
+    Route::post('entry-insert',[EntryController::class,'storeentry'])->name('entry.store');
     
 
     Route::get('ride-index',[RideController::class, 'indexride'])->name('ride.index');

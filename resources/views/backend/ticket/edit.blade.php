@@ -3,7 +3,7 @@
     <main id="main" class="main">
         <div class="d-flex justify-content-between">
             <div class="pagetitle">
-                <h1>Edit and Update Ticket</h1>
+                <h1>Update Ticket</h1>
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Home</a></li>
@@ -36,19 +36,10 @@
                         </div>
                     @endforeach
                 </div>
-
+                <strong>Total:</strong>
                 @error('ride')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
-
-                <div class="col-md-12 pb-3">
-                    <label for="number" class="form-label">Number<span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="number" name="number" value="{{ $ticket->number }}"
-                        required>
-                    @error('number')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
 
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary">Submit</button>

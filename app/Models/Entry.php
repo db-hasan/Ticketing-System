@@ -7,20 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-
-class Ticket extends Model
+class Entry extends Model
 {
     use HasFactory;
     protected $fillable = [
         'id',
         'user_id',
+        'price_id',
+        'price',
         'ref_code',
+        'number',
         'status',
     ];
-
-    public function details(): HasMany
+    
+    public function prices(): BelongsTo
     {
-        return $this->hasMany(Ticket_details::class);
+        return $this->belongsTo(Price::class,'price_id');
     }
 
     public function user(): BelongsTo

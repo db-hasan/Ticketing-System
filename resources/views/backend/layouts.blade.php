@@ -15,13 +15,22 @@
             <ul class="d-flex align-items-center">
                 <li class="nav-item dropdown">
 
+                    @can('entry-create')
+                    <a class="nav-link nav-icon" href="{{route('entry.create')}}">
+                        <i class="bi bi-qr-code-scan"></i>
+                    </a>
+                    @endcan
+
+                </li>
+                <li class="nav-item dropdown">
+                    
                     @can('ticket-create')
                     <a class="nav-link nav-icon" href="{{route('ticket.create')}}">
                         <i class="bi bi-cart3"></i>
                     </a>
                     @endcan
 
-                  </li>
+                </li>
                 <li class="nav-item dropdown pe-3">
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                         data-bs-toggle="dropdown">
@@ -58,6 +67,15 @@
             </li>
             @endcan
 
+            @can('price-index')
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('price.index') }}">
+                    <i class="bi bi-buildings"></i>
+                    <span>Add Ticket</span>
+                </a>
+            </li>
+            @endcan
+
             @can('ride-index')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('ride.index') }}">
@@ -66,12 +84,21 @@
                 </a>
             </li>
             @endcan
+
+            @can('entry-index')
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('entry.index') }}">
+                    <i class="bi bi-qr-code-scan"></i>
+                    <span>Entry Ticket </span>
+                </a>
+            </li>
+            @endcan
             
             @can('ticket-index')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('ticket.index') }}">
                     <i class="bi bi-gem"></i>
-                    <span>Ticket </span>
+                    <span>Ride Ticket </span>
                 </a>
             </li>
             @endcan

@@ -3,7 +3,7 @@
     <main id="main" class="main">
         <div class="d-flex justify-content-between">
             <div class="pagetitle">
-                <h1>Ticket List</h1>
+                <h1>Entry Ticket List</h1>
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Home</a></li>
@@ -13,7 +13,7 @@
             </div>
             @can('ticket-create')
             <div class="text-end pt-2">
-                <a href="{{ route('ticket.create')}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i>
+                <a href="{{ route('entry.create')}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i>
                     Add Ticket</a>
             </div>
             @endcan
@@ -26,39 +26,31 @@
                         <th>ID</th>
                         <th>NO</th>
                         <th>SalesMan</th>
+                        <th>Name</th>
                         <th>Ref Code</th>
+                        <th>Phone</th>
+                        <th>Price</th>
                         <th>Date</th>
                         <th>Status</th>
-                        <th class="text-end">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($tickets as $ticket)
+                    @foreach ($entrys as $entry)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>#{{ $ticket->id}}</td>
-                            <td>{{ $ticket->user->name}}</td>
-                            <td>{{ $ticket->ref_code}}</td>
-                            <td>{{ $ticket->created_at}}</td>
+                            <td>#{{ $entry->id}}</td>
+                            <td>{{ $entry->user->name}}</td>
+                            <td>{{ $entry->prices->name}}</td>
+                            <td>{{ $entry->ref_code}}</td>
+                            <td>{{ $entry->number}}</td>
+                            <td>{{ $entry->price}}</td>
+                            <td>{{ $entry->created_at}}</td>
                             <td>
-                                @if($ticket->status == 1)
+                                @if($entry->status == 1)
                                     Active
-                                @elseif($ticket->status == 2)
+                                @elseif($entry->status == 2)
                                     Inactive
                                 @endif
-                            </td>
-                            <td class="d-flex justify-content-end">
-                                @can('ticket-edit')
-                                <a href="{{ route('ticket.edit', $ticket->id) }}" class="btn btn-primary mx-1"><i class="bi bi-pencil-square"></i></a>
-                                @endcan
-
-                                @can('ticket-delete')
-                                <form class="deleteForm" action="{{ route('ticket.destroy', $ticket->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" class="btn btn-danger btnDelete"><i class="bi bi-trash"></i></button>
-                                </form>
-                                @endcan
                             </td>
                         </tr>
                     @endforeach
