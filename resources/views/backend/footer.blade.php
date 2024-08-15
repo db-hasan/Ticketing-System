@@ -5,6 +5,7 @@
     <script src="{{ asset('backend/js/main.js') }}"></script>
     <script src="{{ asset('backend/js/dataTables.js') }} "></script>
     <script src="{{ asset('backend/js/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('backend/vendor/chart.js/chart.umd.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script>

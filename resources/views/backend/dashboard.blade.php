@@ -21,6 +21,7 @@
                   @php
                       $todaySales = $todayTiketSales + $todayRideSales;
                       $monthlySales = $monthlyTiketSales + $monthlyRideSales;
+                      $yearlySales = $yearlyTiketSales + $yearlyRideSales;
                   @endphp
       
                   <!-- Sales Card -->
@@ -45,10 +46,10 @@
                   <div class="col-xxl-4 col-md-6">
                     <div class="card info-card revenue-card">
                       <div class="card-body">
-                        <h5 class="card-title">Revenue <span>| This Month</span></h5>
+                        <h5 class="card-title">Sales <span>| This Month</span></h5>
                         <div class="d-flex align-items-center">
                           <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="bi bi-currency-dollar"></i>
+                            <i class="bi bi-cart"></i>
                           </div>
                           <div class="ps-3">
                             <h6>Tk. {{ $monthlySales}}</h6>
@@ -58,35 +59,107 @@
                       </div>
                     </div>
                   </div><!-- End Revenue Card -->
-      
-                  <!-- Customers Card -->
-                  <div class="col-xxl-4 col-xl-12">
-                    <div class="card info-card customers-card">
-                      <div class="filter">
-                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                          <li class="dropdown-header text-start">
-                            <h6>Filter</h6>
-                          </li>
-                          <li><a class="dropdown-item" href="#">Today</a></li>
-                          <li><a class="dropdown-item" href="#">This Month</a></li>
-                          <li><a class="dropdown-item" href="#">This Year</a></li>
-                        </ul>
-                      </div>
+                  <!-- Revenue Card -->
+                  <div class="col-xxl-4 col-md-6">
+                    <div class="card info-card revenue-card">
                       <div class="card-body">
-                        <h5 class="card-title">Customers <span>| This Year</span></h5>
+                        <h5 class="card-title">Revenue <span>| This Year</span></h5>
                         <div class="d-flex align-items-center">
                           <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="bi bi-people"></i>
+                            <i class="bi bi-currency-dollar"></i>
                           </div>
                           <div class="ps-3">
-                            <h6>34</h6>
-                            <span class="text-muted small pt-2 ps-1">Total Customers</span>
+                            <h6>Tk. {{ $yearlySales}}</h6>
+                            <span class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1">Yearly Sales Amount</span>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div><!-- End Customers Card -->
+                  </div><!-- End Revenue Card -->
+                  
+                  {{-- <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Bar CHart</h5>
+          
+                        <!-- Bar Chart -->
+                        <canvas id="barChart" style="max-height: 400px;"></canvas>
+                        <script>
+                          document.addEventListener("DOMContentLoaded", () => {
+                            new Chart(document.querySelector('#barChart'), {
+                              type: 'bar',
+                              data: {
+                                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                                datasets: [{
+                                  label: 'Bar Chart',
+                                  data: [65, 59, 80, 81, 56, 55, 40],
+                                  backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)',
+                                    'rgba(255, 205, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(201, 203, 207, 0.2)'
+                                  ],
+                                  borderColor: [
+                                    'rgb(255, 99, 132)',
+                                    'rgb(255, 159, 64)',
+                                    'rgb(255, 205, 86)',
+                                    'rgb(75, 192, 192)',
+                                    'rgb(54, 162, 235)',
+                                    'rgb(153, 102, 255)',
+                                    'rgb(201, 203, 207)'
+                                  ],
+                                  borderWidth: 1
+                                }]
+                              },
+                              options: {
+                                scales: {
+                                  y: {
+                                    beginAtZero: true
+                                  }
+                                }
+                              }
+                            });
+                          });
+                        </script>
+                        <!-- End Bar CHart -->
+          
+                      </div>
+                    </div>
+                  </div> --}}
+
+                  <div class="col-xxl-4 col-md-6">
+                    <div class="card info-card customers-card">
+                        <div class="filter">
+                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                <li class="dropdown-header text-start">
+                                    <h6>Filter</h6>
+                                </li>
+                                <li><a class="dropdown-item" href="#" id="todayCustomer" data-count="{{ $todayCustomers }}">Today</a></li>
+                                <li><a class="dropdown-item" href="#" id="monthlyCustomer" data-count="{{ $monthlyCustomers }}">This Month</a></li>
+                                <li><a class="dropdown-item" href="#" id="yearlyCustomer" data-count="{{ $yearlyCustomers }}">This Year</a></li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Customers <span id="customerLavel">| Today</span></h5>
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-people"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <h6 id="customerCount">{{ $todayCustomers }}</h6>
+                                    <span class="text-muted small pt-2 ps-1">Total Customers</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                
+                
+                  <!-- End Customers Card -->
       
                   <!-- Top Selling -->
                   <div class="col-12">
@@ -112,39 +185,15 @@
                               <th scope="col">Name</th>
                               <th scope="col">Price</th>
                               <th scope="col">Sold</th>
-                              <th scope="col">Revenue</th>
+                              <th scope="col" class="text-end">Revenue</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr>
-                              <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
+                              <td>Seller 1</td>
                               <td>$64</td>
-                              <td class="fw-bold">124</td>
-                              <td>$5,828</td>
-                            </tr>
-                            <tr>
-                              <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
-                              <td>$46</td>
-                              <td class="fw-bold">98</td>
-                              <td>$4,508</td>
-                            </tr>
-                            <tr>
-                              <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
-                              <td>$59</td>
-                              <td class="fw-bold">74</td>
-                              <td>$4,366</td>
-                            </tr>
-                            <tr>
-                              <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
-                              <td>$32</td>
-                              <td class="fw-bold">63</td>
-                              <td>$2,016</td>
-                            </tr>
-                            <tr>
-                              <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
-                              <td>$79</td>
-                              <td class="fw-bold">41</td>
-                              <td>$3,239</td>
+                              <td>124</td>
+                              <td class="text-end">Tk. 100</td>
                             </tr>
                           </tbody>
                         </table>
@@ -181,4 +230,36 @@
           </section>
 
     </main>
+
+    
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const todayCustomer = document.getElementById('todayCustomer');
+          const monthlyCustomer = document.getElementById('monthlyCustomer');
+          const yearlyCustomer = document.getElementById('yearlyCustomer');
+
+          const customerCount = document.getElementById('customerCount');
+          const customerLavel = document.getElementById('customerLavel');
+
+          todayCustomer.addEventListener('click', function(event) {
+              event.preventDefault();
+              customerCount.textContent = this.getAttribute('data-count');
+              customerLavel.textContent = "| Today";
+          });
+
+          monthlyCustomer.addEventListener('click', function(event) {
+              event.preventDefault();
+              customerCount.textContent = this.getAttribute('data-count');
+              customerLavel.textContent = "| This Month";
+          });
+
+          yearlyCustomer.addEventListener('click', function(event) {
+              event.preventDefault();
+              customerCount.textContent = this.getAttribute('data-count');
+              customerLavel.textContent = "| This Year";
+          });
+      });
+    </script>
+
 @endsection
