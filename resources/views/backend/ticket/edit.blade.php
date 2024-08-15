@@ -29,14 +29,15 @@
                     @foreach ($rides as $ride)
                         <div class="form-check me-3 mb-2">
                             <input class="form-check-input" id="check{{ $ride->id }}" value="{{ $ride->id }}"
-                                name="ride[]" type="checkbox" @if (in_array($ride->id, $ticket->details->pluck('ride_id')->toArray())) checked @endif>
+                                name="ride[]" type="checkbox" data-price="{{ $ride->price }}"
+                                @if (in_array($ride->id, $ticket->details->pluck('ride_id')->toArray())) checked @endif>
                             <label class="form-check-label" for="check{{ $ride->id }}">{{ $ride->name }}</label>
                             <br>
                             <span>Tk. {{ $ride->price }}</span>
                         </div>
                     @endforeach
                 </div>
-                <strong>Total:</strong>
+                <strong>Total: Tk. <span id="totalPrice">0</span></strong>
                 @error('ride')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -47,6 +48,34 @@
             </form>
 
         </div>
-
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('.form-check-input');
+            const totalPriceElement = document.getElementById('totalPrice');
+            let total = 0;
+
+            // Function to calculate the total price
+            function calculateTotal() {
+                total = 0;
+                checkboxes.forEach(function(box) {
+                    if (box.checked) {
+                        total += parseFloat(box.getAttribute('data-price'));
+                    }
+                });
+                totalPriceElement.textContent = total.toFixed(2);
+            }
+
+            // Initial calculation for pre-checked boxes
+            calculateTotal();
+
+            // Update total on checkbox change
+            checkboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    calculateTotal();
+                });
+            });
+        });
+    </script>
 @endsection
