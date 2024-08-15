@@ -27,4 +27,9 @@ class Ticket_details extends Model
     {
         return $this->belongsTo(Ride::class,'ride_id');
     }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
