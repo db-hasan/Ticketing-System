@@ -20,11 +20,11 @@ class DashboardController extends Controller
     public function dashboard() {
         $rideTickets = Ticket_details::latest()->paginate(10);
     
-        $todayTiketSales = Entry::whereDate('created_at', now()->toDateString())->sum('price');
-        $monthlyTiketSales = Entry::whereMonth('created_at', now()->month)
+        $todayTicketSales = Entry::whereDate('created_at', now()->toDateString())->sum('price');
+        $monthlyTicketSales = Entry::whereMonth('created_at', now()->month)
                                     ->whereYear('created_at', now()->year)
                                     ->sum('price');
-        $yearlyTiketSales = Entry::whereYear('created_at', now()->year)->sum('price');
+        $yearlyTicketSales = Entry::whereYear('created_at', now()->year)->sum('price');
 
         $todayRideSales = Ticket_details::whereDate('created_at', now()->toDateString())->sum('price');
         $monthlyRideSales = Ticket_details::whereMonth('created_at', now()->month)
@@ -169,17 +169,34 @@ class DashboardController extends Controller
 
 
 
+        $monthlySalesData = [];
+        $labels = [];
 
-    
+        for ($i = 5; $i >= 0; $i--) {
+            $month = now()->subMonths($i);
+            $labels[] = $month->format('F');
+
+            $monthlyChartTiketSales = Entry::whereMonth('created_at', $month->month)
+                                        ->whereYear('created_at', $month->year)
+                                        ->sum('price');
+
+            $monthlyChartRideSales = Ticket_details::whereMonth('created_at', $month->month)
+                                                ->whereYear('created_at', $month->year)
+                                                ->sum('price');
+
+            $salesChart = $monthlyChartTiketSales + $monthlyChartRideSales;
+            $monthlySalesData[] = $salesChart;
+        }
 
         return view('backend/dashboard', 
         compact('rideTickets', 
-        'todayTiketSales', 'monthlyTiketSales', 'yearlyTiketSales',
+        'todayTicketSales', 'monthlyTicketSales', 'yearlyTicketSales',
         'todayRideSales', 'monthlyRideSales', 'yearlyRideSales',
         'todayCustomers', 'monthlyCustomers', 'yearlyCustomers',
         'todayEntrySalesByUsers', 'monthEntrySalesByUsers', 'yearEntrySalesByUsers',
         'todayRideSalesByUsers', 'monthRideSalesByUsers', 'yearRideSalesByUsers',
-        'todayUserSales', 'monthUserSales', 'yearUserSales'
+        'todayUserSales', 'monthUserSales', 'yearUserSales',
+        'monthlySalesData','labels'
     ));
     }
     

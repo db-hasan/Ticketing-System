@@ -19,9 +19,9 @@
                 <div class="row">
 
                   @php
-                      $todaySales = $todayTiketSales + $todayRideSales;
-                      $monthlySales = $monthlyTiketSales + $monthlyRideSales;
-                      $yearlySales = $yearlyTiketSales + $yearlyRideSales;
+                      $todaySales = $todayTicketSales + $todayRideSales;
+                      $monthlySales = $monthlyTicketSales + $monthlyRideSales;
+                      $yearlySales = $yearlyTicketSales + $yearlyRideSales;
                   @endphp
       
                   <!-- Sales Card -->
@@ -189,52 +189,9 @@
                   <div class="col-12">
                     <div class="card">
                       <div class="card-body">
-                        <h5 class="card-title">Bar CHart</h5>
-          
-                        <!-- Bar Chart -->
+                        <h5 class="card-title">Bar CHart</h5>       
+                       <!-- Bar Chart -->
                         <canvas id="barChart" style="max-height: 400px;"></canvas>
-                        <script>
-                          document.addEventListener("DOMContentLoaded", () => {
-                            new Chart(document.querySelector('#barChart'), {
-                              type: 'bar',
-                              data: {
-                                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                                datasets: [{
-                                  label: 'Bar Chart',
-                                  data: [65, 59, 80, 81, 56, 55, 40],
-                                  backgroundColor: [
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(255, 159, 64, 0.2)',
-                                    'rgba(255, 205, 86, 0.2)',
-                                    'rgba(75, 192, 192, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(153, 102, 255, 0.2)',
-                                    'rgba(201, 203, 207, 0.2)'
-                                  ],
-                                  borderColor: [
-                                    'rgb(255, 99, 132)',
-                                    'rgb(255, 159, 64)',
-                                    'rgb(255, 205, 86)',
-                                    'rgb(75, 192, 192)',
-                                    'rgb(54, 162, 235)',
-                                    'rgb(153, 102, 255)',
-                                    'rgb(201, 203, 207)'
-                                  ],
-                                  borderWidth: 1
-                                }]
-                              },
-                              options: {
-                                scales: {
-                                  y: {
-                                    beginAtZero: true
-                                  }
-                                }
-                              }
-                            });
-                          });
-                        </script>
-                        <!-- End Bar CHart -->
-          
                       </div>
                     </div>
                   </div>
@@ -377,45 +334,49 @@
     </script>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-          const todayButton = document.getElementById('todayUserSales');
-          const monthButton = document.getElementById('monthUserSales');
-          const yearButton = document.getElementById('yearUserSales');
-          const tableBody = document.querySelector('.table tbody');
-          const userSalesLabel = document.getElementById('userSalesLavel');
-      
-          function updateTable(data, label) {
-              tableBody.innerHTML = ''; // Clear existing rows
-              data.forEach(sale => {
-                  const row = document.createElement('tr');
-                  row.innerHTML = `
-                      <td>${sale.user_name}</td>
-                      <td class="text-end">${sale.total_sales}</td>
-                  `;
-                  tableBody.appendChild(row);
-              });
-              userSalesLabel.textContent = `| ${label}`;
+      document.addEventListener("DOMContentLoaded", () => {
+        const labels = <?php echo json_encode($labels); ?>;
+        const data = <?php echo json_encode($monthlySalesData); ?>;
+
+        new Chart(document.querySelector('#barChart'), {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Monthly Sales',
+              data: data,
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+              ],
+              borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
           }
-      
-          todayButton.addEventListener('click', function() {
-              const data = JSON.parse(this.getAttribute('data-count'));
-              updateTable(data, 'Today');
-          });
-      
-          monthButton.addEventListener('click', function() {
-              const data = JSON.parse(this.getAttribute('data-count'));
-              updateTable(data, 'This Month');
-          });
-      
-          yearButton.addEventListener('click', function() {
-              const data = JSON.parse(this.getAttribute('data-count'));
-              updateTable(data, 'This Year');
-          });
+        });
       });
-      </script>
+    </script>
+
       
-
-
-
 @endsection
 
