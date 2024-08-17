@@ -107,24 +107,12 @@
                   </div>
                   <!-- End Customers Card -->
 
-                  <!-- Top Selling -->
-                  <div class="col-xxl-4 col-md-12">
+                  <!-- Top Selling today -->
+                  <div class="col-xxl-4 col-md-6">
                     <div class="card top-selling overflow-auto">
-                      <div class="filter">
-                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                          <li class="dropdown-header text-start">
-                            <h6>Filter</h6>
-                          </li>
-      
-                          <li><a class="dropdown-item" href="#">Today</a></li>
-                          <li><a class="dropdown-item" href="#">This Month</a></li>
-                          <li><a class="dropdown-item" href="#">This Year</a></li>
-                        </ul>
-                      </div>
       
                       <div class="card-body pb-0">
-                        <h5 class="card-title">Top Selling <span>| Today</span></h5>
+                        <h5 class="card-title">Top Selling <span id="userSalesLavel">| Today</span></h5>
                         <table class="table table-borderless">
                           <thead>
                             <tr>
@@ -133,19 +121,71 @@
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach ($todadyUserSale as $sale)
+                            @php
+                                $todayTotalUserSales = 0;
+                            @endphp
+                            @foreach ($todayUserSales as $sale)
+                            @php
+                                $todayTotalUserSales += $sale['total_sales'];
+                            @endphp
                               <tr>
                                   <td>{{ $sale['user_name'] }}</td> 
                                   <td class="text-end">{{ $sale['total_sales'] }}</td>
                               </tr>
                           @endforeach
 
+                          <tr>
+                            <td><strong>Total</strong></td>
+                            <td class="text-end"><strong>{{ number_format($todayTotalUserSales, 2) }}</strong></td>
+                          </tr>
+
                           </tbody>
                         </table>
                       </div>
                     </div>
-                  </div><!-- End Top Selling -->
+                  </div>
+                  <!-- End Top Selling-->
 
+                  <!-- Top Selling Month -->
+                <div class="col-xxl-4 col-md-6">
+                  <div class="card top-selling overflow-auto">
+    
+                    <div class="card-body pb-0">
+                      <h5 class="card-title">Top Selling <span>| Monthly</span></h5>
+                      <table class="table table-borderless">
+                        <thead>
+                          <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col" class="text-end">Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @php
+                              $monthTotalUserSales = 0;
+                          @endphp
+                          @foreach ($monthUserSales as $sale)
+                          @php
+                              $monthTotalUserSales += $sale['total_sales'];
+                          @endphp
+                            <tr>
+                                <td>{{ $sale['user_name'] }}</td> 
+                                <td class="text-end">{{ $sale['total_sales'] }}</td>
+                            </tr>
+                        @endforeach
+
+                        <tr>
+                          <td><strong>Total</strong></td>
+                          <td class="text-end"><strong>{{ number_format($monthTotalUserSales, 2) }}</strong></td>
+                        </tr>
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <!-- End Top Selling Month-->
+                  
+                  
                   <div class="col-12">
                     <div class="card">
                       <div class="card-body">
@@ -336,4 +376,46 @@
       });
     </script>
 
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const todayButton = document.getElementById('todayUserSales');
+          const monthButton = document.getElementById('monthUserSales');
+          const yearButton = document.getElementById('yearUserSales');
+          const tableBody = document.querySelector('.table tbody');
+          const userSalesLabel = document.getElementById('userSalesLavel');
+      
+          function updateTable(data, label) {
+              tableBody.innerHTML = ''; // Clear existing rows
+              data.forEach(sale => {
+                  const row = document.createElement('tr');
+                  row.innerHTML = `
+                      <td>${sale.user_name}</td>
+                      <td class="text-end">${sale.total_sales}</td>
+                  `;
+                  tableBody.appendChild(row);
+              });
+              userSalesLabel.textContent = `| ${label}`;
+          }
+      
+          todayButton.addEventListener('click', function() {
+              const data = JSON.parse(this.getAttribute('data-count'));
+              updateTable(data, 'Today');
+          });
+      
+          monthButton.addEventListener('click', function() {
+              const data = JSON.parse(this.getAttribute('data-count'));
+              updateTable(data, 'This Month');
+          });
+      
+          yearButton.addEventListener('click', function() {
+              const data = JSON.parse(this.getAttribute('data-count'));
+              updateTable(data, 'This Year');
+          });
+      });
+      </script>
+      
+
+
+
 @endsection
+

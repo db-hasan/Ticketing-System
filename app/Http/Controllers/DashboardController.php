@@ -49,6 +49,22 @@ class DashboardController extends Controller
                                         ->orderBy('total_sales', 'desc')
                                         ->get();
 
+        $monthEntrySalesByUsers = Entry::with('user') // Eager load the user
+                                        ->select('user_id', DB::raw('SUM(price) as total_sales'))
+                                        ->whereMonth('created_at', Carbon::now()->month)
+                                        ->whereYear('created_at', Carbon::now()->year)
+                                        ->groupBy('user_id')
+                                        ->orderBy('total_sales', 'desc')
+                                        ->get();
+        
+        $yearEntrySalesByUsers = Entry::with('user') // Eager load the user
+                                            ->select('user_id', DB::raw('SUM(price) as total_sales'))
+                                            ->whereYear('created_at', Carbon::now()->year)
+                                            ->groupBy('user_id')
+                                            ->orderBy('total_sales', 'desc')
+                                            ->get();
+        
+
         $todayRideSalesByUsers = Ticket_details::with('user') // Eager load the user
                                             ->select('user_id', DB::raw('SUM(price) as total_sales'))
                                             ->whereDate('created_at', Carbon::today())
@@ -56,15 +72,29 @@ class DashboardController extends Controller
                                             ->orderBy('total_sales', 'desc')
                                             ->get();
 
+        $monthRideSalesByUsers = Ticket_details::with('user') // Eager load the user
+                                            ->select('user_id', DB::raw('SUM(price) as total_sales'))
+                                            ->whereMonth('created_at', Carbon::now()->month)
+                                            ->whereYear('created_at', Carbon::now()->year)
+                                            ->groupBy('user_id')
+                                            ->orderBy('total_sales', 'desc')
+                                            ->get();
+
+        $yearRideSalesByUsers = Ticket_details::with('user') // Eager load the user
+                                            ->select('user_id', DB::raw('SUM(price) as total_sales'))
+                                            ->whereYear('created_at', Carbon::now()->year)
+                                            ->groupBy('user_id')
+                                            ->orderBy('total_sales', 'desc')
+                                            ->get();
+
+    
+
 
         // Define default price if no sales found
         $defaultPrice = 0.0;
 
-        // Collect all unique user IDs from both sales collections
         $userIds = $todayEntrySalesByUsers->pluck('user_id')->merge($todayRideSalesByUsers->pluck('user_id'))->unique();
-
-        $todadyUserSale = collect();
-
+        $todayUserSales = collect();
         foreach ($userIds as $userId) {
             $entrySale = $todayEntrySalesByUsers->firstWhere('user_id', $userId);
             $totalEntrySales = $entrySale ? $entrySale->total_sales : $defaultPrice;
@@ -79,14 +109,65 @@ class DashboardController extends Controller
 
             $totalSales = $totalEntrySales + $totalRideSales;
 
-            $todadyUserSale->push([
+            $todayUserSales->push([
                 'user_id' => $userId,
                 'user_name' => $userName,
                 'total_sales' => $totalSales,
             ]);
         }
+        $todayUserSales = $todayUserSales->sortByDesc('total_sales');
 
-        $todadyUserSale = $todadyUserSale->sortByDesc('total_sales');
+
+        $userIds = $monthEntrySalesByUsers->pluck('user_id')->merge($monthRideSalesByUsers->pluck('user_id'))->unique();
+        $monthUserSales = collect();
+        foreach ($userIds as $userId) {
+            $entrySale = $monthEntrySalesByUsers->firstWhere('user_id', $userId);
+            $totalEntrySales = $entrySale ? $entrySale->total_sales : $defaultPrice;
+            $userName = $entrySale ? $entrySale->user->name : 'Unknown';
+
+            $rideSale = $monthRideSalesByUsers->firstWhere('user_id', $userId);
+            $totalRideSales = $rideSale ? $rideSale->total_sales : $defaultPrice;
+
+            if ($rideSale && $rideSale->user->name) {
+                $userName = $rideSale->user->name;
+            }
+
+            $totalSales = $totalEntrySales + $totalRideSales;
+
+            $monthUserSales->push([
+                'user_id' => $userId,
+                'user_name' => $userName,
+                'total_sales' => $totalSales,
+            ]);
+        }
+        $monthUserSales = $monthUserSales->sortByDesc('total_sales');
+
+
+        $userIds = $yearEntrySalesByUsers->pluck('user_id')->merge($yearRideSalesByUsers->pluck('user_id'))->unique();
+        $yearUserSales = collect();
+        foreach ($userIds as $userId) {
+            $entrySale = $yearEntrySalesByUsers->firstWhere('user_id', $userId);
+            $totalEntrySales = $entrySale ? $entrySale->total_sales : $defaultPrice;
+            $userName = $entrySale ? $entrySale->user->name : 'Unknown';
+
+            $rideSale = $yearRideSalesByUsers->firstWhere('user_id', $userId);
+            $totalRideSales = $rideSale ? $rideSale->total_sales : $defaultPrice;
+
+            if ($rideSale && $rideSale->user->name) {
+                $userName = $rideSale->user->name;
+            }
+
+            $totalSales = $totalEntrySales + $totalRideSales;
+
+            $yearUserSales->push([
+                'user_id' => $userId,
+                'user_name' => $userName,
+                'total_sales' => $totalSales,
+            ]);
+        }
+        $yearUserSales = $yearUserSales->sortByDesc('total_sales');
+
+
 
 
     
@@ -96,9 +177,9 @@ class DashboardController extends Controller
         'todayTiketSales', 'monthlyTiketSales', 'yearlyTiketSales',
         'todayRideSales', 'monthlyRideSales', 'yearlyRideSales',
         'todayCustomers', 'monthlyCustomers', 'yearlyCustomers',
-        // 'todayEntrySalesByUsers', 'monthlyEntrySalesByUsers', 'yearlyEntrySalesByUsers',
-        // 'todayRideSalesByUsers', 'monthlyRideSalesByUsers', 'yearlyRideSalesByUsers',
-        'todayEntrySalesByUsers', 'todayRideSalesByUsers', 'todadyUserSale'
+        'todayEntrySalesByUsers', 'monthEntrySalesByUsers', 'yearEntrySalesByUsers',
+        'todayRideSalesByUsers', 'monthRideSalesByUsers', 'yearRideSalesByUsers',
+        'todayUserSales', 'monthUserSales', 'yearUserSales'
     ));
     }
     
