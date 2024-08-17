@@ -102,7 +102,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::yqUcRuFnR8HJrLDB',
+            '_route' => 'generated::e6qw6I68Dmj2t9jE',
           ),
           1 => NULL,
           2 => 
@@ -353,42 +353,6 @@ app('router')->setCompiledRoutes(
           array (
             'GET' => 0,
             'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/price-insert' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'price.create',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'price.store',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
           ),
           3 => NULL,
           4 => false,
@@ -984,7 +948,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::yqUcRuFnR8HJrLDB' => 
+    'generated::e6qw6I68Dmj2t9jE' => 
     array (
       'methods' => 
       array (
@@ -1007,7 +971,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::yqUcRuFnR8HJrLDB',
+        'as' => 'generated::e6qw6I68Dmj2t9jE',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1646,81 +1610,6 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'price.index',
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'price.create' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'price-insert',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'auth',
-        ),
-        'uses' => 'App\\Http\\Controllers\\PriceController@createprice',
-        'controller' => 'App\\Http\\Controllers\\PriceController@createprice',
-        'namespace' => NULL,
-        'prefix' => '',
-        'where' => 
-        array (
-        ),
-        'as' => 'price.create',
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'price.store' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'price-insert',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'auth',
-        ),
-        'uses' => 'App\\Http\\Controllers\\PriceController@storeprice',
-        'controller' => 'App\\Http\\Controllers\\PriceController@storeprice',
-        'namespace' => NULL,
-        'prefix' => '',
-        'where' => 
-        array (
-        ),
-        'as' => 'price.store',
       ),
       'fallback' => false,
       'defaults' => 

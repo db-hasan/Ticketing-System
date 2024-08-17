@@ -11,7 +11,7 @@
                             <div class="d-flex justify-content-center py-4">
                                 <a href="#" class="logo d-flex align-items-center w-auto">
                                     <img src="backend/img/logo.png" alt="">
-                                    <span class="d-none d-lg-block">Pearl Light</span>
+                                    <span class="d-none d-lg-block">Ticketing System</span>
                                 </a>
                             </div>
                             <div class="card mb-3">
@@ -23,16 +23,6 @@
                                     <form method="POST" action="{{ route('admin.login') }}" class="row g-3">
                                         @csrf
                                         @method('POST')
-                                        @if (Session::has('success'))
-                                            <div class="alert alert-success">
-                                                {{ Session::get('success') }}
-                                            </div>
-                                        @endif
-                                        @if (Session::has('error'))
-                                            <div class="alert alert-danger">
-                                                {{ Session::get('error') }}
-                                            </div>
-                                        @endif
                                         <div class="col-md-12">
                                             <label for="email" class="form-label">Email</label>
                                             <input type="email" class="form-control" id="email" name="email"
