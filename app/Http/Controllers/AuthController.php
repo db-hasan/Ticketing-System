@@ -24,30 +24,14 @@ class AuthController extends Controller
         $this->middleware(['permission:user-edit'], ['only' => ['edituser', 'updateuser']]);
 
         $this->middleware(['permission:profle-update'], ['only' => ['profileupdate', 'passwordupdate']]);
+
+        $this->middleware(['permission:user-inactive'], ['only' => ['userinactive']]);
     }
     
     // Display the login form
     public function login() {
         return view('auth.login');
     }
-    
-    // public function adminlogin(Request $request) {
-    //     $request->validate([
-    //         'email' => 'required|email',
-    //         'password' => 'required',
-    //     ]);
-
-    //     $credentials = [
-    //         'email' => $request->input('email'),
-    //         'password' => $request->input('password'),
-    //     ];
-
-    //     if(Auth::attempt($credentials)) {
-    //         return redirect()->route('dashboard');
-    //     } else {
-    //         return redirect()->route('login')->with('error', 'Invalid credentials. Please try again.');
-    //     }
-    // }
 
     public function adminlogin(Request $request) {
         $request->validate([
@@ -178,6 +162,5 @@ class AuthController extends Controller
         \Auth::logout();
         return redirect()->route('login');
     }
-
 }
 
