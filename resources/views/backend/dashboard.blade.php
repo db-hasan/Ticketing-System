@@ -59,6 +59,7 @@
                       </div>
                     </div>
                   </div><!-- End Revenue Card -->
+
                   <!-- Revenue Card -->
                   <div class="col-xxl-4 col-md-6">
                     <div class="card info-card revenue-card">
@@ -76,8 +77,76 @@
                       </div>
                     </div>
                   </div><!-- End Revenue Card -->
-                  
-                  {{-- <div class="col-12">
+
+                  <div class="col-xxl-4 col-md-6">
+                    <div class="card info-card customers-card">
+                        <div class="filter">
+                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                <li class="dropdown-header text-start">
+                                    <h6>Filter</h6>
+                                </li>
+                                <li><a class="dropdown-item" href="#" id="todayCustomer" data-count="{{ $todayCustomers }}">Today</a></li>
+                                <li><a class="dropdown-item" href="#" id="monthlyCustomer" data-count="{{ $monthlyCustomers }}">This Month</a></li>
+                                <li><a class="dropdown-item" href="#" id="yearlyCustomer" data-count="{{ $yearlyCustomers }}">This Year</a></li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Customers <span id="customerLavel">| Today</span></h5>
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-people"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <h6 id="customerCount">{{ $todayCustomers }}</h6>
+                                    <span class="text-muted small pt-2 ps-1">Total Customers</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <!-- End Customers Card -->
+
+                  <!-- Top Selling -->
+                  <div class="col-xxl-4 col-md-12">
+                    <div class="card top-selling overflow-auto">
+                      <div class="filter">
+                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                          <li class="dropdown-header text-start">
+                            <h6>Filter</h6>
+                          </li>
+      
+                          <li><a class="dropdown-item" href="#">Today</a></li>
+                          <li><a class="dropdown-item" href="#">This Month</a></li>
+                          <li><a class="dropdown-item" href="#">This Year</a></li>
+                        </ul>
+                      </div>
+      
+                      <div class="card-body pb-0">
+                        <h5 class="card-title">Top Selling <span>| Today</span></h5>
+                        <table class="table table-borderless">
+                          <thead>
+                            <tr>
+                              <th scope="col">Name</th>
+                              <th scope="col" class="text-end">Total</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            @foreach ($todadyUserSale as $sale)
+                              <tr>
+                                  <td>{{ $sale['user_name'] }}</td> 
+                                  <td class="text-end">{{ $sale['total_sales'] }}</td>
+                              </tr>
+                          @endforeach
+
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div><!-- End Top Selling -->
+
+                  <div class="col-12">
                     <div class="card">
                       <div class="card-body">
                         <h5 class="card-title">Bar CHart</h5>
@@ -128,115 +197,7 @@
           
                       </div>
                     </div>
-                  </div> --}}
-
-                  <div class="col-xxl-4 col-md-6">
-                    <div class="card info-card customers-card">
-                        <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <li class="dropdown-header text-start">
-                                    <h6>Filter</h6>
-                                </li>
-                                <li><a class="dropdown-item" href="#" id="todayCustomer" data-count="{{ $todayCustomers }}">Today</a></li>
-                                <li><a class="dropdown-item" href="#" id="monthlyCustomer" data-count="{{ $monthlyCustomers }}">This Month</a></li>
-                                <li><a class="dropdown-item" href="#" id="yearlyCustomer" data-count="{{ $yearlyCustomers }}">This Year</a></li>
-                            </ul>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Customers <span id="customerLavel">| Today</span></h5>
-                            <div class="d-flex align-items-center">
-                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-people"></i>
-                                </div>
-                                <div class="ps-3">
-                                    <h6 id="customerCount">{{ $todayCustomers }}</h6>
-                                    <span class="text-muted small pt-2 ps-1">Total Customers</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                   </div>
-                
-                
-                  <!-- End Customers Card -->
-      
-                  <!-- Top Selling -->
-                  <div class="col-xxl-4 col-md-6">
-                    <div class="card top-selling overflow-auto">
-                      <div class="filter">
-                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                          <li class="dropdown-header text-start">
-                            <h6>Filter</h6>
-                          </li>
-      
-                          <li><a class="dropdown-item" href="#">Today</a></li>
-                          <li><a class="dropdown-item" href="#">This Month</a></li>
-                          <li><a class="dropdown-item" href="#">This Year</a></li>
-                        </ul>
-                      </div>
-      
-                      <div class="card-body pb-0">
-                        <h5 class="card-title">Entry Ticket <span>| Today</span></h5>
-                        <table class="table table-borderless">
-                          <thead>
-                            <tr>
-                              <th scope="col">Name</th>
-                              <th scope="col" class="text-end">Total</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            @foreach($todayEntrySalesByUsers as $todayEntrySalesByUser)
-                            <tr>
-                                <td>{{ $todayEntrySalesByUser->user->name }}</td>
-                                <td class="text-end">{{ number_format($todayEntrySalesByUser->total_sales, 2) }}</td>
-                            </tr>
-                            @endforeach
-
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div><!-- End Top Selling -->
-                  <!-- Top Selling -->
-                  <div class="col-xxl-4 col-md-6">
-                    <div class="card top-selling overflow-auto">
-                      <div class="filter">
-                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                          <li class="dropdown-header text-start">
-                            <h6>Filter</h6>
-                          </li>
-      
-                          <li><a class="dropdown-item" href="#">Today</a></li>
-                          <li><a class="dropdown-item" href="#">This Month</a></li>
-                          <li><a class="dropdown-item" href="#">This Year</a></li>
-                        </ul>
-                      </div>
-      
-                      <div class="card-body pb-0">
-                        <h5 class="card-title">Ride Ticket <span>| Today</span></h5>
-                        <table class="table table-borderless">
-                          <thead>
-                            <tr>
-                              <th scope="col">Name</th>
-                              <th scope="col" class="text-end">Total</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            @foreach($todayRideSalesByUsers as $todayRideSalesByUser)
-                            <tr>
-                                <td>{{ $todayRideSalesByUser->user->name }}</td>
-                                <td class="text-end">{{ number_format($todayRideSalesByUser->total_sales, 2) }}</td>
-                            </tr>
-                            @endforeach
-
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div><!-- End Top Selling -->
 
                 </div>
               </div><!-- End Left side columns -->
@@ -248,6 +209,7 @@
                   <div class="card-body">
                     <h5 class="card-title">Recent Activity <span>| Ride Ticket</span></h5>
                     <div class="activity">
+                      
                       
                       @foreach ($rideTickets as $rideTicket)
                       <div class="activity-item d-flex">
@@ -262,6 +224,82 @@
                     </div>
                   </div>
                 </div>
+
+                <!-- Top Selling -->
+                <div class="col-12">
+                  <div class="card top-selling overflow-auto">
+    
+                    <div class="card-body pb-0">
+                      <h5 class="card-title">Entry Ticket <span>| Today</span></h5>
+                      <table class="table table-borderless">
+                        <thead>
+                          <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col" class="text-end">Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php
+                              $totalEntrySalesByuser= 0;
+                          ?>
+                          @foreach($todayEntrySalesByUsers as $todayEntrySalesByUser)
+                          <?php
+                              $totalEntrySalesByuser +=$todayEntrySalesByUser->total_sales;
+                          ?>
+                          <tr>
+                              <td>{{ $todayEntrySalesByUser->user->name }}</td>
+                              <td class="text-end">{{ number_format($todayEntrySalesByUser->total_sales, 2) }}</td>
+                          </tr>
+                          @endforeach
+
+                          <tr>
+                            <td><strong>Total</strong></td>
+                            <td class="text-end"><strong>{{ number_format($totalEntrySalesByuser, 2) }}</strong></td>
+                        </tr>
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- End Top Selling -->
+                
+                <!-- Top Selling -->
+                <div class="col-12">
+                  <div class="card top-selling overflow-auto">
+    
+                    <div class="card-body pb-0">
+                      <h5 class="card-title">Ride Ticket <span>| Today</span></h5>
+                      <table class="table table-borderless">
+                        <thead>
+                          <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col" class="text-end">Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php
+                              $totalRideSalesByuser= 0;
+                          ?>
+                          @foreach($todayRideSalesByUsers as $todayRideSalesByUser)
+                          @php
+                              $totalRideSalesByuser += $todayRideSalesByUser->total_sales;
+                          @endphp
+                          <tr>
+                              <td>{{ $todayRideSalesByUser->user->name }}</td>
+                              <td class="text-end">{{ number_format($todayRideSalesByUser->total_sales, 2) }}</td>
+                          </tr>
+                          @endforeach
+
+                          <tr>
+                            <td><strong>Total</strong></td>
+                            <td class="text-end"><strong>{{ number_format($totalRideSalesByuser, 2) }}</strong></td>
+                        </tr>
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- End Top Selling -->
             </div>
           </section>
 
