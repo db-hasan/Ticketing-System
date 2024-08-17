@@ -31,18 +31,44 @@ class AuthController extends Controller
         return view('auth.login');
     }
     
+    // public function adminlogin(Request $request) {
+    //     $request->validate([
+    //         'email' => 'required|email',
+    //         'password' => 'required',
+    //     ]);
+
+    //     $credentials = [
+    //         'email' => $request->input('email'),
+    //         'password' => $request->input('password'),
+    //     ];
+
+    //     if(Auth::attempt($credentials)) {
+    //         return redirect()->route('dashboard');
+    //     } else {
+    //         return redirect()->route('login')->with('error', 'Invalid credentials. Please try again.');
+    //     }
+    // }
+
     public function adminlogin(Request $request) {
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
+    
         $credentials = [
             'email' => $request->input('email'),
             'password' => $request->input('password'),
         ];
-
-        if(Auth::attempt($credentials)) {
+    
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+    
+            if ($user->status == 2) {
+                Auth::logout();
+                Session::flush();
+                return redirect()->route('login')->with('error', 'Your account is inactive. Please contact support.');
+            }
+    
             return redirect()->route('dashboard');
         } else {
             return redirect()->route('login')->with('error', 'Invalid credentials. Please try again.');
@@ -97,7 +123,7 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'new_password' => 'nullable|confirmed|min:6',
+            'new_password' => 'required|confirmed|min:6',
             'status' => 'required|in:1,2',
             'roles' => 'required'
         ]);

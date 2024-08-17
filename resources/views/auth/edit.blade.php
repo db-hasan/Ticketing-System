@@ -65,7 +65,7 @@
 
                 <div class="col-md-6 pb-3">
                     <label for="new_password" class="form-label">New Password<span class="text-danger">*</span></label>
-                    <input type="password" class="form-control" id="new_password" name="new_password" value="">
+                    <input type="password" class="form-control" id="new_password" name="new_password" value="" required>
                     @error('new_password')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -74,7 +74,7 @@
                     <label for="new_password_confirmation" class="form-label">Confirm Password<span
                             class="text-danger">*</span></label>
                     <input type="password" class="form-control" id="new_password_confirmation"
-                        name="new_password_confirmation" value="">
+                        name="new_password_confirmation" value="" required>
                     @error('new_password_confirmation')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
