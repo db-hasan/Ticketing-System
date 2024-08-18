@@ -3,7 +3,7 @@
     <main id="main" class="main">
         <div class="d-flex justify-content-between">
             <div class="pagetitle">
-                <h1>Edit and Update Ride</h1>
+                <h1>Update Ride</h1>
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Home</a></li>
