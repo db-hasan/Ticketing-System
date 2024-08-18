@@ -16,4 +16,12 @@ class ReportController extends Controller
     public function indexreport() {
         return view('backend/report.index');
     }
+
+    public function salesreport() {
+        return view('backend/report.salesreport');
+    }
+
+    public function sellerreport() {
+        return view('backend/report.sellerreport');
+    }
 }

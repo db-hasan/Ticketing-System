@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="row g-1 pb-3">
-                        <button type="submit" class="btn btn-primary fw-100">Submit</button>
+                        <a href="{{route('report.sales')}}" type="submit" class="btn btn-primary fw-100">Submit</a>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="row g-1 pb-3">
-                        <button type="submit" class="btn btn-primary fw-100">Submit</button>
+                        <a href="{{route('report.seller')}}" type="submit" class="btn btn-primary fw-100">Submit</a>
                     </div>
                 </div>
                 

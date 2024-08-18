@@ -62,5 +62,9 @@ Route::group(['middleware'=>'isAdmin'],function(){
     Route::delete('ticket-destroy/{id}',[TicketController::class,'destroyticket'])->name('ticket.destroy');
 
 
-    Route::get('report-index',[ReportController::class, 'indexreport'])->name('report.index');
+    Route::get('index-report',[ReportController::class, 'indexreport'])->name('report.index');
+    Route::get('sales-report',[ReportController::class, 'salesreport'])->name('report.sales');
+    Route::get('seller-report',[ReportController::class, 'sellerreport'])->name('report.seller');                
+    Route::get('sales-invoice',[ReportController::class, 'salesinvioce'])->name('invioce.sales');
+    Route::get('seller-invoice',[ReportController::class, 'sellerinvioce'])->name('invioce.seller');                
 });
