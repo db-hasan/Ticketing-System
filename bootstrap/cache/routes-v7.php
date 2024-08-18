@@ -102,7 +102,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::Iug0ftwmtgbLN4Rh',
+            '_route' => 'generated::3jdeAt4puhBPvWMs',
           ),
           1 => NULL,
           2 => 
@@ -594,7 +594,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'invioce.sales',
+            '_route' => 'invoice.sales',
           ),
           1 => NULL,
           2 => 
@@ -614,7 +614,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'invioce.seller',
+            '_route' => 'invoice.seller',
           ),
           1 => NULL,
           2 => 
@@ -1028,7 +1028,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::Iug0ftwmtgbLN4Rh' => 
+    'generated::3jdeAt4puhBPvWMs' => 
     array (
       'methods' => 
       array (
@@ -1045,13 +1045,13 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:55:"Laravel\\SerializableClosure\\UnsignedSerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:77:"function (\\Illuminate\\Http\\Request $request) {
     return $request->user();
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005990000000000000000";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005410000000000000000";}}',
         'namespace' => NULL,
         'prefix' => 'api',
         'where' => 
         array (
         ),
-        'as' => 'generated::Iug0ftwmtgbLN4Rh',
+        'as' => 'generated::3jdeAt4puhBPvWMs',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2420,7 +2420,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'invioce.sales' => 
+    'invoice.sales' => 
     array (
       'methods' => 
       array (
@@ -2435,14 +2435,14 @@ app('router')->setCompiledRoutes(
           0 => 'web',
           1 => 'isAdmin',
         ),
-        'uses' => 'App\\Http\\Controllers\\ReportController@salesinvioce',
-        'controller' => 'App\\Http\\Controllers\\ReportController@salesinvioce',
+        'uses' => 'App\\Http\\Controllers\\ReportController@salesinvoice',
+        'controller' => 'App\\Http\\Controllers\\ReportController@salesinvoice',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'invioce.sales',
+        'as' => 'invoice.sales',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2458,7 +2458,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'invioce.seller' => 
+    'invoice.seller' => 
     array (
       'methods' => 
       array (
@@ -2473,14 +2473,14 @@ app('router')->setCompiledRoutes(
           0 => 'web',
           1 => 'isAdmin',
         ),
-        'uses' => 'App\\Http\\Controllers\\ReportController@sellerinvioce',
-        'controller' => 'App\\Http\\Controllers\\ReportController@sellerinvioce',
+        'uses' => 'App\\Http\\Controllers\\ReportController@sellerinvoice',
+        'controller' => 'App\\Http\\Controllers\\ReportController@sellerinvoice',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'invioce.seller',
+        'as' => 'invoice.seller',
       ),
       'fallback' => false,
       'defaults' => 

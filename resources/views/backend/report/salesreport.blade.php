@@ -13,7 +13,7 @@
             </div>
             <div class="text-end">
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                    <button type="button" class="btn btn-success">PDF</button>
+                    <a href="{{route('invoice.sales')}}" type="button" class="btn btn-success">PDF</a>
                     <button type="button" class="btn btn-warning">CSV</button>
                     <button type="button" class="btn btn-danger">Print</button>
                 </div>
@@ -64,15 +64,6 @@
                       </tbody>
                     </table>
                   </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="text-end">
-                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <button type="button" class="btn btn-success">PDF</button>
-                        <button type="button" class="btn btn-warning">CSV</button>
-                        <button type="button" class="btn btn-danger">Print</button>
-                    </div>
                 </div>
               </div>
         </div>

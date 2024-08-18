@@ -1,57 +1,20 @@
-@extends('backend/layouts')
-@section('content')
-<style>
-  @media print {
-      @page {
-          margin: 0;
-      }
+<!doctype html>
+<html lang="en">
 
-      body {
-          margin: 1cm;
-      }
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Invoice PDF</title>
+    <link rel="stylesheet" href="{{ public_path('backend/vendor/bootstrap/css/bootstrap.min.css') }}">
+</head>
 
-      body * {
-          visibility: hidden;
-      }
+<body>
 
-      #invoice, #invoice * {
-          visibility: visible;
-      }
-
-      #invoice {
-          position: absolute;
-          left: 0;
-          top: 0;
-          width: 100%;
-      }
-  }
-</style>
-<main id="main" class="main">
-    <div class="d-flex justify-content-between">
-        <div class="pagetitle">
-            <h1>Seller Report</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Home</a></li>
-                    <li class="breadcrumb-item active">View</li>
-                </ol>
-            </nav>
-        </div>
-        <div class="text-end">
-            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                <a href="{{route('invoice.seller')}}" type="button" class="btn btn-success">PDF</a>
-                <button type="button" class="btn btn-warning">CSV</button>
-                <button type="button" class="btn btn-danger" id="printBtn" onclick="printInvoice()">Print</button>
-            </div>
-        </div>
-    </div>
-    <hr>
-
-    <div class="row justify-content-center" id="invoice">
+    <div class="row justify-content-center">
         <div class="row mb-3">
             <div class="col-12">
               <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table">
                   <thead>
                     <tr>
                       <th scope="col" class="text-uppercase">Name</th>
@@ -141,12 +104,9 @@
             </div>
           </div>
     </div>
+    
+    <script src="{{ public_path('backend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    
+</body>
 
-</main>
-
-<script>
-  function printInvoice() {
-      window.print();
-  }
-</script>
-@endsection
+</html>
