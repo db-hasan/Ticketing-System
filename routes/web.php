@@ -14,7 +14,7 @@ use App\Http\Controllers\PriceController;
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/', [AuthController::class, 'adminlogin'])->name('admin.login');
 
-Route::group(['middleware'=>'auth'],function(){
+Route::group(['middleware'=>'isAdmin'],function(){
     Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
 
 

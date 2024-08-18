@@ -30,7 +30,7 @@ class TicketController extends Controller
     }
     
     public function createticket() {
-        $rides = Ride::all(); // Fetch all rides
+        $rides = Ride::where('status', 1)->get(); // Fetch all rides
         return view('backend.ticket.create', compact('rides'));
     }
     
@@ -67,7 +67,7 @@ class TicketController extends Controller
 
     public function editticket($id=null){
         $tickets['ticket'] = Ticket::find($id);
-        $tickets['rides'] = Ride::all(); // Fetch all rides
+        $tickets['rides'] = Ride::where('status', 1)->get(); // Fetch all rides
         if (!$tickets['ticket']) {
             return redirect()->back();
         }     
