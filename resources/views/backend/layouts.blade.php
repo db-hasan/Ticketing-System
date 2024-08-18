@@ -159,7 +159,7 @@
             &copy; Copyright <strong><span>Ticketing System</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            Designed by <a href="https://softxone.com/">SOFTxONE Limited</a>
+            Development by <a href="https://softxone.com/">SOFTxONE Limited</a>
         </div>
     </footer>
     <!-- End Footer -->
