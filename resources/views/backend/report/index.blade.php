@@ -10,7 +10,7 @@
                         <div class="col-md-12">
                             <label for="inputState" class="form-label">Sales Report</label>
                             <select id="inputState" class="form-select" disabled>
-                            <option selected>All Sales</option>
+                             <option selected>All Sales</option>
                             </select>
                         </div>
                         <div class="col-md-6 pb-4">
@@ -33,8 +33,8 @@
                     <div class="row g-3 pt-3">
                         <div class="col-md-12">
                             <label for="inputState" class="form-label">Seller Report</label>
-                            <select id="inputState" class="form-select">
-                            <option selected>Select Seller</option>
+                            <select id="inputState" class="form-select" disabled>
+                                <option selected>All Seller</option>
                             </select>
                         </div>
 

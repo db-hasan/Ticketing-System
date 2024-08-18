@@ -20,7 +20,7 @@
             </div>
         </div>
         <hr>
-        
+
         <div class="row justify-content-center">
             <div class="row mb-3">
                 <div class="col-12">
@@ -38,28 +38,28 @@
                       <tbody class="table-group-divider">
                         <tr>
                           <th scope="row">1</th>
-                          <td>Console - Bootstrap Admin Template</td>
+                          <td>Ride 1 - This is Ride 1</td>
                           <td class="text-end">75</td>
                           <td class="text-end">2</td>
                           <td class="text-end">150</td>
                         </tr>
                         <tr>
                           <th scope="row">2</th>
-                          <td>Console - Bootstrap Admin Template</td>
-                          <td class="text-end">75</td>
-                          <td class="text-end">2</td>
-                          <td class="text-end">150</td>
+                          <td>Ride 2 - This is Ride 2</td>
+                          <td class="text-end">100</td>
+                          <td class="text-end">3</td>
+                          <td class="text-end">300</td>
                         </tr>
                         <tr>
                           <th scope="row">3</th>
-                          <td>Console - Bootstrap Admin Template</td>
-                          <td class="text-end">75</td>
-                          <td class="text-end">2</td>
+                          <td>Ride 3 - This is Ride 3</td>
                           <td class="text-end">150</td>
+                          <td class="text-end">3</td>
+                          <td class="text-end">450</td>
                         </tr>
                         <tr>
                           <th scope="row" colspan="4" class="text-uppercase text-end">Total</th>
-                          <td class="text-end">$495.1</td>
+                          <td class="text-end">Tk. 950</td>
                         </tr>
                       </tbody>
                     </table>
