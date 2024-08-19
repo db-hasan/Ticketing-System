@@ -32,25 +32,25 @@
                             </div>
                             <div class="col-md-6 pb-4">
                                 <label for="formsalesdate" class="form-label">Form Date</label>
-                                <input type="date" class="form-control" id="formsalesdate" name="formsalesdate" required>
+                                <input type="date" class="form-control" id="formsalesdate" name="formsalesdate" required value="{{ date('Y-m-d') }}">
                                 @error('formsalesdate')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-
+                    
                             <div class="col-md-6 pb-4">
                                 <label for="tosalesdate" class="form-label">To Date</label>
-                                <input type="date" class="form-control" id="tosalesdate" name="tosalesdate" required>
+                                <input type="date" class="form-control" id="tosalesdate" name="tosalesdate" required value="{{ date('Y-m-d') }}">
                                 @error('tosalesdate')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-
                         </div>
                         <div class="row g-1 pb-3">
                             <button type="submit" class="btn btn-primary fw-100">Submit</button>
                         </div>
                     </form>
+                    
                 </div>
             </div>
 
@@ -68,8 +68,7 @@
                             </div>
                             <div class="col-md-6 pb-4">
                                 <label for="formsellerdate" class="form-label">Form Date</label>
-                                <input type="date" class="form-control" id="formsellerdate" name="formsellerdate"
-                                    required>
+                                <input type="date" class="form-control" id="formsellerdate" name="formsellerdate" required value="{{ date('Y-m-d') }}">
                                 @error('formsellerdate')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -77,7 +76,7 @@
 
                             <div class="col-md-6 pb-4">
                                 <label for="tosellerdate" class="form-label">To Date</label>
-                                <input type="date" class="form-control" id="tosellerdate" name="tosellerdate" required>
+                                <input type="date" class="form-control" id="tosellerdate" name="tosellerdate" required value="{{ date('Y-m-d') }}">
                                 @error('tosellerdate')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror

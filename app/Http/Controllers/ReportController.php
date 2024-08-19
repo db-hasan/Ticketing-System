@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\Pdf;
-use App\Models\Ride;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
+use App\Models\Price;
+use App\Models\Entry;
+use App\Models\Ticket_details;
 
 
 class ReportController extends Controller
@@ -23,21 +27,65 @@ class ReportController extends Controller
     public function salesinvoice() {
         return view('backend/report.salesreport');
     }
-    public function salesreport( Request $request) {
 
-        
+    public function salesreport(Request $request) {
         $request->validate([
             'formsalesdate' => 'required|date|before_or_equal:tosalesdate',
             'tosalesdate' => 'required|date',
-        ],[
+        ], [
             'formsalesdate.before_or_equal' => 'The Form Date field must be a date before or equal to the To Date field.',
         ]);
+    
+        $from = $request->input('formsalesdate');
+        $to = $request->input('tosalesdate');
+    
+        $queryEntries = Entry::query()
+            ->with(['prices']) 
+            ->whereDate('created_at', '>=', $from)
+            ->whereDate('created_at', '<=', $to)
+            ->get();
+    
+        $groupedEntries = $queryEntries->groupBy(function ($entry) {
+            return $entry->prices->name;
+        });
+    
+        $ticketQTY = $groupedEntries->map->count();
+        $ticketPrice = $groupedEntries->map->sum('price');
+    
+        $queryRides = Ticket_details::query()
+            ->with(['ride']) 
+            ->whereDate('created_at', '>=', $from)
+            ->whereDate('created_at', '<=', $to)
+            ->get();
+    
+        $groupedRides = $queryRides->groupBy(function ($ride) {
+            return $ride->ride->name;
+        });
+    
+        $ridesQTY = $groupedRides->map->count();
+        $ridesPrice = $groupedRides->map->sum('price');
+    
+        // Merge and align data
+        $mergedData = $groupedEntries->mergeRecursive($groupedRides);
+    
+        $mergedQTY = $ticketQTY->merge($ridesQTY);
+        $mergedPrice = $ticketPrice->merge($ridesPrice);
+    
+        // Cache date filters
+        Cache::put('from', $from);
+        Cache::put('to', $to);
 
-        dd($request);
+        $today = now()->format('Y-m-d'); // Format as needed, e.g., 'Y-m-d', 'd-m-Y'
 
-
-        return view('backend/report.salesreport');
+    
+        return view('backend/report.salesreport', 
+            compact('from', 'to', 'today',
+            'mergedData', 'mergedQTY', 'mergedPrice',));
     }
+    
+
+
+
 
     public function sellerinvoice() {
         return view('backend/report.sellerreport');
