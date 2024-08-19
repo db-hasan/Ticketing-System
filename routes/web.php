@@ -64,7 +64,5 @@ Route::group(['middleware'=>'isAdmin'],function(){
 
     Route::get('index-report',[ReportController::class, 'indexreport'])->name('report.index');
     Route::get('sales-report',[ReportController::class, 'salesreport'])->name('report.sales');
-    Route::get('seller-report',[ReportController::class, 'sellerreport'])->name('report.seller');                
-    Route::get('sales-invoice',[ReportController::class, 'salesinvoice'])->name('invoice.sales');
-    Route::get('seller-invoice',[ReportController::class, 'sellerinvoice'])->name('invoice.seller');                
+    Route::get('seller-report',[ReportController::class, 'sellerreport'])->name('report.seller');                              
 });

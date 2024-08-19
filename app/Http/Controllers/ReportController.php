@@ -27,31 +27,4 @@ class ReportController extends Controller
     public function sellerreport() {
         return view('backend/report.sellerreport');
     }
-
-    public function salesinvoice()
-    {
-        $users = Ride::get();
-
-        $data = [
-            'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
-            'date' => date('m/d/Y'),
-            'users' => $users
-        ];
-
-        $pdf = PDF::loadView('backend/report.salesinvoice', $data);
-        return $pdf->download('sales-invoice.pdf');
-    }
-
-    public function sellerinvoice()
-    {
-        $users = Ride::get();
-        $data = [
-            'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
-            'date' => date('m/d/Y'),
-            'users' => $users
-        ];
-
-        $pdf = PDF::loadView('backend/report.sellerinvoice', $data);
-        return $pdf->download('seller-invoice.pdf');
-    }
 }
