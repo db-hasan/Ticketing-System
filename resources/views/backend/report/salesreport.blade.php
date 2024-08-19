@@ -132,7 +132,7 @@
             <div class="row mb-3">
                 <div class="col-12">
                   <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table">
                       <thead>
                         <tr>
                           <th scope="col" class="text-uppercase">#SL</th>
