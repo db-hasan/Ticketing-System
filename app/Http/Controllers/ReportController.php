@@ -82,15 +82,71 @@ class ReportController extends Controller
             compact('from', 'to', 'today',
             'mergedData', 'mergedQTY', 'mergedPrice',));
     }
-    
-
-
-
 
     public function sellerinvoice() {
         return view('backend/report.sellerreport');
     }
-    public function sellerreport() {
-        return view('backend/report.sellerreport');
-    }
+
+
+
+public function sellerreport(Request $request) {
+    $request->validate([
+        'formsellerdate' => 'required|date|before_or_equal:tosellerdate',
+        'tosellerdate' => 'required|date',
+    ], [
+        'formsellerdate.before_or_equal' => 'The Form Date field must be a date before or equal to the To Date field.',
+    ]);
+
+    $from = $request->input('formsellerdate');
+    $to = $request->input('tosellerdate');
+
+    // Query and group Entry
+    $queryEntries = Entry::query()
+        ->with(['user', 'prices'])
+        ->whereDate('created_at', '>=', $from)
+        ->whereDate('created_at', '<=', $to)
+        ->get();
+
+    $entryData = $queryEntries->groupBy('user_id')->map(function ($userEntries) {
+        return $userEntries->groupBy('price_id')->map(function ($priceEntries) {
+            return [
+                'ticket' => $priceEntries->first()->prices->name,
+                'quantity' => $priceEntries->count(),
+                'amount' => $priceEntries->sum('price'),
+            ];
+        });
+    });
+    
+
+    $queryRides = Ticket_details::query()
+        ->with(['user', 'ride'])
+        ->whereDate('created_at', '>=', $from)
+        ->whereDate('created_at', '<=', $to)
+        ->get();
+
+    // Group by user and ride to calculate totals
+    $rideData = $queryRides->groupBy('user_id')->map(function ($userRides) {
+        return $userRides->groupBy('ride_id')->map(function ($rideDetails) {
+            return [
+                'ride' => $rideDetails->first()->ride->name,
+                'quantity' => $rideDetails->count(),
+                'amount' => $rideDetails->sum('price'),
+            ];
+        });
+    });
+
+    // Calculate grand totals
+    $grandTotal = $queryRides->sum('price');
+    
+    // Cache date filters
+    Cache::put('from', $from);
+    Cache::put('to', $to);
+
+    $today = now()->format('Y-m-d');
+
+    return view('backend.report.sellerreport', compact('from', 'to', 'today', 'rideData', 'grandTotal'));
+}
+
+
+
 }
