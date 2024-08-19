@@ -102,7 +102,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::3jdeAt4puhBPvWMs',
+            '_route' => 'generated::XO99cMtgco0P0IMt',
           ),
           1 => NULL,
           2 => 
@@ -559,6 +559,22 @@ app('router')->setCompiledRoutes(
           1 => NULL,
           2 => 
           array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'invoice.sales',
+          ),
+          1 => NULL,
+          2 => 
+          array (
             'GET' => 0,
             'HEAD' => 1,
           ),
@@ -579,38 +595,14 @@ app('router')->setCompiledRoutes(
           1 => NULL,
           2 => 
           array (
-            'GET' => 0,
-            'HEAD' => 1,
+            'POST' => 0,
           ),
           3 => NULL,
           4 => false,
           5 => false,
           6 => NULL,
         ),
-      ),
-      '/sales-invoice' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'invoice.sales',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/seller-invoice' => 
-      array (
-        0 => 
+        1 => 
         array (
           0 => 
           array (
@@ -1028,7 +1020,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::3jdeAt4puhBPvWMs' => 
+    'generated::XO99cMtgco0P0IMt' => 
     array (
       'methods' => 
       array (
@@ -1051,7 +1043,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::3jdeAt4puhBPvWMs',
+        'as' => 'generated::XO99cMtgco0P0IMt',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2348,8 +2340,7 @@ app('router')->setCompiledRoutes(
     array (
       'methods' => 
       array (
-        0 => 'GET',
-        1 => 'HEAD',
+        0 => 'POST',
       ),
       'uri' => 'sales-report',
       'action' => 
@@ -2382,12 +2373,49 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'report.seller' => 
+    'invoice.sales' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
+      ),
+      'uri' => 'sales-report',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'isAdmin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ReportController@salesinvoice',
+        'controller' => 'App\\Http\\Controllers\\ReportController@salesinvoice',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'invoice.sales',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'report.seller' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
       ),
       'uri' => 'seller-report',
       'action' => 
@@ -2420,44 +2448,6 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'invoice.sales' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'sales-invoice',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'isAdmin',
-        ),
-        'uses' => 'App\\Http\\Controllers\\ReportController@salesinvoice',
-        'controller' => 'App\\Http\\Controllers\\ReportController@salesinvoice',
-        'namespace' => NULL,
-        'prefix' => '',
-        'where' => 
-        array (
-        ),
-        'as' => 'invoice.sales',
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
     'invoice.seller' => 
     array (
       'methods' => 
@@ -2465,7 +2455,7 @@ app('router')->setCompiledRoutes(
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'seller-invoice',
+      'uri' => 'seller-report',
       'action' => 
       array (
         'middleware' => 
