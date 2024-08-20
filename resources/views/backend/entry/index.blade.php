@@ -32,6 +32,7 @@
                         <th>Price</th>
                         <th>Date</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,6 +52,9 @@
                                 @elseif($entry->status == 2)
                                     Inactive
                                 @endif
+                            </td>
+                            <td class="d-flex justify-content-end">
+                                <a href="" class="btn btn-primary mx-1"><i class="bi bi-printer"></i></a>
                             </td>
                         </tr>
                     @endforeach

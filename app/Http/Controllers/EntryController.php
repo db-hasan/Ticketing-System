@@ -48,7 +48,11 @@ class EntryController extends Controller
         $entry->price_id = $request->price_id;
         $entry->price = $price->price;
         $entry->save();
+        return redirect()->route('entry.print', $entry->id)->with('success', 'Entry created successfully.');
+    }
 
-        return redirect()->back()->with('success', 'Entry created successfully.');
+    public function printentry($id=null){
+        $entry = Entry::findOrFail($id);
+        return view('backend.entry.print', compact('entry'));
     }
 }

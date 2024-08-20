@@ -132,11 +132,11 @@
                     </h4>
                     <div class="row invoice-font-size">
                         <span class="col-6">Issue Date</span>
-                        <span class="col-6 text-sm-end">12/10/2025</span>
-                        <span class="col-6">Form Date</span>
-                        <span class="col-6 text-sm-end">12/10/2025</span>
+                        <span class="col-6 text-sm-end">{{ $today }}</span>
+                        <span class="col-6">From Date</span>
+                        <span class="col-6 text-sm-end">{{ $from }}</span>
                         <span class="col-6">To Data</span>
-                        <span class="col-6 text-sm-end">18/12/2025</span>
+                        <span class="col-6 text-sm-end">{{ $to }}</span>
                     </div>
                 </div>
             </div>

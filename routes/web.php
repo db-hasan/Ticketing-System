@@ -11,6 +11,7 @@ use App\Http\Controllers\EntryController;
 use App\Http\Controllers\PriceController;
 
 
+
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/', [AuthController::class, 'adminlogin'])->name('admin.login');
 
@@ -45,6 +46,8 @@ Route::group(['middleware'=>'isAdmin'],function(){
     Route::get('entry-index',[EntryController::class, 'indexentry'])->name('entry.index');
     Route::get('entry-insert',[EntryController::class,'createentry'])->name('entry.create');
     Route::post('entry-insert',[EntryController::class,'storeentry'])->name('entry.store');
+    Route::get('entry-print/{id}',[EntryController::class,'printentry'])->name('entry.print');
+
     
 
     Route::get('ride-index',[RideController::class, 'indexride'])->name('ride.index');
