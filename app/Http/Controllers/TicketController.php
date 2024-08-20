@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Models\Ticket;
 use App\Models\Ticket_details;
 use App\Models\Ride;
@@ -19,7 +20,7 @@ class TicketController extends Controller
     {
         $this->middleware(['permission:ticket-index'], ['only' => ['indexticket']]);
         $this->middleware(['permission:ticket-create'], ['only' => ['createticket', 'storeticket']]);
-        $this->middleware(['permission:ticket-edit'], ['only' => ['editticket', 'updateticket']]);
+        // $this->middleware(['permission:ticket-print'], ['only' => ['printticket']]);
         $this->middleware(['permission:ticket-delete'], ['only' => ['destroyticket']]);
 
     }
@@ -42,8 +43,6 @@ class TicketController extends Controller
             'ride.*' => 'exists:rides,id', // Ensure each selected ride exists in the 'rides' table
         ]);
 
-        // Create the ticket
-        try{
             $ticket = new Ticket();
             $ticket->user_id = Auth::id();
             $ticket->ref_code = rand(100000, 999999) . date('is');
@@ -58,52 +57,14 @@ class TicketController extends Controller
                 $ticketDetail->price = Ride::find($rideId)->price; // Assuming you have a price field in the Ride model
                 $ticketDetail->save();
             }
-            return redirect()->back()->with('success', 'Ticket created successfully.');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'An error occurred. Please try again.');
-        }
+            return redirect()->route('ticket.print', $ticket->id)->with('success', 'Ride created successfully.');
     }
 
-
-    public function editticket($id=null){
-        $tickets['ticket'] = Ticket::find($id);
-        $tickets['rides'] = Ride::where('status', 1)->get(); // Fetch all rides
-        if (!$tickets['ticket']) {
-            return redirect()->back();
-        }     
-        return view('backend/ticket/edit', $tickets);
-    }
-
-    public function updateticket(Request $request, $id): RedirectResponse
-    {
-        // Validate the form input
-        $request->validate([
-            'ride' => 'required|array', // Ensure 'ride' is an array
-            'ride.*' => 'exists:rides,id', // Ensure each selected ride exists in the 'rides' table
-        ]);
-
-        // Find the ticket by ID
-        try{
-            $ticket = Ticket::findOrFail($id);
-            $ticket->save();
-
-            // Remove existing ticket details
-            $ticket->details()->delete();
-
-            // Create new ticket details for each selected ride
-            foreach ($request->ride as $rideId) {
-                $ticketDetail = new Ticket_details();
-                $ticketDetail->ticket_id = $ticket->id;
-                $ticketDetail->ride_id = $rideId;
-                $ticketDetail->user_id = Auth::id();
-                $ticketDetail->price = Ride::find($rideId)->price; // Assuming you have a price field in the Ride model
-                $ticketDetail->save();
-            }
-
-            return redirect()->route('ticket.index')->with('success', 'Ticket updated successfully.');
-        }catch (\Exception $e) {
-            return redirect()->route('ticket.index')->with('error', 'An error occurred. Please try again.');
-        }
+    public function printticket($id=null){
+        $ticket = Ticket::with('details')->findOrFail($id);
+        $qrCode = QrCode::size(100)->generate($ticket->ref_code);
+        $today = now()->format('Y-m-d');
+        return view('backend.ticket.print', compact('ticket', 'qrCode', 'today'));
     }
 
 

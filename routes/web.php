@@ -60,9 +60,8 @@ Route::group(['middleware'=>'isAdmin'],function(){
     Route::get('ticket-index',[TicketController::class, 'indexticket'])->name('ticket.index');
     Route::get('ticket-insert',[TicketController::class,'createticket'])->name('ticket.create');
     Route::post('ticket-insert',[TicketController::class,'storeticket'])->name('ticket.store');
-    Route::get('ticket-update/{id}',[TicketController::class,'editticket'])->name('ticket.edit');
-    Route::put('ticket-update/{id}',[TicketController::class,'updateticket'])->name('ticket.update');
     Route::delete('ticket-destroy/{id}',[TicketController::class,'destroyticket'])->name('ticket.destroy');
+    Route::get('ticket-print/{id}',[TicketController::class,'printticket'])->name('ticket.print');
 
 
     Route::get('index-report',[ReportController::class, 'indexreport'])->name('report.index');

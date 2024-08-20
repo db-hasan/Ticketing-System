@@ -45,6 +45,7 @@
       24 => 'App\\Providers\\EventServiceProvider',
       25 => 'App\\Providers\\RouteServiceProvider',
       26 => 'Spatie\\Permission\\PermissionServiceProvider',
+      27 => 'SimpleSoftwareIO\\QrCode\\QrCodeServiceProvider',
     ),
     'aliases' => 
     array (
@@ -89,6 +90,7 @@
       'Validator' => 'Illuminate\\Support\\Facades\\Validator',
       'View' => 'Illuminate\\Support\\Facades\\View',
       'Vite' => 'Illuminate\\Support\\Facades\\Vite',
+      'QrCode' => 'SimpleSoftwareIO\\QrCode\\Facades\\QrCode',
     ),
   ),
   'auth' => 

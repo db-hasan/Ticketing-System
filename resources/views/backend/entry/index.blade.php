@@ -54,7 +54,9 @@
                                 @endif
                             </td>
                             <td class="d-flex justify-content-end">
-                                <a href="" class="btn btn-primary mx-1"><i class="bi bi-printer"></i></a>
+                                @can('entry-print')
+                                <a href="{{ route('entry.print', $entry->id) }}" class="btn btn-primary mx-1"><i class="bi bi-printer"></i></a>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

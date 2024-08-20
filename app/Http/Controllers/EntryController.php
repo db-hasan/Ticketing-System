@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Models\Entry;
 use App\Models\Price;
 use Exception;
@@ -17,6 +18,7 @@ class EntryController extends Controller
     {
         $this->middleware(['permission:entry-index'], ['only' => ['indexentry']]);
         $this->middleware(['permission:entry-create'], ['only' => ['createentry', 'storeentry']]);
+        $this->middleware(['permission:entry-print'], ['only' => ['entryticket']]);
 
     }
     
@@ -53,6 +55,9 @@ class EntryController extends Controller
 
     public function printentry($id=null){
         $entry = Entry::findOrFail($id);
-        return view('backend.entry.print', compact('entry'));
+        $qrCode = QrCode::size(100)->generate($entry->ref_code);
+        $today = now()->format('Y-m-d');
+
+        return view('backend.entry.print', compact('entry', 'qrCode', 'today'));
     }
 }

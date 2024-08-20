@@ -45,7 +45,7 @@
             </div>
             @can('ticket-index')
             <div class="text-end pt-2">
-                <a href="{{ route('entry.index') }}" class="btn btn-primary"><i class="fa-regular fa-eye"></i>
+                <a href="{{ route('ticket.index') }}" class="btn btn-primary"><i class="fa-regular fa-eye"></i>
                     View Ticket</a>
             </div>
             @endcan
@@ -63,31 +63,39 @@
                         <span>Website: <a href="">bafmuseum.mil.bd</a></span>
                     </address>
                 </div>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="">
-                            <span>{{ $entry->prices->name }}</span>
-                        </div>
-                        <div class="">
-                            <span>Date:</span>
-                            <span>{{ $today }}</span>
-                        </div>
-                        <div class="">
-                            <span>Price:</span>
-                            <span>Tk. {{ $entry->price }}</span>
-                        </div>
-                        <div class="">
-                            <span>Phone:</span>
-                            <span>{{ $entry->number }}</span>
-                        </div>
-                    </div>
-                    <div class="col-6 text-end">{!! $qrCode !!}</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-uppercase">#SL</th>
+                            <th scope="col" class="text-uppercase">Name</th>
+                            <th scope="col" class="text-uppercase text-end">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $total = 0;
+                        @endphp
+                        @foreach($ticket->details as $detail)
+                            @php
+                                $total += $detail->price;
+                            @endphp
+                            <tr>
+                                <td>{{ $detail->ride_id }}</td>
+                                <td>{{ $detail->ride->name }}</td>
+                                <td class="text-end">{{ $detail->price }}</td>
+                            </tr>
+                        @endforeach
+                        <tr>
+                            <td scope="row" colspan="2" class="text-end">Total</td>
+                            <td class="text-end">Tk. {{ $total }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <span>Thank you</span>
                 </div>
             </div>
-            <hr>
-            <div class="text-center">
-                <span>Thank you</span>
-            </div>         
+            
         </div>       
     </main>
 
@@ -96,9 +104,9 @@
             window.print();
 
             // Redirect after a short delay to ensure printing has started
-            setTimeout(function() {
-                window.location.href = "{{ route('entry.create') }}";
-            }, 1000); // Adjust the delay as needed
+            // setTimeout(function() {
+            //     window.location.href = "{{ route('entry.create') }}";
+            // }, 1000); // Adjust the delay as needed
         };
     </script>
 @endsection
