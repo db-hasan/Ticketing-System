@@ -89,63 +89,67 @@ class ReportController extends Controller
 
 
 
-public function sellerreport(Request $request) {
-    $request->validate([
-        'formsellerdate' => 'required|date|before_or_equal:tosellerdate',
-        'tosellerdate' => 'required|date',
-    ], [
-        'formsellerdate.before_or_equal' => 'The Form Date field must be a date before or equal to the To Date field.',
-    ]);
+    public function sellerreport(Request $request) {
+        $request->validate([
+            'formsellerdate' => 'required|date|before_or_equal:tosellerdate',
+            'tosellerdate' => 'required|date',
+        ], [
+            'formsellerdate.before_or_equal' => 'The Form Date field must be a date before or equal to the To Date field.',
+        ]);
 
-    $from = $request->input('formsellerdate');
-    $to = $request->input('tosellerdate');
+        $from = $request->input('formsellerdate');
+        $to = $request->input('tosellerdate');
 
-    // Query and group Entry
-    $queryEntries = Entry::query()
-        ->with(['user', 'prices'])
-        ->whereDate('created_at', '>=', $from)
-        ->whereDate('created_at', '<=', $to)
-        ->get();
+        // Query and group Entry
+        $queryEntries = Entry::query()
+            ->with(['user', 'prices'])
+            ->whereDate('created_at', '>=', $from)
+            ->whereDate('created_at', '<=', $to)
+            ->get();
 
-    $entryData = $queryEntries->groupBy('user_id')->map(function ($userEntries) {
-        return $userEntries->groupBy('price_id')->map(function ($priceEntries) {
-            return [
-                't_name' => $priceEntries->first()->prices->name,
-                't_quantity' => $priceEntries->count(),
-                't_amount' => $priceEntries->sum('price'),
-            ];
+        $entryData = $queryEntries->groupBy('user_id')->map(function ($userEntries) {
+            return $userEntries->groupBy('price_id')->map(function ($priceEntries) {
+                return [
+                    't_name' => $priceEntries->first()->prices->name,
+                    't_quantity' => $priceEntries->count(),
+                    't_amount' => $priceEntries->sum('price'),
+                ];
+            });
         });
-    });
 
-    $queryRides = Ticket_details::query()
-        ->with(['user', 'ride'])
-        ->whereDate('created_at', '>=', $from)
-        ->whereDate('created_at', '<=', $to)
-        ->get();
+        $queryRides = Ticket_details::query()
+            ->with(['user', 'ride'])
+            ->whereDate('created_at', '>=', $from)
+            ->whereDate('created_at', '<=', $to)
+            ->get();
 
-    // Group by user and ride to calculate totals
-    $rideData = $queryRides->groupBy('user_id')->map(function ($userRides) {
-        return $userRides->groupBy('ride_id')->map(function ($rideDetails) {
-            return [
-                'r_name' => $rideDetails->first()->ride->name,
-                'r_quantity' => $rideDetails->count(),
-                'r_amount' => $rideDetails->sum('price'),
-            ];
+        // Group by user and ride to calculate totals
+        $rideData = $queryRides->groupBy('user_id')->map(function ($userRides) {
+            return $userRides->groupBy('ride_id')->map(function ($rideDetails) {
+                return [
+                    'r_name' => $rideDetails->first()->ride->name,
+                    'r_quantity' => $rideDetails->count(),
+                    'r_amount' => $rideDetails->sum('price'),
+                ];
+            });
         });
-    });
-
-    
-    // Cache date filters
-    Cache::put('from', $from);
-    Cache::put('to', $to);
-
-    $today = now()->format('Y-m-d');
-
-    return view('backend.report.sellerreport', 
-    compact('from', 'to', 'today', 
-    'rideData', 'entryData'));
-}
 
 
+        // In your controller, after calculating $entryData and $rideData
+        $mergedData = $entryData->map(function ($entry, $userId) use ($rideData) {
+            return $entry->merge($rideData->get($userId, collect()));
+        });
+
+
+        
+        // Cache date filters
+        Cache::put('from', $from);
+        Cache::put('to', $to);
+
+        $today = now()->format('Y-m-d');
+
+        return view('backend.report.sellerreport', 
+        compact('from', 'to', 'today', 'mergedData'));
+    }
 
 }
