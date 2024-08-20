@@ -77,7 +77,7 @@
                             <span>Tk. {{ $entry->price }}</span>
                         </div>
                         <div class="">
-                            <span>Phone:</span>
+                            <span>PH:</span>
                             <span>{{ $entry->number }}</span>
                         </div>
                     </div>
