@@ -48,9 +48,9 @@
                         @endif
                     </td>
                     <td class="d-flex justify-content-end">
-                        {{-- @can('ticket-print') --}}
+                        @can('ticket-print')
                         <a href="{{ route('ticket.print', $ticket->id) }}" class="btn btn-primary mx-1"><i class="bi bi-printer"></i></a>
-                        {{-- @endcan --}}
+                        @endcan
 
                         @can('ticket-delete')
                         <form class="deleteForm" action="{{ route('ticket.destroy', $ticket->id) }}" method="POST">

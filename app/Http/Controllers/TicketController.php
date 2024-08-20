@@ -20,7 +20,7 @@ class TicketController extends Controller
     {
         $this->middleware(['permission:ticket-index'], ['only' => ['indexticket']]);
         $this->middleware(['permission:ticket-create'], ['only' => ['createticket', 'storeticket']]);
-        // $this->middleware(['permission:ticket-print'], ['only' => ['printticket']]);
+        $this->middleware(['permission:ticket-print'], ['only' => ['printticket']]);
         $this->middleware(['permission:ticket-delete'], ['only' => ['destroyticket']]);
 
     }
