@@ -110,13 +110,12 @@ public function sellerreport(Request $request) {
     $entryData = $queryEntries->groupBy('user_id')->map(function ($userEntries) {
         return $userEntries->groupBy('price_id')->map(function ($priceEntries) {
             return [
-                'ticket' => $priceEntries->first()->prices->name,
-                'quantity' => $priceEntries->count(),
-                'amount' => $priceEntries->sum('price'),
+                't_name' => $priceEntries->first()->prices->name,
+                't_quantity' => $priceEntries->count(),
+                't_amount' => $priceEntries->sum('price'),
             ];
         });
     });
-    
 
     $queryRides = Ticket_details::query()
         ->with(['user', 'ride'])
@@ -128,15 +127,13 @@ public function sellerreport(Request $request) {
     $rideData = $queryRides->groupBy('user_id')->map(function ($userRides) {
         return $userRides->groupBy('ride_id')->map(function ($rideDetails) {
             return [
-                'ride' => $rideDetails->first()->ride->name,
-                'quantity' => $rideDetails->count(),
-                'amount' => $rideDetails->sum('price'),
+                'r_name' => $rideDetails->first()->ride->name,
+                'r_quantity' => $rideDetails->count(),
+                'r_amount' => $rideDetails->sum('price'),
             ];
         });
     });
 
-    // Calculate grand totals
-    $grandTotal = $queryRides->sum('price');
     
     // Cache date filters
     Cache::put('from', $from);
@@ -144,7 +141,9 @@ public function sellerreport(Request $request) {
 
     $today = now()->format('Y-m-d');
 
-    return view('backend.report.sellerreport', compact('from', 'to', 'today', 'rideData', 'grandTotal'));
+    return view('backend.report.sellerreport', 
+    compact('from', 'to', 'today', 
+    'rideData', 'entryData'));
 }
 
 

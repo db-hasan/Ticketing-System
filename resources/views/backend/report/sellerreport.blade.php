@@ -61,8 +61,8 @@
               <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col" class="text-uppercase">Name</th>
-                        <th scope="col" class="text-uppercase">Ride</th>
+                        <th scope="col" class="text-uppercase">Seller Name</th>
+                        <th scope="col" class="text-uppercase">Ticket Name</th>
                         <th scope="col" class="text-uppercase text-end">QTY</th>
                         <th scope="col" class="text-uppercase text-end">Amount</th>
                     </tr>
@@ -71,7 +71,7 @@
                     @php
                         $grandTotal = 0;
                     @endphp 
-                    @foreach($rideData as $userId => $rides)
+                    @foreach($entryData as $userId => $rides)
                         @php
                             $user = \App\Models\User::find($userId);
                             $userTotal = 0;
@@ -79,15 +79,15 @@
                         @foreach($rides as $rideId => $details)
                             <tr>
                                 @if($loop->first)
-                                    <th rowspan="{{ count($rides) }}" class="text-center align-middle">{{ $user->name }}</th>
+                                    <th rowspan="{{ count($rides) }}" class="align-middle">{{ $user->name }}</th>
                                 @endif
-                                <td>{{ $details['ride'] }}</td>
-                                <td class="text-end">{{ $details['quantity'] }}</td>
-                                <td class="text-end">{{ $details['amount'] }}</td>
+                                <td>{{ $details['t_name'] }}</td>
+                                <td class="text-end">{{ $details['t_quantity'] }}</td>
+                                <td class="text-end">{{ $details['t_amount'] }}</td>
                             </tr>
                             @php
-                                $userTotal += $details['amount'];
-                                $grandTotal += $details['amount'];
+                                $userTotal += $details['t_amount'];
+                                $grandTotal += $details['t_amount'];
                             @endphp
                         @endforeach
                         <tr>
@@ -100,10 +100,7 @@
                         <th class="text-end">{{ $grandTotal }}</th>
                     </tr>
                 </tbody>
-            </table>
-          
-          
-          
+            </table>         
             
             </div>
           </div>
@@ -156,30 +153,7 @@
               </thead>
               <tbody class="table-group-divider">
                 <tr>
-                  <th rowspan="3" class="text-center align-middle">Seller 1</th>
-                  <td>Ride 1 - This is Ride 1</td>
-                  <td class="text-end">75</td>
-                  <td class="text-end">2</td>
-                  <td class="text-end">150</td>
-                </tr>
-                <tr>
-                  <td>Ride 2 - This is Ride 2</td>
-                  <td class="text-end">100</td>
-                  <td class="text-end">3</td>
-                  <td class="text-end">300</td>
-                </tr>
-                <tr>
-                  <td>Ride 3 - This is Ride 3</td>
-                  <td class="text-end">150</td>
-                  <td class="text-end">3</td>
-                  <td class="text-end">450</td>
-                </tr>
-                <tr>
-                  <th scope="row" colspan="4" class="text-uppercase text-end">Total</th>
-                  <th class="text-end">Tk. 950</th>
-                </tr>
-                <tr>
-                  <th rowspan="3" class="text-center align-middle">Seller 2</th>
+                  <th rowspan="3" class="align-middle">Seller 1</th>
                   <td>Ride 1 - This is Ride 1</td>
                   <td class="text-end">75</td>
                   <td class="text-end">2</td>
