@@ -104,9 +104,9 @@
             window.print();
 
             // Redirect after a short delay to ensure printing has started
-            // setTimeout(function() {
-            //     window.location.href = "{{ route('entry.create') }}";
-            // }, 1000); // Adjust the delay as needed
+            setTimeout(function() {
+                window.location.href = "{{ route('entry.create') }}";
+            }, 1000); // Adjust the delay as needed
         };
     </script>
 @endsection
