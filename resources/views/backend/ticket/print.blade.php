@@ -105,7 +105,7 @@
 
             // Redirect after a short delay to ensure printing has started
             setTimeout(function() {
-                window.location.href = "{{ route('entry.create') }}";
+                window.location.href = "{{ route('ticket.create') }}";
             }, 1000); // Adjust the delay as needed
         };
     </script>
