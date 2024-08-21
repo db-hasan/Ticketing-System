@@ -18,7 +18,7 @@
         </div>
         <hr>
         <div class="custom-scrollbar-table">
-            <table id="myTable" class="display">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -48,5 +48,4 @@
             </table>
         </div>
     </main>
-    <script src="{{ asset('backend/js/jquery-3.7.1.min.js') }} "></script>
 @endsection

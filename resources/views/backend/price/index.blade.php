@@ -14,7 +14,7 @@
         </div>
         <hr>
         <div class="custom-scrollbar-table">
-            <table id="myTable" class="display">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>
