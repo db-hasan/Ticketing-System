@@ -9,6 +9,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
 use App\Models\Price;
+use App\Models\Entry;
 
 class DatabaseSeeder extends Seeder
 {
@@ -34,6 +35,7 @@ class DatabaseSeeder extends Seeder
             Permission::create(['name' => $permission]);
         };
 
+        // User Create
         $user = User::create([
             'name' => 'Developer',
             'email' => 'superadmin@gmail.com',
@@ -49,17 +51,17 @@ class DatabaseSeeder extends Seeder
 
         $user->syncRoles([$role->id]);
 
-
+        // Price Create
         $ticket = Price::create([
             'name' => 'Entry Ticket',
             'price' => '50',
         ]);
 
-
-
         // ******seeder asign******
         // $this->call([
         //     UserSeeder::class
         // ]);
+
+        Entry::factory(100)->create();
     }
 }

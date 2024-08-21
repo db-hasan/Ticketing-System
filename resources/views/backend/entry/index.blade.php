@@ -24,7 +24,6 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>NO</th>
                         <th>SalesMan</th>
                         <th>Name</th>
                         <th>Ref Code</th>
@@ -39,7 +38,6 @@
                     @foreach ($entrys as $entry)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>#{{ $entry->id}}</td>
                             <td>{{ $entry->user->name}}</td>
                             <td>{{ $entry->prices->name}}</td>
                             <td>{{ $entry->ref_code}}</td>
