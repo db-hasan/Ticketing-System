@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Models\Ticket;
@@ -42,6 +43,8 @@ class TicketController extends Controller
             'ride' => 'required|array', // Ensure 'ride' is an array
             'ride.*' => 'exists:rides,id', // Ensure each selected ride exists in the 'rides' table
         ]);
+        try { 
+            DB::beginTransaction();
 
             $ticket = new Ticket();
             $ticket->user_id = Auth::id();
@@ -57,7 +60,13 @@ class TicketController extends Controller
                 $ticketDetail->price = Ride::find($rideId)->price; // Assuming you have a price field in the Ride model
                 $ticketDetail->save();
             }
+            DB::commit();
+
             return redirect()->route('ticket.print', $ticket->id)->with('success', 'Ride created successfully.');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->route('ticket.index')->with('error', 'An error occurred. Please try again.');
+        }
     }
 
     public function printticket($id=null){
@@ -68,10 +77,18 @@ class TicketController extends Controller
     }
 
 
-    //delete data in database
-    public function destroyticket($id=null){
-        Ticket_details::where('ticket_id', $id)->delete();
-        Ticket::find($id)->delete();    
-        return redirect()->route('ticket.index')->with('success', 'Data Delete successfully.');
+    public function destroyticket($id = null)
+    {
+        DB::beginTransaction();
+
+        try {
+            Ticket_details::where('ticket_id', $id)->delete();
+            Ticket::find($id)->delete();
+            DB::commit();
+            return redirect()->route('ticket.index')->with('success', 'Data deleted successfully.');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->route('ticket.index')->with('error', 'An error occurred. Please try again.');
+        }
     }
 }

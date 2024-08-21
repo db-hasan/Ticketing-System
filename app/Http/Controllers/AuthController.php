@@ -137,23 +137,32 @@ class AuthController extends Controller
         return view('auth.password', compact('users'));
     }
 
-    public function passwordupdate(Request $request) {
-        $request->validate([
-            'old_password' => 'required',
-            'new_password' => 'required|confirmed|min:6',
-        ]);
-
-        // Match old password
-        if (!Hash::check($request->old_password, auth::user()->password)) {
-            return redirect()->route('profle.update')->with('error', 'Old password not match.');
+    public function passwordupdate(Request $request)
+    {
+        try {
+            // Validate the request data
+            $request->validate([
+                'old_password' => 'required',
+                'new_password' => 'required|confirmed|min:6',
+            ]);
+    
+            // Match old password
+            if (!Hash::check($request->old_password, Auth::user()->password)) {
+                return redirect()->route('profile.update')->with('error', 'Old password does not match.');
+            }
+    
+            // Update password
+            User::whereId(Auth::user()->id)->update([
+                'password' => Hash::make($request->new_password)
+            ]);
+    
+            // Redirect with success message
+            return redirect()->route('profile.update')->with('success', 'Password updated successfully.');
+        } catch (Exception $e) {
+    
+            // Redirect with error message
+            return redirect()->route('profile.update')->with('error', 'An error occurred. Please try again.');
         }
-
-        // Update password
-        User::whereId(Auth::user()->id)->update([
-            'password' => Hash::make($request->new_password)
-        ]);
-
-        return redirect()->route('profle.update')->with('success', 'Password updated successfully.');
     }
 
     // Display the logout

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
+use Exception;
 
 class RoleController extends Controller
 {
@@ -27,15 +28,20 @@ class RoleController extends Controller
     
     public function storerole(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|unique:roles,name',
-            'permission' => 'required',
-        ]);
+        try{
+            $this->validate($request, [
+                'name' => 'required|unique:roles,name',
+                'permission' => 'required',
+            ]);
 
-        $role = Role::create(['name' => $request->input('name')]);
-        $role->syncPermissions($request->input('permission'));
+            $role = Role::create(['name' => $request->input('name')]);
+            $role->syncPermissions($request->input('permission'));
 
-        return redirect()->route('role.index')->with('success', 'Role created successfully');
+            return redirect()->route('role.index')->with('success', 'Role created successfully');
+        } catch (Exception $e) {
+                return redirect()->route('role.index')->with('error', 'An error occurred. Please try again.');
+        }
+
     }
 
 
@@ -56,13 +62,16 @@ class RoleController extends Controller
             'name' => 'required',
             'permission' => 'required',
         ]);
+        try{
+            $role = Role::find($id);
+            $role->name = $request->input('name');
+            $role->save();
 
-        $role = Role::find($id);
-        $role->name = $request->input('name');
-        $role->save();
+            $role->syncPermissions($request->input('permission'));
 
-        $role->syncPermissions($request->input('permission'));
-
-        return redirect()->route('role.index')->with('success', 'Role updated successfully');
+            return redirect()->route('role.index')->with('success', 'Role updated successfully');
+        } catch (Exception $e) {
+            return redirect()->route('role.index')->with('error', 'An error occurred. Please try again.');
+        }
     }
 }
