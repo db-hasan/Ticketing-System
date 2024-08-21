@@ -19,7 +19,13 @@
             @endcan
         </div>
         <hr>
+        
         <div class="custom-scrollbar-table">
+            <div class="d-flex justify-content-end pb-3">
+                <div class="col-12 col-md-3">
+                    <input type="text" class="form-control" id="search" placeholder="Search Here">
+                </div>
+            </div>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -59,10 +65,32 @@
                         </tr>
                     @endforeach
                 </tbody>
+
+                <tbody id="content"></tbody>
+
             </table>
             @if ($entries->hasPages())
                 <div class="">{{ $entries->links() }}</div>
             @endif
         </div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('#search').on('keyup', function(){
+            $value = $(this).val();
+
+            $.ajax({
+                type : 'get',
+                url  : '{{URL::to('search')}}',
+                data : {'search':$value},
+
+                success:function(data){
+                    console.log(data);
+                    $('#content').html(data);
+                }
+            });
+            // alert($value);
+        });
+    </script>
+    
 @endsection

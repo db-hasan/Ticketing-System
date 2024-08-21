@@ -25,9 +25,28 @@ class EntryController extends Controller
 
 
     public function indexentry() {
-        $entries = Entry::with('user')->latest()->paginate(50);
+        $entries = Entry::with('user')->latest()->paginate(5);
         return view('backend.entry.index', compact('entries'));
     }
+
+    public function search(Request $request)
+    {
+        $output = '';
+        
+        $entries = Entry::where('ref_code', 'like', '%' . $request->search . '%')
+                        ->orWhere('number', 'like', '%' . $request->search . '%')
+                        ->get();
+
+        foreach ($entries as $value) {
+            $output .=
+            '<tr>
+                <td>' .$value->ref_code. '</td>
+            </tr>';
+        }
+
+        return response($output);
+    }
+
     
     public function createentry() {
         $prices = Price::all();

@@ -63,6 +63,9 @@ Route::group(['middleware'=>'isAdmin'],function(){
     Route::delete('ticket-destroy/{id}',[TicketController::class,'destroyticket'])->name('ticket.destroy');
     Route::get('ticket-print/{id}',[TicketController::class,'printticket'])->name('ticket.print');
 
+    Route::get('search', [TicketController::class, 'search'])->name('entries.search');
+
+
 
     Route::get('index-report',[ReportController::class, 'indexreport'])->name('report.index');
     Route::post('sales-report',[ReportController::class, 'salesreport'])->name('report.sales');
