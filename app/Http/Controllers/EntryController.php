@@ -25,8 +25,8 @@ class EntryController extends Controller
 
 
     public function indexentry() {
-        $entrys = Entry::with('user')->latest()->paginate(50);
-        return view('backend.entry.index', compact('entrys'));
+        $entries = Entry::with('user')->latest()->paginate(50);
+        return view('backend.entry.index', compact('entries'));
     }
     
     public function createentry() {

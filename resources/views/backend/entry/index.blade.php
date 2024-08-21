@@ -35,7 +35,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($entrys as $entry)
+                    @foreach ($entries as $entry)
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{ $entry->user->name}}</td>
@@ -60,6 +60,9 @@
                     @endforeach
                 </tbody>
             </table>
+            @if ($entries->hasPages())
+                <div class="">{{ $entries->links() }}</div>
+            @endif
         </div>
     </main>
 @endsection

@@ -66,6 +66,9 @@
                     @endforeach
                 </tbody>
             </table>
+            @if ($tickets->hasPages())
+                <div class="">{{ $tickets->links() }}</div>
+            @endif
         </div>
     </main>
 @endsection
