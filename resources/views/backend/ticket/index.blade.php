@@ -20,11 +20,15 @@
         </div>
         <hr>
         <div class="custom-scrollbar-table">
+            <div class="d-flex justify-content-end pb-3">
+                <div class="col-12 col-md-3">
+                    <input type="text" class="form-control" id="search" placeholder="Search by Number or Ref Code">
+                </div>
+            </div>
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>NO</th>
                         <th>SalesMan</th>
                         <th>Ref Code</th>
                         <th>Date</th>
@@ -32,10 +36,9 @@
                         <th class="text-end">Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="alldata">
                     @foreach ($tickets as $ticket)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
                             <td>#{{ $ticket->id }}</td>
                             <td>{{ $ticket->user->name }}</td>
                             <td>{{ $ticket->ref_code }}</td>
@@ -65,10 +68,49 @@
                         </tr>
                     @endforeach
                 </tbody>
+                <tbody id="content" class="searchdata"></tbody>
             </table>
             @if ($tickets->hasPages())
                 <div class="">{{ $tickets->links() }}</div>
             @endif
         </div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('#search').on('keyup', function(){
+            $value = $(this).val();
+
+            if($value){
+                $('.alldata').hide();
+                $('searchdata').show();
+            }else{
+                $('.alldata').show();
+                $('searchdata').hide();
+            }
+
+            $.ajax({
+                type : 'get',
+                url  : '{{URL::to('ridesearch')}}',
+                data : {'search':$value},
+         
+                success:function(data){
+                    console.log(data);
+                    $('#content').html(data);
+                }
+            });
+            // alert($value);
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.btnDelete', function(e) {
+                e.preventDefault();
+                if (confirm('Are you sure you want to delete this ticket?')) {
+                    $(this).closest('form').submit();
+                }
+            });
+        });
+    </script>
+    
+    
 @endsection

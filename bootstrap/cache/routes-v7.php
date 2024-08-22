@@ -102,7 +102,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::oVUQxilv8juQfQOk',
+            '_route' => 'generated::g1S1JAf60sTDkk3R',
           ),
           1 => NULL,
           2 => 
@@ -416,13 +416,33 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/search' => 
+      '/entrysearch' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'entries.search',
+            '_route' => 'generated::G8lV0b338YJSyP8y',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/ridesearch' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'generated::GprxvzDUOauJMcZs',
           ),
           1 => NULL,
           2 => 
@@ -1044,7 +1064,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::oVUQxilv8juQfQOk' => 
+    'generated::g1S1JAf60sTDkk3R' => 
     array (
       'methods' => 
       array (
@@ -1067,7 +1087,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::oVUQxilv8juQfQOk',
+        'as' => 'generated::g1S1JAf60sTDkk3R',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1947,14 +1967,14 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'entries.search' => 
+    'generated::G8lV0b338YJSyP8y' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'search',
+      'uri' => 'entrysearch',
       'action' => 
       array (
         'middleware' => 
@@ -1962,14 +1982,52 @@ app('router')->setCompiledRoutes(
           0 => 'web',
           1 => 'isAdmin',
         ),
-        'uses' => 'App\\Http\\Controllers\\EntryController@search',
-        'controller' => 'App\\Http\\Controllers\\EntryController@search',
+        'uses' => 'App\\Http\\Controllers\\EntryController@entrysearch',
+        'controller' => 'App\\Http\\Controllers\\EntryController@entrysearch',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'entries.search',
+        'as' => 'generated::G8lV0b338YJSyP8y',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'generated::GprxvzDUOauJMcZs' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'ridesearch',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'isAdmin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\TicketController@ridesearch',
+        'controller' => 'App\\Http\\Controllers\\TicketController@ridesearch',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'generated::GprxvzDUOauJMcZs',
       ),
       'fallback' => false,
       'defaults' => 

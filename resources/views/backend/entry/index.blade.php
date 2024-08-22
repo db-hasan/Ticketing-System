@@ -89,7 +89,7 @@
 
             $.ajax({
                 type : 'get',
-                url  : '{{URL::to('search')}}',
+                url  : '{{URL::to('entrysearch')}}',
                 data : {'search':$value},
 
                 success:function(data){

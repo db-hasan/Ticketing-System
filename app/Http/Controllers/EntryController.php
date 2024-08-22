@@ -21,15 +21,14 @@ class EntryController extends Controller
         $this->middleware(['permission:entry-print'], ['only' => ['entryticket']]);
 
     }
-    
-
 
     public function indexentry() {
-        $entries = Entry::with('user')->latest()->paginate(50);
+        $entries = Entry::with('user')->orderBy('id', 'desc')->paginate(50);
         return view('backend.entry.index', compact('entries'));
     }
+    
 
-    public function search(Request $request){
+    public function entrysearch(Request $request){
 
         $entrysearch = Entry::where('ref_code', 'like', '%' . $request->search . '%')
                             ->orWhere('number', 'like', '%' . $request->search . '%')

@@ -48,7 +48,8 @@ Route::group(['middleware'=>'isAdmin'],function(){
     Route::post('entry-insert',[EntryController::class,'storeentry'])->name('entry.store');
     Route::get('entry-print/{id}',[EntryController::class,'printentry'])->name('entry.print');
 
-    Route::get('search', [EntryController::class, 'search'])->name('entries.search');
+    Route::get('entrysearch', [EntryController::class, 'entrysearch']);
+    Route::get('ridesearch', [TicketController::class, 'ridesearch']);
 
 
     

@@ -25,10 +25,41 @@ class TicketController extends Controller
         $this->middleware(['permission:ticket-delete'], ['only' => ['destroyticket']]);
 
     }
-
+    
     public function indexticket() {
-        $tickets = Ticket::with('user')->latest()->paginate(100);
+        $tickets = Ticket::with('user')->orderBy('id', 'desc')->paginate(100);
         return view('backend.ticket.index', compact('tickets'));
+    }
+
+    public function ridesearch(Request $request){
+
+        $ridesearch = Ticket::where('ref_code', 'like', '%' . $request->search . '%')
+                            ->get();
+        
+        $output = '';
+
+        foreach ($ridesearch as $item) {
+            $statusText = $item->status == 1 ? 'Active' : ($item->status == 2 ? 'Inactive' : '');
+
+            $output .=
+            '<tr>
+                <td>' .$item->id. '</td>
+                <td>' .$item->user->name. '</td>
+                <td>' .$item->ref_code. '</td>
+                <td>' .$item->created_at. '</td>
+                <td>' .$statusText. '</td>
+                <td class="d-flex justify-content-end">
+                <a href="' . route('ticket.print', $item->id) . '" class="btn btn-primary mx-1"><i class="bi bi-printer"></i></a>
+                <form class="deleteForm" action="' . route('ticket.destroy', $item->id) . '" method="POST">
+                    ' . csrf_field() . '
+                    ' . method_field('DELETE') . '
+                    <button type="button" class="btn btn-danger btnDelete"><i class="bi bi-trash"></i></button>
+                </form>
+            </td>
+            </tr>';
+        }
+
+        return response($output);
     }
     
     public function createticket() {
