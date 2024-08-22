@@ -58,6 +58,7 @@ class EntryController extends Controller
 
         return response($output);
     }
+    
 
 
     
