@@ -48,11 +48,10 @@ Route::group(['middleware'=>'isAdmin'],function(){
     Route::post('entry-insert',[EntryController::class,'storeentry'])->name('entry.store');
     Route::get('entry-print/{id}',[EntryController::class,'printentry'])->name('entry.print');
 
+    
     Route::get('entrysearch', [EntryController::class, 'entrysearch']);
     Route::get('ridesearch', [TicketController::class, 'ridesearch']);
 
-
-    
 
     Route::get('ride-index',[RideController::class, 'indexride'])->name('ride.index');
     Route::get('ride-insert',[RideController::class,'createride'])->name('ride.create');
