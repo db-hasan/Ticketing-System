@@ -26,11 +26,14 @@ class DashboardController extends Controller
                                     ->sum('price');
         $yearlyTicketSales = Entry::whereYear('created_at', now()->year)->sum('price');
 
+
+
         $todayRideSales = Ticket_details::whereDate('created_at', now()->toDateString())->sum('price');
         $monthlyRideSales = Ticket_details::whereMonth('created_at', now()->month)
                                     ->whereYear('created_at', now()->year)
                                     ->sum('price');
         $yearlyRideSales = Ticket_details::whereYear('created_at', now()->year)->sum('price');
+
 
 
         $todayCustomers = Entry::whereDate('created_at', now()->toDateString())->count('id');
@@ -39,7 +42,6 @@ class DashboardController extends Controller
                                     ->count('id');
         $yearlyCustomers = Entry::whereYear('created_at', now()->year)->count('id');
 
-                            
 
 
         $todayEntrySalesByUsers = Entry::with('user') // Eager load the user
@@ -56,14 +58,8 @@ class DashboardController extends Controller
                                         ->groupBy('user_id')
                                         ->orderBy('total_sales', 'desc')
                                         ->get();
-        
-        $yearEntrySalesByUsers = Entry::with('user') // Eager load the user
-                                            ->select('user_id', DB::raw('SUM(price) as total_sales'))
-                                            ->whereYear('created_at', Carbon::now()->year)
-                                            ->groupBy('user_id')
-                                            ->orderBy('total_sales', 'desc')
-                                            ->get();
-        
+
+
 
         $todayRideSalesByUsers = Ticket_details::with('user') // Eager load the user
                                             ->select('user_id', DB::raw('SUM(price) as total_sales'))
@@ -79,14 +75,6 @@ class DashboardController extends Controller
                                             ->groupBy('user_id')
                                             ->orderBy('total_sales', 'desc')
                                             ->get();
-
-        $yearRideSalesByUsers = Ticket_details::with('user') // Eager load the user
-                                            ->select('user_id', DB::raw('SUM(price) as total_sales'))
-                                            ->whereYear('created_at', Carbon::now()->year)
-                                            ->groupBy('user_id')
-                                            ->orderBy('total_sales', 'desc')
-                                            ->get();
-
     
 
 
@@ -143,32 +131,7 @@ class DashboardController extends Controller
         $monthUserSales = $monthUserSales->sortByDesc('total_sales');
 
 
-        $userIds = $yearEntrySalesByUsers->pluck('user_id')->merge($yearRideSalesByUsers->pluck('user_id'))->unique();
-        $yearUserSales = collect();
-        foreach ($userIds as $userId) {
-            $entrySale = $yearEntrySalesByUsers->firstWhere('user_id', $userId);
-            $totalEntrySales = $entrySale ? $entrySale->total_sales : $defaultPrice;
-            $userName = $entrySale ? $entrySale->user->name : 'Unknown';
-
-            $rideSale = $yearRideSalesByUsers->firstWhere('user_id', $userId);
-            $totalRideSales = $rideSale ? $rideSale->total_sales : $defaultPrice;
-
-            if ($rideSale && $rideSale->user->name) {
-                $userName = $rideSale->user->name;
-            }
-
-            $totalSales = $totalEntrySales + $totalRideSales;
-
-            $yearUserSales->push([
-                'user_id' => $userId,
-                'user_name' => $userName,
-                'total_sales' => $totalSales,
-            ]);
-        }
-        $yearUserSales = $yearUserSales->sortByDesc('total_sales');
-
-
-
+        //chart 
         $monthlySalesData = [];
         $labels = [];
 
@@ -193,9 +156,9 @@ class DashboardController extends Controller
         'todayTicketSales', 'monthlyTicketSales', 'yearlyTicketSales',
         'todayRideSales', 'monthlyRideSales', 'yearlyRideSales',
         'todayCustomers', 'monthlyCustomers', 'yearlyCustomers',
-        'todayEntrySalesByUsers', 'monthEntrySalesByUsers', 'yearEntrySalesByUsers',
-        'todayRideSalesByUsers', 'monthRideSalesByUsers', 'yearRideSalesByUsers',
-        'todayUserSales', 'monthUserSales', 'yearUserSales',
+        'todayEntrySalesByUsers', 'monthEntrySalesByUsers',
+        'todayRideSalesByUsers', 'monthRideSalesByUsers',
+        'todayUserSales', 'monthUserSales',
         'monthlySalesData','labels'
     ));
     }
