@@ -23,7 +23,7 @@
         <div class="custom-scrollbar-table">
             <div class="d-flex justify-content-end pb-3">
                 <div class="col-12 col-md-3">
-                    <input type="text" class="form-control" id="search" placeholder="Search Here">
+                    <input type="text" class="form-control" id="search" placeholder="Search by Number or Ref Code">
                 </div>
             </div>
             <table class="table table-striped">
@@ -40,10 +40,10 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="alldata">
                     @foreach ($entries as $entry)
                         <tr>
-                            <td>{{$loop->iteration}}</td>
+                            <td>{{ $entry->id}}</td>
                             <td>{{ $entry->user->name}}</td>
                             <td>{{ $entry->prices->name}}</td>
                             <td>{{ $entry->ref_code}}</td>
@@ -66,18 +66,26 @@
                     @endforeach
                 </tbody>
 
-                <tbody id="content"></tbody>
+                <tbody id="content" class="searchdata"></tbody>
 
             </table>
-            @if ($entries->hasPages())
+            {{-- @if ($entries->hasPages())
                 <div class="">{{ $entries->links() }}</div>
-            @endif
+            @endif --}}
         </div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript">
         $('#search').on('keyup', function(){
             $value = $(this).val();
+
+            if($value){
+                $('.alldata').hide();
+                $('searchdata').show();
+            }else{
+                $('.alldata').show();
+                $('searchdata').hide();
+            }
 
             $.ajax({
                 type : 'get',
@@ -92,5 +100,5 @@
             // alert($value);
         });
     </script>
-    
+
 @endsection

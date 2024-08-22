@@ -48,6 +48,9 @@ Route::group(['middleware'=>'isAdmin'],function(){
     Route::post('entry-insert',[EntryController::class,'storeentry'])->name('entry.store');
     Route::get('entry-print/{id}',[EntryController::class,'printentry'])->name('entry.print');
 
+    Route::get('search', [EntryController::class, 'search'])->name('entries.search');
+
+
     
 
     Route::get('ride-index',[RideController::class, 'indexride'])->name('ride.index');
@@ -62,9 +65,6 @@ Route::group(['middleware'=>'isAdmin'],function(){
     Route::post('ticket-insert',[TicketController::class,'storeticket'])->name('ticket.store');
     Route::delete('ticket-destroy/{id}',[TicketController::class,'destroyticket'])->name('ticket.destroy');
     Route::get('ticket-print/{id}',[TicketController::class,'printticket'])->name('ticket.print');
-
-    Route::get('search', [TicketController::class, 'search'])->name('entries.search');
-
 
 
     Route::get('index-report',[ReportController::class, 'indexreport'])->name('report.index');

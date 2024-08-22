@@ -102,7 +102,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::r8PVK7dHgEcc2g2M',
+            '_route' => 'generated::2WARXB5WZgbQxt7h',
           ),
           1 => NULL,
           2 => 
@@ -416,6 +416,26 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/search' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'entries.search',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
       '/ride-index' => 
       array (
         0 => 
@@ -623,7 +643,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/user\\-update/([^/]++)(?|(*:32))|/r(?|ole\\-update/([^/]++)(?|(*:68))|ide\\-update/([^/]++)(?|(*:99)))|/price\\-update/([^/]++)(?|(*:134))|/entry\\-print/([^/]++)(*:165)|/ticket\\-(?|update/([^/]++)(?|(*:203))|destroy/([^/]++)(*:228)|print/([^/]++)(*:250)))/?$}sDu',
+      0 => '{^(?|/user\\-update/([^/]++)(?|(*:32))|/r(?|ole\\-update/([^/]++)(?|(*:68))|ide\\-update/([^/]++)(?|(*:99)))|/price\\-update/([^/]++)(?|(*:134))|/entry\\-print/([^/]++)(*:165)|/ticket\\-(?|destroy/([^/]++)(*:201)|print/([^/]++)(*:223)))/?$}sDu',
     ),
     3 => 
     array (
@@ -818,49 +838,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      203 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'ticket.edit',
-          ),
-          1 => 
-          array (
-            0 => 'id',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'ticket.update',
-          ),
-          1 => 
-          array (
-            0 => 'id',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      228 => 
+      201 => 
       array (
         0 => 
         array (
@@ -882,7 +860,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      250 => 
+      223 => 
       array (
         0 => 
         array (
@@ -1066,7 +1044,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::r8PVK7dHgEcc2g2M' => 
+    'generated::2WARXB5WZgbQxt7h' => 
     array (
       'methods' => 
       array (
@@ -1089,7 +1067,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::r8PVK7dHgEcc2g2M',
+        'as' => 'generated::2WARXB5WZgbQxt7h',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1969,6 +1947,44 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
+    'entries.search' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'search',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'isAdmin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\EntryController@search',
+        'controller' => 'App\\Http\\Controllers\\EntryController@search',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'entries.search',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
     'ride.index' => 
     array (
       'methods' => 
@@ -2255,81 +2271,6 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'ticket.store',
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'ticket.edit' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'ticket-update/{id}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'isAdmin',
-        ),
-        'uses' => 'App\\Http\\Controllers\\TicketController@editticket',
-        'controller' => 'App\\Http\\Controllers\\TicketController@editticket',
-        'namespace' => NULL,
-        'prefix' => '',
-        'where' => 
-        array (
-        ),
-        'as' => 'ticket.edit',
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'ticket.update' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-      ),
-      'uri' => 'ticket-update/{id}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'isAdmin',
-        ),
-        'uses' => 'App\\Http\\Controllers\\TicketController@updateticket',
-        'controller' => 'App\\Http\\Controllers\\TicketController@updateticket',
-        'namespace' => NULL,
-        'prefix' => '',
-        'where' => 
-        array (
-        ),
-        'as' => 'ticket.update',
       ),
       'fallback' => false,
       'defaults' => 

@@ -29,23 +29,36 @@ class EntryController extends Controller
         return view('backend.entry.index', compact('entries'));
     }
 
-    public function search(Request $request)
-    {
-        $output = '';
-        
-        $entries = Entry::where('ref_code', 'like', '%' . $request->search . '%')
+    public function search(Request $request){
+
+        $entrysearch = Entry::where('ref_code', 'like', '%' . $request->search . '%')
                         ->orWhere('number', 'like', '%' . $request->search . '%')
                         ->get();
+        
+        $output = '';
 
-        foreach ($entries as $value) {
+        foreach ($entrysearch as $item) {
+            $statusText = $item->status == 1 ? 'Active' : ($item->status == 2 ? 'Inactive' : '');
+
             $output .=
             '<tr>
-                <td>' .$value->ref_code. '</td>
+                <td>' .$item->id. '</td>
+                <td>' .$item->user->name. '</td>
+                <td>' .$item->prices->name. '</td>
+                <td>' .$item->ref_code. '</td>
+                <td>' .$item->number. '</td>
+                <td>' .$item->price. '</td>
+                <td>' .$item->created_at. '</td>
+                <td>' .$statusText. '</td>
+                <td class="d-flex justify-content-end">
+                    <a href="' . route('entry.print', $item->id) . '" class="btn btn-primary mx-1"><i class="bi bi-printer"></i></a>
+                </td>
             </tr>';
         }
 
         return response($output);
     }
+
 
     
     public function createentry() {
