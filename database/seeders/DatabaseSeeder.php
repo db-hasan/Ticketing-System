@@ -10,6 +10,9 @@ use Spatie\Permission\Models\Role;
 use App\Models\User;
 use App\Models\Price;
 use App\Models\Entry;
+use App\Models\Ride;
+use App\Models\Ticket;
+use App\Models\Ticket_details;
 
 class DatabaseSeeder extends Seeder
 {
@@ -52,9 +55,14 @@ class DatabaseSeeder extends Seeder
         $user->syncRoles([$role->id]);
 
         // Price Create
-        $ticket = Price::create([
+        Price::create([
             'name' => 'Entry Ticket',
             'price' => '50',
+        ]);
+
+        Ride::create([
+            'name' => 'Ride 1',
+            'price' => '100',
         ]);
 
         // ******seeder asign******
@@ -63,5 +71,9 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         Entry::factory(100000)->create();
+
+        Ticket::factory(100000)
+            ->has(Ticket_details::factory()->count(3), 'details')
+            ->create();
     }
 }

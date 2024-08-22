@@ -32,8 +32,8 @@ class EntryController extends Controller
     public function search(Request $request){
 
         $entrysearch = Entry::where('ref_code', 'like', '%' . $request->search . '%')
-                        ->orWhere('number', 'like', '%' . $request->search . '%')
-                        ->get();
+                            ->orWhere('number', 'like', '%' . $request->search . '%')
+                            ->get();
         
         $output = '';
 
