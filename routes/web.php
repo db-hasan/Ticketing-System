@@ -9,6 +9,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\EntryController;
 use App\Http\Controllers\PriceController;
+use App\Http\Controllers\QrcodematchController;
 
 
 
@@ -71,5 +72,8 @@ Route::group(['middleware'=>'isAdmin'],function(){
     Route::post('sales-report',[ReportController::class, 'salesreport'])->name('report.sales');
     Route::get('sales-report',[ReportController::class, 'salesinvoice'])->name('invoice.sales');
     Route::post('seller-report',[ReportController::class, 'sellerreport'])->name('report.seller');                              
-    Route::get('seller-report',[ReportController::class, 'sellerinvoice'])->name('invoice.seller');                              
+    Route::get('seller-report',[ReportController::class, 'sellerinvoice'])->name('invoice.seller'); 
+    
+    
+    Route::get('qrcode-match',[QrcodematchController::class, 'qrcodematch'])->name('qrcode.match');                              
 });

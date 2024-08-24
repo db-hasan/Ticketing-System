@@ -102,7 +102,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::g1S1JAf60sTDkk3R',
+            '_route' => 'generated::Axl14C6LuBy54BXH',
           ),
           1 => NULL,
           2 => 
@@ -422,7 +422,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::G8lV0b338YJSyP8y',
+            '_route' => 'generated::WLVRwiSdPFXP9y1c',
           ),
           1 => NULL,
           2 => 
@@ -442,7 +442,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::GprxvzDUOauJMcZs',
+            '_route' => 'generated::lqs5C8AgCZAD5rR0',
           ),
           1 => NULL,
           2 => 
@@ -647,6 +647,26 @@ app('router')->setCompiledRoutes(
           0 => 
           array (
             '_route' => 'invoice.seller',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/qrcode-match' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'qrcode.match',
           ),
           1 => NULL,
           2 => 
@@ -1064,7 +1084,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::g1S1JAf60sTDkk3R' => 
+    'generated::Axl14C6LuBy54BXH' => 
     array (
       'methods' => 
       array (
@@ -1087,7 +1107,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::g1S1JAf60sTDkk3R',
+        'as' => 'generated::Axl14C6LuBy54BXH',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1967,7 +1987,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::G8lV0b338YJSyP8y' => 
+    'generated::WLVRwiSdPFXP9y1c' => 
     array (
       'methods' => 
       array (
@@ -1989,7 +2009,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::G8lV0b338YJSyP8y',
+        'as' => 'generated::WLVRwiSdPFXP9y1c',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2005,7 +2025,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::GprxvzDUOauJMcZs' => 
+    'generated::lqs5C8AgCZAD5rR0' => 
     array (
       'methods' => 
       array (
@@ -2027,7 +2047,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::GprxvzDUOauJMcZs',
+        'as' => 'generated::lqs5C8AgCZAD5rR0',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2592,6 +2612,44 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'invoice.seller',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'qrcode.match' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'qrcode-match',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'isAdmin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\QrcodematchController@qrcodematch',
+        'controller' => 'App\\Http\\Controllers\\QrcodematchController@qrcodematch',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'qrcode.match',
       ),
       'fallback' => false,
       'defaults' => 
