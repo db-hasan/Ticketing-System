@@ -72,7 +72,7 @@ class DatabaseSeeder extends Seeder
 
         Entry::factory(100000)->create();
 
-        Ticket::factory(100000)
+        Ticket::factory(10000)
             ->has(Ticket_details::factory()->count(3), 'details')
             ->create();
     }

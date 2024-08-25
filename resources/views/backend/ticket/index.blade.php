@@ -57,12 +57,12 @@
                                 @endcan
 
                                 @can('ticket-delete')
-                                    <form class="deleteForm" action="{{ route('ticket.destroy', $ticket->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="button" class="btn btn-danger btnDelete"><i
-                                                class="bi bi-trash"></i></button>
-                                    </form>
+                                        <form class="deleteForm" action="{{ route('ticket.destroy', $ticket->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-danger btnDelete"><i
+                                                    class="bi bi-trash"></i></button>
+                                        </form>
                                 @endcan
                             </td>
                         </tr>
