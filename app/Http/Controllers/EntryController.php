@@ -93,6 +93,6 @@ class EntryController extends Controller
         $qrCode = base64_encode(QrCode::format('png')->size(100)->generate($entry->ref_code));
         $today = now()->format('Y-m-d');
 
-        return view('backend.entry.print', compact('entry', 'qrCode', 'today'));
+        return view('backend.entry.create', compact('entry', 'qrCode', 'today'));
     }
 }

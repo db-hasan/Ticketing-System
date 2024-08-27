@@ -84,5 +84,14 @@
 <script src="{{ asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 <script>
-    window.print();
+    window.onload = function() {
+        window.print();
+        document.body.innerHTML = document.getElementById('invoice').innerHTML;
+        
+        setTimeout(function() {
+            window.location.href = "{{ route('ticket.create') }}";
+        }, 1000);
+    };
 </script>
+
+
