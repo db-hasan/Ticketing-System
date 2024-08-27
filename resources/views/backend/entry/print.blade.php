@@ -17,7 +17,8 @@
             text-decoration: none;
         }
         .company-info .comp-name {
-            font-size: 8px !important;
+            font-size: 6px !important;
+            font-weight: 600;
         }
         .company-info address span{
             font-size: 6px !important;
@@ -35,7 +36,7 @@
 <div id="invoice">
     <div class="container">
         <div class="company-info">
-            <div class="comp-name"><strong>Bangladesh Air Force Museum</strong></div>
+            <div class="comp-name text-center">Bangladesh Air Force Museum</div>
             <address class="text-center">
                 <span>Agargaon, Dhaka - Bangladesh</span><br>
                 <span>Phone: (816) 741-5790</span><br>
@@ -43,27 +44,27 @@
                 <span>Website: <a href="#">bafmuseum.mil.bd</a></span>
             </address>
         </div>
-        <div class="row inv-content">
-            <div class="col-6">
-                <div class="">
-                    <span>{{ $entry->prices->name }}</span>
-                </div>
-                <div class="">
-                    <span>Date:</span>
-                    <span>{{ $today }}</span>
-                </div>
-                <div class="">
-                    <span>Price:</span>
-                    <span>Tk. {{ $entry->price }}</span>
-                </div>
-                <div class="">
-                    <span>PH:</span>
-                    <span>{{ $entry->number }}</span>
-                </div>
-            </div>
-            <div class="col-6 text-end">{!! $qrCode !!}</div>
+        <div class="text-center">
+                <img src="data:image/png;base64,{{ $qrCode }}" alt="QR Code Not Found">
         </div>
-        <hr>
+        <table class="inv-content">
+            <tr>
+              <td>Name</td>
+              <td>: {{ $entry->prices->name }}</td>
+            </tr>
+            <tr>
+              <td>Date</td>
+              <td>: {{ $today }}</td>
+            </tr>
+            <tr>
+              <td>Price</td>
+              <td>: Tk. {{ $entry->price }}</td>
+            </tr>
+            <tr>
+              <td>Phone</td>
+              <td>: {{ $entry->number }}</td>
+            </tr>
+        </table>
         <div class="thankyou text-center">
             <span>Thank you</span>
         </div>
