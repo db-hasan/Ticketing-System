@@ -13,21 +13,25 @@
             margin: 0;
         }
 
-        .container a{
+        .container a {
             text-decoration: none;
         }
+
         .company-info .comp-name {
             font-size: 6px !important;
             font-weight: 600;
         }
-        .company-info address span{
+
+        .company-info address span {
             font-size: 6px !important;
         }
+
         .inv-content {
             font-size: 6px !important;
         }
-        .thankyou{
-            font-size: 8px !important; 
+
+        .thankyou {
+            font-size: 8px !important;
         }
 
     }
@@ -55,7 +59,7 @@
                 @php
                     $total = 0;
                 @endphp
-                @foreach($ticket->details as $detail)
+                @foreach ($ticket->details as $detail)
                     @php
                         $total += $detail->price;
                     @endphp
@@ -65,7 +69,7 @@
                     </tr>
                 @endforeach
                 <tr>
-                    <td scope="row" class="text-end">Total</td>
+                    <td class="text-end">Total</td>
                     <td class="text-end">Tk. {{ $total }}</td>
                 </tr>
             </tbody>
@@ -74,7 +78,7 @@
             <span>Thank you</span>
         </div>
     </div>
-    
+
 </div>
 
 <script src="{{ asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

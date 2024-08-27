@@ -49,26 +49,4 @@
             
         </div>
     </main>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const checkboxes = document.querySelectorAll('.form-check-input');
-            const totalPriceElement = document.getElementById('totalPrice');
-
-            checkboxes.forEach(function(checkbox) {
-                checkbox.addEventListener('change', function() {
-                    let total = 0;
-
-                    checkboxes.forEach(function(box) {
-                        if (box.checked) {
-                            total += parseFloat(box.getAttribute('data-price'));
-                        }
-                    });
-
-                    totalPriceElement.textContent = total.toFixed(2);
-                });
-            });
-        });
-
-    </script>
 @endsection
