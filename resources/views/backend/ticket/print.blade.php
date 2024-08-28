@@ -83,15 +83,30 @@
 
 <script src="{{ asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
+
 <script>
-    window.onload = function() {
-        window.print();
+    function printInvoice() {
+        // Store the current body content
+        var originalContent = document.body.innerHTML;
+
+        // Replace body content with only the invoice
         document.body.innerHTML = document.getElementById('invoice').innerHTML;
-        
+
+        // Trigger the print dialog
+        window.print();
+
+        // Restore the original body content
+        document.body.innerHTML = originalContent;
+
+        // Redirect to the create page after printing
         setTimeout(function() {
             window.location.href = "{{ route('ticket.create') }}";
         }, 1000);
-    };
+    }
+
+    // Call the function when the page loads
+    window.onload = printInvoice;
 </script>
+
 
 
