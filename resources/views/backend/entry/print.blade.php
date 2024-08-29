@@ -82,6 +82,7 @@
         document.body.innerHTML = originalContent;
     }
     window.onload = invoice;
+    
 </script>
 
 

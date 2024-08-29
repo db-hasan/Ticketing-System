@@ -40,27 +40,31 @@ class ReportController extends Controller
         $to = $request->input('tosalesdate');
     
         $queryEntries = Entry::query()
-            ->with(['prices']) 
+            ->with(['prices'])
             ->whereDate('created_at', '>=', $from)
             ->whereDate('created_at', '<=', $to)
             ->get();
     
-        $groupedEntries = $queryEntries->groupBy(function ($entry) {
-            return $entry->prices->name;
-        });
+        $groupedEntries = $queryEntries->isNotEmpty()
+            ? $queryEntries->groupBy(function ($entry) {
+                return $entry->prices->name;
+            })
+            : collect(); // Initialize an empty collection if no entries found
     
         $ticketQTY = $groupedEntries->map->count();
         $ticketPrice = $groupedEntries->map->sum('price');
     
         $queryRides = Ticket_details::query()
-            ->with(['ride']) 
+            ->with(['ride'])
             ->whereDate('created_at', '>=', $from)
             ->whereDate('created_at', '<=', $to)
             ->get();
     
-        $groupedRides = $queryRides->groupBy(function ($ride) {
-            return $ride->ride->name;
-        });
+        $groupedRides = $queryRides->isNotEmpty()
+            ? $queryRides->groupBy(function ($ride) {
+                return $ride->ride->name;
+            })
+            : collect(); // Initialize an empty collection if no rides found
     
         $ridesQTY = $groupedRides->map->count();
         $ridesPrice = $groupedRides->map->sum('price');
@@ -74,14 +78,13 @@ class ReportController extends Controller
         // Cache date filters
         Cache::put('from', $from);
         Cache::put('to', $to);
-
-        $today = now()->format('Y-m-d'); // Format as needed, e.g., 'Y-m-d', 'd-m-Y'
-
+    
+        $today = now()->format('Y-m-d');
     
         return view('backend/report.salesreport', 
-            compact('from', 'to', 'today',
-            'mergedData', 'mergedQTY', 'mergedPrice',));
+            compact('from', 'to', 'today', 'mergedData', 'mergedQTY', 'mergedPrice'));
     }
+    
 
     public function sellerinvoice() {
         return view('backend/report.sellerreport');
