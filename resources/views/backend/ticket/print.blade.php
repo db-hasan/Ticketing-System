@@ -83,12 +83,27 @@
 <script src="{{ asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 
-<script>
+{{-- <script>
     function invoice() {
         var originalContent = document.body.innerHTML;
         document.body.innerHTML = document.getElementById('invoice').innerHTML;
         window.print();
         document.body.innerHTML = originalContent;
     }
+    window.onload = invoice;
+</script> --}}
+
+
+<script>
+    function invoice() {
+        var originalContent = document.body.innerHTML;
+        document.body.innerHTML = document.getElementById('invoice').innerHTML;
+        window.print();
+        
+        setTimeout(function() {
+            document.body.innerHTML = originalContent;
+            window.location.href = '{{ route('ticket.create') }}';
+        }, 1000);
+    } 
     window.onload = invoice;
 </script>

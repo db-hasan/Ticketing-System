@@ -75,5 +75,15 @@
 <script src="{{ asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 <script>
-    window.print();
+    function invoice() {
+        var originalContent = document.body.innerHTML;
+        document.body.innerHTML = document.getElementById('invoice').innerHTML;
+        window.print();
+        document.body.innerHTML = originalContent;
+    }
+    window.onload = invoice;
 </script>
+
+
+
+
