@@ -71,10 +71,10 @@ class DatabaseSeeder extends Seeder
         // ]);
 
 
-        Entry::factory(1000)->create();
+        Entry::factory(100000)->create();
 
-        Ticket::factory(1000)
-            ->has(Ticket_details::factory()->count(3), 'details')
+        Ticket::factory(25000)
+            ->has(Ticket_details::factory()->count(4), 'details')
             ->create();
     }
 }
