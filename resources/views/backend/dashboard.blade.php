@@ -34,7 +34,7 @@
                             <i class="bi bi-cart"></i>
                           </div>
                           <div class="ps-3">
-                            <h6>Tk. {{ $todaySales }}</h6>
+                            <h6>Tk. {{ number_format($todaySales) }}</h6>
                             <span class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1">Today Sales Amount</span>
                           </div>
                         </div>
@@ -52,7 +52,7 @@
                             <i class="bi bi-cart"></i>
                           </div>
                           <div class="ps-3">
-                            <h6>Tk. {{ $monthlySales}}</h6>
+                            <h6>Tk. {{ number_format($monthlySales) }}</h6>
                             <span class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1">Monthly Sales Amount</span>
                           </div>
                         </div>
@@ -70,7 +70,7 @@
                             <i class="bi bi-currency-dollar"></i>
                           </div>
                           <div class="ps-3">
-                            <h6>Tk. {{ $yearlySales}}</h6>
+                            <h6>Tk. {{ number_format($yearlySales) }}</h6>
                             <span class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1">Yearly Sales Amount</span>
                           </div>
                         </div>
@@ -130,7 +130,7 @@
                             @endphp
                               <tr>
                                   <td>{{ $sale['user_name'] }}</td> 
-                                  <td class="text-end">{{ $sale['total_sales'] }}</td>
+                                  <td class="text-end"> {{ number_format($sale['total_sales']) }}</td>
                               </tr>
                           @endforeach
 
@@ -169,7 +169,7 @@
                           @endphp
                             <tr>
                                 <td>{{ $sale['user_name'] }}</td> 
-                                <td class="text-end">{{ $sale['total_sales'] }}</td>
+                                <td class="text-end">{{ number_format($sale['total_sales']) }}</td>
                             </tr>
                         @endforeach
 
@@ -210,7 +210,7 @@
                       
                       @foreach ($rideTickets as $rideTicket)
                       <div class="activity-item d-flex">
-                        <div class="activite-label">{{ $rideTicket->created_at->format('H:i') }}</div>
+                        <div class="activite-label">{{ $rideTicket->created_at->diffForHumans() }}</div>
                         <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
                         <div class="activity-content">
                           {{ $rideTicket->ride->name}}
@@ -245,7 +245,7 @@
                           ?>
                           <tr>
                               <td>{{ $todayEntrySalesByUser->user->name }}</td>
-                              <td class="text-end">{{ number_format($todayEntrySalesByUser->total_sales, 2) }}</td>
+                              <td class="text-end">{{ number_format($todayEntrySalesByUser->total_sales) }}</td>
                           </tr>
                           @endforeach
 
@@ -283,7 +283,7 @@
                           @endphp
                           <tr>
                               <td>{{ $todayRideSalesByUser->user->name }}</td>
-                              <td class="text-end">{{ number_format($todayRideSalesByUser->total_sales, 2) }}</td>
+                              <td class="text-end">{{ number_format($todayRideSalesByUser->total_sales) }}</td>
                           </tr>
                           @endforeach
 
