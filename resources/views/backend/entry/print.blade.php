@@ -38,8 +38,8 @@
             </div>
             <div class="text-end">
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                    <a href="{{ route('report.index') }}" type="button" class="btn btn-success">Create</a>
-                    <a href="{{ route('report.index') }}" type="button" class="btn btn-warning">List</a>
+                    <a href="{{ route('entry.index') }}" type="button" class="btn btn-success">Create</a>
+                    <a href="{{ route('entry.create') }}" type="button" class="btn btn-warning">List</a>
                     <button type="button" class="btn btn-danger" id="printBtn" onclick="printInvoice()">Print</button>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                 <div style="text-align: center;">
                     <img src="data:image/png;base64,{{ $qrCode }}" alt="QR Code Not Found">
                 </div>
-                <table style="font-size: 6px;">
+                <table class="table" style="font-size: 6px;">
                     <tr>
                         <td>Name :</td>
                         <td>{{ $entry->prices->name }}</td>
