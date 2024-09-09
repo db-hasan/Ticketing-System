@@ -133,7 +133,7 @@ class AuthController extends Controller
 
     // Display the Password Update
     public function profileupdate() {
-        $users=Auth::user();;
+        $users=Auth::user();
         return view('auth.password', compact('users'));
     }
 

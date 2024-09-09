@@ -51,8 +51,8 @@
         <table class="table inv-content">
             <thead>
                 <tr>
-                    <th scope="col" class="text-uppercase">Name</th>
-                    <th scope="col" class="text-uppercase text-end">Price</th>
+                    <th scope="col" class="">Name</th>
+                    <th scope="col" class="text-end">Price</th>
                 </tr>
             </thead>
             <tbody>
@@ -84,7 +84,7 @@
 <script src="{{ asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
  
 
-{{-- <script>
+<script>
     function invoice() {
         var originalContent = document.body.innerHTML;
         document.body.innerHTML = document.getElementById('invoice').innerHTML;
@@ -92,10 +92,10 @@
         document.body.innerHTML = originalContent;
     }
     window.onload = invoice;
-</script> --}}
+</script>
 
 
-<script>
+{{-- <script>
     function invoice() {
         var originalContent = document.body.innerHTML;
         document.body.innerHTML = document.getElementById('invoice').innerHTML;
@@ -107,4 +107,4 @@
         }, 1000);
     } 
     window.onload = invoice;
-</script>
+</script> --}}
