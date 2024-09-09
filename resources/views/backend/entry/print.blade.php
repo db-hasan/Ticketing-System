@@ -83,10 +83,6 @@
             </div>
         </div>
     </main>
-    {{-- @endsection --}}
-
-    <script src="{{ asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
 
     <script>
         function invoice() {
@@ -104,3 +100,4 @@
             window.print();
         }
     </script>
+    {{-- @endsection --}}

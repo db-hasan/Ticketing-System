@@ -2,7 +2,6 @@
 @section('content')
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="{{ asset('backend/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <style>
         @media print {
@@ -34,10 +33,11 @@
 
         }
     </style>
+
     <main id="main" class="main">
         <div class="d-flex justify-content-between">
             <div class="pagetitle">
-                <h1>Print Ticket</h1>
+                <h1>Print Ride</h1>
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Home</a></li>
@@ -103,9 +103,6 @@
         </div>
     </main>
 
-    <script src="{{ asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-
     <script>
         function invoice() {
             var originalContent = document.body.innerHTML;
@@ -122,3 +119,4 @@
             window.print();
         }
     </script>
+{{-- @endsection --}}
