@@ -38,8 +38,8 @@
             </div>
             <div class="text-end">
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                    <a href="{{ route('entry.index') }}" type="button" class="btn btn-success">Create</a>
-                    <a href="{{ route('entry.create') }}" type="button" class="btn btn-warning">List</a>
+                    <a href="{{ route('entry.create') }}" type="button" class="btn btn-success">Create</a>
+                    <a href="{{ route('entry.index') }}" type="button" class="btn btn-warning">List</a>
                     <button type="button" class="btn btn-danger" id="printBtn" onclick="printInvoice()">Print</button>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                     </tr>
                     <tr>
                         <td>Date : </td>
-                        <td>{{ $today }}</td>
+                        <td>{{ $entry->created_at->format('Y-m-d') }}</td>
                     </tr>
                     <tr>
                         <td>Price: </td>

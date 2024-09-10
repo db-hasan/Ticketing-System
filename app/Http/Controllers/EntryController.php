@@ -91,8 +91,6 @@ class EntryController extends Controller
     public function printentry($id=null){
         $entry = Entry::findOrFail($id);
         $qrCode = base64_encode(QrCode::format('png')->size(100)->generate($entry->ref_code));
-        $today = now()->format('Y-m-d');
-
-        return view('backend.entry.print', compact('entry', 'qrCode', 'today'));
+        return view('backend.entry.print', compact('entry', 'qrCode'));
     }
 }
